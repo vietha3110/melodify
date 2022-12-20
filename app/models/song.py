@@ -11,16 +11,16 @@ class Song(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    artist_name = db.Column(db.Integer, nullable=False)
+    artist_name = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
     length = db.Column(db.Integer, nullable=False) 
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_to_prod("users.id")), nullable=False)
-    audio_file = db.Column(db.Integer, nullable=False)
+    audio_file = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship('User', back_populates='songs')
-    playlist_songs = db.relationship('Playlist', back_populates='song', cascade="all, delete-orphan")
+    playlist_songs = db.relationship('Playlist_Song', back_populates='song', cascade="all, delete-orphan")
 
     def to_dict(self): 
         return {
