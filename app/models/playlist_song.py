@@ -1,15 +1,12 @@
-from .db import db, environment, SCHEMA, add_prefix_to_prod 
+from .db import db
 from datetime import datetime 
 
 class Playlist_Song(db.Model):
     __tablename__ = 'playlist_songs'
 
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
-
     id = db.Column(db.Integer, primary_key=True)
-    playlist_id = db.Column(db.Integer, db.ForeignKey(add_prefix_to_prod("playlists.id")),nullable=False)
-    song_id = db.Column(db.Integer, db.ForeignKey(add_prefix_to_prod("songs.id")),nullable = False)
+    playlist_id = db.Column(db.Integer, db.ForeignKey("playlists.id"),nullable=False)
+    song_id = db.Column(db.Integer, db.ForeignKey("songs.id"),nullable = False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -21,5 +18,6 @@ class Playlist_Song(db.Model):
             'id': self.id, 
             'playlistId': self.playlist_id,
             'songId': self.song_id,
+            'song': self.song.to_dict()
         }
     
