@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_to_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
@@ -6,6 +6,10 @@ from datetime import datetime
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -15,6 +19,10 @@ class User(db.Model, UserMixin):
     image_url = db.Column(db.String, nullable=True, unique=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    songs = db.relationship('Song', back_populates='user', cascade="all, delete-orphan")
+    playlists = db.relationship('Playlist', back_populates='user', cascade='all, delete-orphan')
+
 
     @property
     def password(self):
