@@ -40,3 +40,21 @@ export function editPlaylist(playlist) {
         playlist
     }
 }
+
+export const fetchAll = () => async dispatch => {
+    const response = await fetch(`/api/playlists/all`); 
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(LOAD_ALL(data.playlists)); 
+        return response
+    }
+}
+
+export const fetchUserList = () => async dispatch => {
+    const response = await fetch(`/api/playlists/current`);
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(LOAD_USERPLAYLISTS(data.playlists));
+        return response;
+    }
+}
