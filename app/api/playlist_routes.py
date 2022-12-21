@@ -1,9 +1,25 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, make_response
 from flask_login import login_required, current_user
 from ..models import db, Playlist
 from ..forms import PlaylistForm
 
 playlist_routes = Blueprint('playlists', __name__)
+
+# @playlist_routes.route('/files/<file_name>', methods = ['POST'])
+# def upload(file_name): 
+#     fo = open('files/' + file_name, 'wb')
+#     fo.write(request.get_data())
+#     return {}, 200
+
+
+# @playlist_routes.route('/files/<file_name>')
+# def file(file_name):
+#     content = open('files/' + file_name, "r").read()
+#     response = make_response(content)
+#     response.headers.set('Content-Type', 'application/octet-stream')
+#     return response
+
+
 
 @playlist_routes.route('/current')
 @login_required

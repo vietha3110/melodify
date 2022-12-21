@@ -1,0 +1,25 @@
+body {
+    font-family: -apple-system, "Helvetica Neue", "Lucida Grande";
+    box-sizing: border-box;
+    font-size: 1.4rem;
+    position: relative;
+
+    --melodify-gray:#8e8e93;
+    --melodify-banerDarkGray: #444;
+    --melodify-dropdown-background: #575757;
+    --melodify-dropdown-light-gray: #707070;
+    --melodify-playerBackground:hsla(0,0%,100%,.88);
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

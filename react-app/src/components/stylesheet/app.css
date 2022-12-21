@@ -1,0 +1,24 @@
+.main-app {
+    min-width: 1024px;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+.app-left-container {
+    width: 25%;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+}
+.main-logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    box-sizing: border-box;
+    border-radius: 0.2rem;
+}
+
+
+
+
+.app-right-container {
+    width: 75%;
+}
