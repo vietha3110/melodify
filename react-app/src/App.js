@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
 import { authenticate } from './store/session';
 import './components/stylesheet/app.css'
+import LeftBox from './components/AppLeft';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -23,9 +24,9 @@ function App() {
     <BrowserRouter>
       <div className='main-app'>
       <div className='app-left-container'>
-          App LeftBox
-        </div>
-        <div className='app-right-container'>
+         <LeftBox/>
+      </div>
+      <div className='app-right-container'>
           <>
             <NavBar />
           </>

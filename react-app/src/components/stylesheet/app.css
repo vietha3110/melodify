@@ -9,6 +9,15 @@
     box-sizing: border-box;
     border: 1px solid #cccccc;
 }
+.main-logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    box-sizing: border-box;
+    border-radius: 0.2rem;
+}
+
+
+
 
 .app-right-container {
     width: 75%;
