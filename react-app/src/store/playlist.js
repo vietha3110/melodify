@@ -58,3 +58,83 @@ export const fetchUserList = () => async dispatch => {
         return response;
     }
 }
+
+export const makePlaylist = (playlist) => async dispatch => {
+    const { name, description } = playlist;
+    try {
+        const response = await fetch(`/api/playlists/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, description })
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(addPlaylist(data));
+            return data;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.name;
+            } else {
+                throw ['An error occured. Please try again'];
+            }
+        }
+    } catch (err) {
+        throw (err);
+    }
+}
+
+export const updatePlaylist = (playlist) => async dispatch => {
+    const { id,name, description } = playlist;
+    try {
+        const response = await fetch(`api/playlists/id`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, description })
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(updatePlaylist(data));
+            return data;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+    } catch (err) {
+        throw(err)
+    }
+}
+
+
+export const deletePlaylist = (playlistId) => async dispatch => {
+    try {
+        const response = await fetch(`/api/playlists/${playlistId}`, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            dispatch(removePlaylist(playlistId));
+            const data = response.json(); 
+            return data;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+        
+    } catch (err) {
+        throw err;
+    }
+}
+
+const playlistReducer = (state = {}, action) => {
+    
+}
+
+export default playlistReducer;
