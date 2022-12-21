@@ -7,6 +7,8 @@ const PlaylistForm = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState(''); 
     const dispatch = useDispatch();
+    //validation 100 for name
+    //validation 300 for desc
 
     const handleSubmit = (e) => {
         e.preventDefault();
