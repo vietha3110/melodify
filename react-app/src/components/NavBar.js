@@ -1,37 +1,32 @@
-
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-
+import LoginFormModal from './auth/Login';
+import SignUpFormModal from './auth/SignUp';
+import ProfileDropdown
+  from './auth/ProfileDropDown';
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
-    </nav>
+    <div className='navbar-container'>
+      <div className='navbar-player'>
+        Player
+      </div>
+      <div className='navbar-logo'>
+        Logo 
+      </div>
+      <div className='navbar-volume'>
+        volume
+      </div>
+      <div className='navbar-next'>
+        <button>Open Next</button>
+      </div>
+      <div className='navbar-button-signin'>
+          <LoginFormModal/>
+          <SignUpFormModal/>
+      </div>
+      <div>
+        <ProfileDropdown />
+      </div>
+    </div>
   );
 }
 

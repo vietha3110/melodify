@@ -1,0 +1,15 @@
+.main-app {
+    min-width: 1024px;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+.app-left-container {
+    width: 25%;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+}
+
+.app-right-container {
+    width: 75%;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp } from '../../../store/session'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -14,7 +14,8 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault(); 
-    const data = await dispatch(signUp( email, password));
+    console.log('im running');
+    const data = await dispatch(signUp(firstName,lastName,email, password));
     if (data) {
       setErrors(data)
     }
