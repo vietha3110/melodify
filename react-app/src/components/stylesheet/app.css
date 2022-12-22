@@ -2,12 +2,15 @@
     min-width: 1024px;
     display: flex;
     justify-content: center;
-    margin: 2rem;
 }
 .app-left-container {
-    width: 25%;
+    width: 20%;
+    height: 100%;
     box-sizing: border-box;
     border: 1px solid #cccccc;
+    display: flex;
+    flex-direction: column;
+
 }
 .main-logo {
     width: 1.5rem;

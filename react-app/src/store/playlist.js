@@ -150,6 +150,18 @@ const playlistReducer = (state = {}, action) => {
             newState = deepcopy(state);
             newState.playlists[action.playlist.id] = action.playlist;
             return newState;
+        
+        case EDIT_PLAYLIST:
+            newState = deepcopy(state);
+            const playlist = action.playlist;
+            newState.playlists[playlist.id] = playlist;
+            return newState;
+            
+        case REMOVE_PLAYLIST:
+            newState = deepcopy(state);
+            delete newState.playlists[action.playlistId];
+            return newState;
+    
         default:
             return state
     }
