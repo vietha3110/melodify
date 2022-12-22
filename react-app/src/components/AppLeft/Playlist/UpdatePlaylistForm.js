@@ -2,34 +2,22 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as playlistAction from '../../../store/playlist';
 
-const PlaylistForm = () => {
-    const [validationErrors, setValidationErrors] = useState([]);
+const UpdatePlaylistForm = () => {
+    const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState(''); 
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState({})
-     //validation 100 for name
+    //validation 100 for name
     //validation 300 for desc
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setValidationErrors([]);
-        const errors = {}
-        if (name.length <= 0 || name.length > 100) {
-            errors.name = 'Name must be less than 100 characters.';
-            console.log('im running');
-        }
-        if (name.trim() === "") {
-            errors.name = 'Name can not be blank.';
-        }
-        if (description.length > 200) {
-            errors.description = 'Description must be less than 200 characters.';
-        }
-        if (Object.keys(errors).length > 0) {
-            setErrors(errors);
-            return;
-        }
-
+        console.log('make a playlist')
+        setErrors([]);
+        // if (name.length <= 0 || name.length > 100) {
+        //     setErrors()
+        // }
+        console.log(description, name);
         dispatch(playlistAction.makePlaylist({ name, description }));
     }
     
@@ -40,16 +28,18 @@ const PlaylistForm = () => {
             </div>
             <form onSubmit={handleSubmit}>
                 <div>
+                    {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <div>
                     <input
                         type='text'
-                        placeholder='Add a name (required *)'
+                        placeholder='Add a name'
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        // required
+                        required
                     />
-                    <p className="error-label">
-                        {errors.name}
-                    </p>
                 </div>
                 <div>
                     <textarea
@@ -58,9 +48,6 @@ const PlaylistForm = () => {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
-                    <p className="error-label">
-                        {errors.description}
-                    </p>
                 </div>
                 <div>
                     <button type='submit'>Save</button>
@@ -71,4 +58,4 @@ const PlaylistForm = () => {
 
 }
 
-export default PlaylistForm;
+export default UpdatePlaylistForm;

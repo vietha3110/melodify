@@ -2,6 +2,7 @@
     min-width: 1024px;
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 .app-left-container {
     width: 20%;
@@ -19,7 +20,10 @@
     border-radius: 0.2rem;
 }
 
-
+.musicnote {
+    width: 1.5rem;
+    height: 1.5rem;
+}
 
 
 .app-right-container {
