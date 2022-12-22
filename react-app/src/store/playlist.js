@@ -1,3 +1,5 @@
+const deepcopy = require('deepcopy');
+
 const LOAD_ALL = 'playlist/loadAll';
 const LOAD_USERPLAYLISTS = 'playlist/loadUserPlaylists'; 
 const ADD_PLAYLIST = 'playlist/addPlaylist';
@@ -45,7 +47,7 @@ export const fetchAll = () => async dispatch => {
     const response = await fetch(`/api/playlists/all`); 
     if (response.ok) {
         const data = await response.json();
-        dispatch(LOAD_ALL(data.playlists)); 
+        dispatch(loadAll(data.playlists)); 
         return response
     }
 }
@@ -54,7 +56,7 @@ export const fetchUserList = () => async dispatch => {
     const response = await fetch(`/api/playlists/current`);
     if (response.ok) {
         const data = await response.json();
-        dispatch(LOAD_USERPLAYLISTS(data.playlists));
+        dispatch(loadUserPlaylists(data.playlists));
         return response;
     }
 }
@@ -134,7 +136,20 @@ export const deletePlaylist = (playlistId) => async dispatch => {
 }
 
 const playlistReducer = (state = {}, action) => {
-    
+    let newState;
+    switch (action.type) {
+        case LOAD_USERPLAYLISTS:
+            newState = deepcopy(state);
+            let newList = action.playlists.reduce((data, list) => {
+                data[list.id] = list;
+                return data;
+            }, {});
+            newState.playlists = newList;
+            return newState;
+
+        default:
+            return state
+    }
 }
 
 export default playlistReducer;

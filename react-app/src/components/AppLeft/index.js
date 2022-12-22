@@ -1,5 +1,6 @@
 import logo from '../AppLeft/Playlist/Melodify.png';
 import PlaylistModal from './Playlist';
+import Playlist from './Playlist/Playlist';
 const LeftBox = () => {
     return (
         <div>
@@ -10,6 +11,9 @@ const LeftBox = () => {
             <div>Radio</div>
             <div>
                 <PlaylistModal/>
+            </div>
+            <div>
+               <Playlist/> 
             </div>
         </div>
     )
