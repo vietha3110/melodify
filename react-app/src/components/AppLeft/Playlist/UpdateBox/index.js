@@ -1,5 +1,7 @@
 import { useState } from "react";
 import EditFormModal from "./Edit/EditFormModal";
+import DeleteFormModal from "./Delete/DeleteFormModal";
+
 const UpdateBox = ({ playlist, i, openModal, closeModal }) => {
     const [open, setOpen] = useState({});
 
@@ -27,12 +29,10 @@ const UpdateBox = ({ playlist, i, openModal, closeModal }) => {
             {open[i] &&
                 <div className="updatebox-dropdown">
                     <div className="updatebox-dropdown-update">
-                        
                         <EditFormModal playlist={playlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal} />
                     </div>
                     <div className="updatebox-dropdown-delete">
-                        DELETE
-                        {/* <DeleteModal watchlist={watchlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal}/> */}
+                        <DeleteFormModal playlist={playlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal}/>
                     </div>
                 </div>
             }
