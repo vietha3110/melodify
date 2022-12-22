@@ -19,7 +19,10 @@ playlist_routes = Blueprint('playlists', __name__)
 #     response.headers.set('Content-Type', 'application/octet-stream')
 #     return response
 
-
+@playlist_routes.route('/all')
+def get_all(): 
+    playlists = Playlist.query.all()
+    return {'playlists': [playlist.to_dict() for playlist in playlists]}, 200
 
 @playlist_routes.route('/current')
 @login_required
@@ -65,9 +68,10 @@ def update_playlist(playlist_id):
         if update_playlist.user_id == current_user_id: 
             data = request.get_json()
             if data['name'].isspace() or not data['name']: 
-                return {
-                    'error': "Name can not be blank.",
+                return { 'error': {
+                    'message': "Name can not be blank.",
                     "statusCode": 400
+                    }
                 }, 400
             update_playlist.name = data['name']
             update_playlist.description = data['description']

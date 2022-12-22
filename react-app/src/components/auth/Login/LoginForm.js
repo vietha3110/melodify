@@ -26,12 +26,12 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className='login'>
+      <div>
+        <span>Login</span>
+      </div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
