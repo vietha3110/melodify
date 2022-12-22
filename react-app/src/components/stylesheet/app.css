@@ -28,3 +28,17 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    box-sizing: border-box;
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+
+}

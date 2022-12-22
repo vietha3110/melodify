@@ -11,7 +11,7 @@ const Playlist = () => {
     
     useEffect(() => {
         dispatch(playlistAction.fetchUserList());
-    }, [dispatch]);
+    }, [dispatch, user]);
 
     return (
         <>
