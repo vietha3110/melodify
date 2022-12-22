@@ -6,27 +6,32 @@
     --melodify-dropdown-light-gray: #707070;
     --melodify-playerBackground:hsla(0,0%,100%,.88);
     --melodify-red-close:#fa233b;
-  }
+}
   
-  body {
-      font-family: 'Roboto Mono', monospace; 
-      box-sizing: border-box;
-      font-size: 1rem;
-      position: relative;
+body {
+    font-family: 'Roboto Mono', monospace; 
+    box-sizing: border-box;
+    font-size: 1rem;
+    position: relative;
+
+    
+}
   
-     
-  }
   
-  
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
   
   /* Firefox */
-  input[type=number] {
+input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
-  }
-  
+}
+input, textarea {
+    outline: none;
+    border: none; 
+    border-width: 0; 
+    box-shadow: none;
+}

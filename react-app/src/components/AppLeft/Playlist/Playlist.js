@@ -17,16 +17,20 @@ const Playlist = () => {
 
     return (
         <>
-            <div>
+            <div className='playlist-header'>
                 <img src={playlistIcon} className='playlist-icon' style={{height:20, width:32}}/>
                 <span>Your Playlists</span>
             </div>
-            <div>
+            <div className='playlist-content'>
                 {user !== null && playlists && Object.values(playlists).map(
-                    (playlist) => (
-                        <div>
-                            <img src={musicNote} className='musicnote'/>    
-                            <span>{playlist.name}</span>
+                    (playlist, i) => (
+                        <div key={i} className='playlist-content-name'>
+                            <div className='playlist-content-name-img'>
+                                <img src={musicNote} className='musicnote' />
+                            </div>   
+                            <div className='playlist-content-name-span'>
+                                <span>{playlist.name}</span>
+                            </div>
                         </div>
                     )
                 )}

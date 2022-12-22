@@ -15,14 +15,16 @@ const PlaylistForm = ({onClose}) => {
         const errors = {}
         if (name.length <= 0 || name.length > 100) {
             errors.name = 'Name must be less than 100 characters.';
-            console.log('im running');
         }
+
         if (name.trim() === "") {
             errors.name = 'Name can not be blank.';
         }
+
         if (description.length > 300) {
             errors.description = 'Description must be less than 300 characters.';
         }
+        
         if (Object.keys(errors).length > 0) {
             setErrors(errors);
             return;
