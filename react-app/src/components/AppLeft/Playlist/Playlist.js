@@ -4,16 +4,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../Modal';
 import musicNote from '../Playlist/musicNote.png';
 import playlistIcon from '../Playlist/playlist-icon.png';
+import UpdateBox from './UpdateBox';
 
 const Playlist = () => {
     const dispatch = useDispatch();
     const playlists = useSelector(state => state.playlists.playlists);
     const user = useSelector(state => state.session.user); 
+    const [open, setOpen] = useState({});
 
-    
+    const [modalInfo, setModalInfo] = useState({
+        show: false,
+        content: <></>
+    });
+
     useEffect(() => {
         dispatch(playlistAction.fetchUserList());
     }, [dispatch, user]);
+
+    const handleClick = (i) => (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const newOpens = {
+            ...open,
+            [i]: !open[i]
+        };
+        setOpen(newOpens);
+        
+    }
 
     return (
         <>
@@ -28,8 +45,16 @@ const Playlist = () => {
                             <div className='playlist-content-name-img'>
                                 <img src={musicNote} className='musicnote' />
                             </div>   
-                            <div className='playlist-content-name-span'>
+                            <div className='playlist-content-name-span' onClick={handleClick(i)}>
                                 <span>{playlist.name}</span>
+                            </div>
+                            <div>
+                                {modalInfo.show && (
+                                    <Modal>
+                                        {modalInfo.content}
+                                    </Modal>
+                                )}
+                                <UpdateBox i={i} playlist={playlist} openModal={(content) => setModalInfo({ show: true, content })} closeModal={() => setModalInfo({ show: false })} />
                             </div>
                         </div>
                     )

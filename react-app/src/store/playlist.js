@@ -91,7 +91,7 @@ export const makePlaylist = (playlist) => async dispatch => {
 export const updatePlaylist = (playlist) => async dispatch => {
     const { id,name, description } = playlist;
     try {
-        const response = await fetch(`api/playlists/id`, {
+        const response = await fetch(`api/playlists/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -100,7 +100,7 @@ export const updatePlaylist = (playlist) => async dispatch => {
         });
         if (response.ok) {
             const data = await response.json();
-            dispatch(updatePlaylist(data));
+            dispatch(editPlaylist(data));
             return data;
         } else {
             const data = await response.json();
