@@ -1,7 +1,12 @@
 import logo from '../AppLeft/Playlist/Melodify.png';
-import PlaylistModal from './Playlist';
+// import PlaylistModal from './Playlist';
 import Playlist from './Playlist/Playlist';
+import PlaylistForm from './Playlist/PlaylistForm';
+import { Modal } from '../Modal';
+import { useState } from 'react';
 const LeftBox = () => {
+    const [showModal, setShowModal] = useState(false); 
+
     return (
         <>
             <div>
@@ -15,7 +20,12 @@ const LeftBox = () => {
             </div>
             <div>Radio</div>
             <div>
-                <PlaylistModal/>
+                 <button onClick={() => setShowModal(true)}>New Playlist</button>
+                    {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <PlaylistForm onClose={() => setShowModal(false)}/>
+                        </Modal>
+                    )}
             </div>
             <div>
                <Playlist/> 

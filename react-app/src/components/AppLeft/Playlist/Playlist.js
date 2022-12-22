@@ -2,7 +2,8 @@ import * as playlistAction from '../../../store/playlist';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../Modal';
-import musicNote from '../Playlist/musicNote.png'
+import musicNote from '../Playlist/musicNote.png';
+import playlistIcon from '../Playlist/playlist-icon.png';
 
 const Playlist = () => {
     const dispatch = useDispatch();
@@ -16,7 +17,10 @@ const Playlist = () => {
 
     return (
         <>
-            Playlist will render here
+            <div>
+                <img src={playlistIcon} className='playlist-icon' style={{height:20, width:32}}/>
+                <span>Your Playlists</span>
+            </div>
             <div>
                 {user !== null && playlists && Object.values(playlists).map(
                     (playlist) => (
