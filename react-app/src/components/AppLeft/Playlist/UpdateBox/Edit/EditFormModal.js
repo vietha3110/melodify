@@ -13,7 +13,7 @@ const EditFormModal = ({ playlist, closeDropdown, openModal, closeModal }) => {
         document.addEventListener('click', e => {
             closeDropdown();
         });
-    });
+    },[]);
 
     return (
         <button onClick={onClick} className='btn-edit'>

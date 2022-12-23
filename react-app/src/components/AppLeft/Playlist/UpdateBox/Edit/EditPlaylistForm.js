@@ -58,7 +58,7 @@ const EditPlaylistForm = ({playlist, onClose}) => {
                 <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg'/>
             </div>
             <form onSubmit={handleSubmit} className='playlistform-content-form'>
-                <div>
+                <div className='playlistform-content-form-name'>
                     <input
                         type='text'
                         placeholder='Add a name (required)'
@@ -70,7 +70,7 @@ const EditPlaylistForm = ({playlist, onClose}) => {
                         {errors.name}
                     </p>
                 </div>
-                <div>
+                <div className='playlistform-content-form-desc'>
                     <textarea
                         type='text'
                         placeholder='Add an optional description'

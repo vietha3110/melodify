@@ -23,6 +23,7 @@ const PlaylistForm = ({onClose}) => {
 
         if (description.length > 300) {
             errors.description = 'Description must be less than 300 characters.';
+            (console.log('lalalal2000'))
         }
         
         if (Object.keys(errors).length > 0) {
@@ -55,19 +56,19 @@ const PlaylistForm = ({onClose}) => {
                     <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg'/>
                 </div>
                 <form onSubmit={handleSubmit} className='playlistform-content-form'>
-                    <div>
+                    <div className='playlistform-content-form-name'>
                         <input
                             type='text'
                             placeholder='Add a name (required *)'
                             value={name}
                             onChange={e => setName(e.target.value)}
-                            // required
+                            required
                         />
                         <p className="error-label">
                             {errors.name}
                         </p>
                     </div>
-                    <div>
+                    <div className='playlistform-content-form-desc'>
                         <textarea
                             type='text'
                             placeholder='Add an optional description'
