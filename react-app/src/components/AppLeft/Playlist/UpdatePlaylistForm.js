@@ -12,12 +12,7 @@ const UpdatePlaylistForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('make a playlist')
         setErrors([]);
-        // if (name.length <= 0 || name.length > 100) {
-        //     setErrors()
-        // }
-        console.log(description, name);
         dispatch(playlistAction.makePlaylist({ name, description }));
     }
     

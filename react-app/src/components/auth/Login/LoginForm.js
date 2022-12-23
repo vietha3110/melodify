@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { login } from '../../../store/session';
-import LoginContent from '.';
 import { signUp } from '../../../store/session';
 const LoginForm = ({onClose}) => {
   const [errors, setErrors] = useState([]);
@@ -17,8 +15,7 @@ const LoginForm = ({onClose}) => {
   const [checkFe, setCheckFe] = useState({});
   const dispatch = useDispatch();
  
-  //set validation for email
-  //set validation for password
+ 
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -37,14 +34,9 @@ const LoginForm = ({onClose}) => {
       setErrors(["Password must be greater than 6 characters."]);
       return;
     }
-
-
-    console.log('here')
-
     
     const data = await dispatch(signUp(firstName,lastName,emailSignUp, passwordSignUp));
     if (data) {
-      console.log(data);
       setErrors(data);
     }
   };

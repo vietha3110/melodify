@@ -8,12 +8,6 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user); 
   const [showModal, setShowModal] = useState(false);
   
-
-  // const onClose = () => {
-  //   console.log('here');
-  //   setShowModal(false);
-  // };
-
   
   return (
     <div className='navbar-container'>
