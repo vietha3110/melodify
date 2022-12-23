@@ -26,24 +26,26 @@ const DeletePlaylistForm = ({ playlist, onClose }) => {
 
     return (
         <div className='deleteplaylist-container'>
-            <div className='deleteplaylist-head'>
-                <h1>Are you sure you want to delete "{playlist.name}" ?</h1>
-                <div className='deleteplaylist-btncontainer'>
-                    <button className='deleteplaylist-btn-close' onClick={handleClosebtn}>
-                        <i className="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
+            <div className='deleteplaylist-btncontainer'>
+                <button className='deleteplaylist-btn-close' onClick={handleClosebtn}>
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <div className='deleteplaylist-reminder'>
-                <p>If you delete this list, its will be gone forever!</p>
-            </div>
-            {validationError && 
-                <div>
-                    {validationError}
+            <div className='deleteplaylist-content'>
+                <div className='deleteplaylist-head'>
+                    <h1>Are you sure you want to delete "{playlist.name}"?</h1>
                 </div>
-            }
-            <div className='deleteplaylist-btn-container'>
-                <button className='deleteplaylist-btn-close' onClick={handleDeletebtn}>Delete {playlist.name}</button>
+                <div className='deleteplaylist-reminder delete-content'>
+                    <p>The list will be gone forever! ☹️ </p>
+                </div>
+                {validationError &&
+                    <div>
+                        {validationError}
+                    </div>
+                }
+                <div className='deleteplaylist-btn-container delete-content'>
+                    <button className='deleteplaylist-btn-delete' onClick={handleDeletebtn}>Delete {playlist.name}</button>
+                </div>
             </div>
         </div>
     );

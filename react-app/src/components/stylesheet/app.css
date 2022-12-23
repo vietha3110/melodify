@@ -107,10 +107,17 @@
     margin: 10px;
 }
 
+.playlistform-head {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+}
+
 .playlistform-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 
 .playlistform-header-btn-close {
@@ -132,12 +139,15 @@
     align-items: center;
     color: var(--melodify-red-close);
     font-size: 0.8rem;
+    margin-top: 10px;
+    font-weight: 700;
 }
 .error-label {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
+   
 }
 
 .playlistform-content {
@@ -193,9 +203,60 @@
     background-color: #d6d6d6;
 }
 
-.playlistform-content-form-desc > textarea {
+.playlistform-content-form-desc > textarea:focus {
     background-color: #d6d6d6;
 }
+
+/* Delete form */
+.deleteplaylist-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    margin: 10px;
+}
+.deleteplaylist-btncontainer {
+    display: flex;
+    justify-content: flex-end;
+}
+.deleteplaylist-btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.deleteplaylist-btn-close:hover {
+    color: var(--melodify-red-close);
+}
+
+.deleteplaylist-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 10px 10px;
+}
+
+.delete-content {
+    width: 90%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.deleteplaylist-btn-delete {
+    color: #fff;
+    background-color: var(--melodify-banerDarkGray);
+    border: #d60017;
+    width: 50%;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.deleteplaylist-btn-delete:hover {
+    background-color: #d60017;
+    font-weight: 700;
+}
+
 .app-right-container {
     width: 75%;
 }
