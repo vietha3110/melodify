@@ -1,14 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import LogoutButton from './auth/LogoutButton';
-import LoginFormModal from './auth/Login';
-import SignUpFormModal from './auth/SignUp';
 import ProfileDropdown from './auth/ProfileDropDown';
 import { Modal } from './Modal';
 import LoginForm from './auth/Login/LoginForm';
 const NavBar = () => {
   const user = useSelector(state => state.session.user); 
+  const [showModal, setShowModal] = useState(false);
+  
   
   return (
     <div className='navbar-container'>
@@ -26,9 +25,13 @@ const NavBar = () => {
       </div>
       <div className='navbar-button-signin'>
         {user == null && 
-          <div>
-            <LoginFormModal/>
-            <SignUpFormModal/>
+          <div className='navbar-signin' onClick={() => setShowModal(true)}>
+              <span>Sign in</span>
+              {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <LoginForm onClose={() => setShowModal(false)}/>
+                    </Modal>
+                )}
           </div>
         }
       </div>

@@ -23,7 +23,6 @@ const PlaylistForm = ({onClose}) => {
 
         if (description.length > 300) {
             errors.description = 'Description must be less than 300 characters.';
-            (console.log('lalalal2000'))
         }
         
         if (Object.keys(errors).length > 0) {

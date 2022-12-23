@@ -11,7 +11,6 @@ const EditPlaylistForm = ({playlist, onClose}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('running');
         const errors = {};
 
         if (name.length <= 0 || name.length > 100) {
