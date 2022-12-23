@@ -5,8 +5,8 @@ import { signUp } from '../../../store/session'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailSignUp, setEmailSignUp] = useState('');
+  const [passwordSignUp, setPasswordSignUp] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('')
   const user = useSelector(state => state.session.user);
@@ -14,8 +14,7 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault(); 
-    console.log('im running');
-    const data = await dispatch(signUp(firstName,lastName,email, password));
+    const data = await dispatch(signUp(firstName,lastName,emailSignUp, passwordSignUp));
     if (data) {
       setErrors(data)
     }
@@ -51,17 +50,17 @@ const SignUpForm = () => {
         <input
           type='email'
           name='email'
-          onChange={e => setEmail(e.target.value)}
+          onChange={e => setEmailSignUp(e.target.value)}
           placeholder='Email'
-          value={email}
+          value={emailSignUp}
         />
       </div>
       <div>
         <input
           type='password'
           name='password'
-          onChange={e => setPassword(e.target.value)}
-          value={password}
+          onChange={e => setPasswordSignUp(e.target.value)}
+          value={passwordSignUp}
           placeholder='Password'
         />
       </div>

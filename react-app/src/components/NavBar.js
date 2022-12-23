@@ -9,6 +9,14 @@ import { Modal } from './Modal';
 import LoginForm from './auth/Login/LoginForm';
 const NavBar = () => {
   const user = useSelector(state => state.session.user); 
+  const [showModal, setShowModal] = useState(false);
+  
+
+  // const onClose = () => {
+  //   console.log('here');
+  //   setShowModal(false);
+  // };
+
   
   return (
     <div className='navbar-container'>
@@ -26,9 +34,13 @@ const NavBar = () => {
       </div>
       <div className='navbar-button-signin'>
         {user == null && 
-          <div>
-            <LoginFormModal/>
-            <SignUpFormModal/>
+          <div className='navbar-signin' onClick={() => setShowModal(true)}>
+              <span>Sign in</span>
+              {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <LoginForm onClose={() => setShowModal(false)}/>
+                    </Modal>
+                )}
           </div>
         }
       </div>
