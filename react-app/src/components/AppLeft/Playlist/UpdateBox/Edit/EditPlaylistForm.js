@@ -88,9 +88,9 @@ const EditPlaylistForm = ({playlist, onClose}) => {
                         {errors.description}
                     </p>
                 </div>
-                <div>
-                    <button type='submit'>Save</button>
-                </div>
+                <div className='playlistform-content-form-btn'>
+                        <button type='submit'>Save</button>
+                    </div>
             </form>
         </div>
     </div>

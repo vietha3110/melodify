@@ -84,7 +84,7 @@ const PlaylistForm = ({onClose}) => {
                         />
                      
                     </div>
-                    <div>
+                    <div className='playlistform-content-form-btn'>
                         <button type='submit'>Save</button>
                     </div>
                 </form>

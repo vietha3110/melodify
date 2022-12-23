@@ -207,6 +207,27 @@
     background-color: #d6d6d6;
 }
 
+.playlistform-content-form-btn {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px 5px 0px 0px;
+}
+
+.playlistform-content-form-btn > button {
+    border: none;
+    background-color: var(--melodify-banerDarkGray);
+    border-radius: 5px;
+    color: #fff;
+    height: 25px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.playlistform-content-form-btn > button:hover {
+    background-color: var(--melodify-red-close);
+}
+
 /* Delete form */
 .deleteplaylist-container {
     display: flex;
