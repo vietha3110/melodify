@@ -14,11 +14,14 @@ const LoginForm = ({onClose}) => {
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('')
+  const [checkFe, setCheckFe] = useState({});
   const dispatch = useDispatch();
+ 
   //set validation for email
   //set validation for password
   const onLogin = async (e) => {
     e.preventDefault();
+    setErrors([]);
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
@@ -27,35 +30,45 @@ const LoginForm = ({onClose}) => {
 
   const onSignUp = async (e) => {
     e.preventDefault(); 
-    setErrors([])
+    setErrors([]);
+    
+
+    if (passwordSignUp.length < 6) {
+      setErrors(["Password must be greater than 6 characters."]);
+      return;
+    }
+
+
+    console.log('here')
+
+    
     const data = await dispatch(signUp(firstName,lastName,emailSignUp, passwordSignUp));
     if (data) {
-      setErrors(data)
+      console.log(data);
+      setErrors(data);
     }
   };
 
   const changeContent = (e) => {
     e.preventDefault();
-    setErrors([])
+    setErrors([]);
     setShowSignIn(false);
   }
 
   const changeSignIn = (e) => {
     e.preventDefault();
-    setErrors([])
+    setErrors([]);
     setShowSignIn(true);
   }
   
   const closeLogin = (e) => {
     e.stopPropagation();
     onClose();
-    console.log('clicked')
   }
-  console.log('running')
 
   return (
     <>
-      <div onClick={closeLogin}>
+      <div onClick={closeLogin} className="login-main-close">
           <i className="fa-solid fa-xmark"></i>
       </div>
       {showSignIn && (
@@ -71,11 +84,6 @@ const LoginForm = ({onClose}) => {
                 <span>Welcome back!</span>
               </div>
             </div>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
             <div className='login-content'>
               <div className='login-email login-info'>
                 <input
@@ -84,7 +92,9 @@ const LoginForm = ({onClose}) => {
                   placeholder='Email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required  
                 />
+                 
               </div>
               <div className='login-password login-info'>
                 <input
@@ -93,15 +103,25 @@ const LoginForm = ({onClose}) => {
                   placeholder='Password'
                   value={password}
                   onChange={e => setPassword(e.target.value)}
+                  required
                 />
-              </div>
+              
+                </div>
+              
+              
+                {errors.length > 0 && (
+                  <div className='login-error'>
+                    <span>Invalid data! Please try again!</span>
+                  </div>
+              )}
+            
               <div className='login-button login-info'>
                 <button type='submit'>Login</button>
             </div>
             </div>
           
-            <div onClick={changeContent}>
-              Don't have melodify account? Create an account!
+            <div onClick={changeContent} className="login-change-signup">
+              <span>Create an account!</span>
             </div>
                 </form>
           </div>
@@ -117,7 +137,7 @@ const LoginForm = ({onClose}) => {
           </div>
         <div>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} className='signup-error-label'>{error}</div>
           ))}
         </div>
         <div className='signup-content'>
@@ -128,6 +148,7 @@ const LoginForm = ({onClose}) => {
               onChange={(e) => setFirstName(e.target.value)}
               placeholder='First Name'
               value={firstName}
+              required  
             ></input>
           </div>
           <div className='signup-lastname signup-info'>
@@ -137,6 +158,7 @@ const LoginForm = ({onClose}) => {
               onChange={e => setLastName(e.target.value)}
               placeholder='Last Name'
               value={lastName}
+              required  
             ></input>
           </div>
           <div className='signup-email signup-info'>
@@ -146,8 +168,10 @@ const LoginForm = ({onClose}) => {
               onChange={e => setEmailSignUp(e.target.value)}
               placeholder='Email'
               value={emailSignUp}
-            />
+              required
+              />
           </div>
+           
           <div className='signup-password signup-info'>
             <input
               type='password'
@@ -155,14 +179,16 @@ const LoginForm = ({onClose}) => {
               onChange={e => setPasswordSignUp(e.target.value)}
               value={passwordSignUp}
               placeholder='Password'
-            />
-          </div>
+              required  
+              />
+            </div>
+            
           
           <div className='signup-button signup-info'>
             <button type='submit'>Sign Up</button>
           </div>
         </div>
-          <div onClick={changeSignIn}>
+          <div onClick={changeSignIn} className='signup-change'>
             <span>Already have an account? Login instead</span>
           </div>
       </form>

@@ -145,7 +145,25 @@
     justify-content: space-between;
 }
 
+.navbar-signin {
+    cursor: pointer;
+    border: 1px solid #cccccc;
+    background-color: #d60017;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
+
 /* Login Modal */
+.login-main-close {
+    margin: 10px;
+    cursor: pointer;   
+}
+
+.login-main-close:hover {
+    color: var(--melodify-red-close);
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -213,6 +231,40 @@
     cursor: pointer;
 
 }
+.login-change-signup, .signup-change {
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-change-signup > span, .signup-change > span {
+    height: 100%;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    border-radius: 5px;
+    padding-left: 10px;
+    cursor: pointer;   
+}
+
+.login-change-signup > span:hover {
+    color: var(--melodify-red-close);
+}
+
+.signup-change > span:hover {
+    color: var(--melodify-red-close);
+}
+
+.login-error {
+    color: var(--melodify-red-close);
+    margin: 5px;
+    font-weight: 500;
+    font-size: 0.8rem;
+
+}
+
 
 /* SignUp Modal */
 .signup-container {
@@ -274,4 +326,11 @@
     color: white;
     cursor: pointer;
 
+}
+
+.signup-error-label {
+    color: var(--melodify-red-close);
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-top: 5px;
 }

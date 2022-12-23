@@ -1,9 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import LogoutButton from './auth/LogoutButton';
-import LoginFormModal from './auth/Login';
-import SignUpFormModal from './auth/SignUp';
 import ProfileDropdown from './auth/ProfileDropDown';
 import { Modal } from './Modal';
 import LoginForm from './auth/Login/LoginForm';
