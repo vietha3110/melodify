@@ -4,33 +4,40 @@ import Playlist from './Playlist/Playlist';
 import PlaylistForm from './Playlist/PlaylistForm';
 import { Modal } from '../Modal';
 import { useState } from 'react';
+import createIcon from './Playlist/createicon.png';
+import radioIcon from './Playlist/radioicon.png';
+import playMusic from './Playlist/playmusic.png'
 const LeftBox = () => {
     const [showModal, setShowModal] = useState(false); 
 
     return (
-        <>
-            <div>
+        <div className='app-left-main'>
+            <div className='app-left-logo'>
                 <img src={logo} className='main-logo' />
                 <span>Music</span>
             </div>
-            <div>Search</div>
-            <div>
-                <i className="fa-regular fa-circle-play"></i>
-                <span>Listen Now</span>
+            <div className='app-left-search'>Search</div>
+            <div className='app-letf-listen'>
+                <img src={playMusic} className='playmusic-logo' />
+                <span> Listen Now</span>
             </div>
-            <div>Radio</div>
-            <div>
-                 <button onClick={() => setShowModal(true)}>New Playlist</button>
-                    {showModal && (
-                        <Modal onClose={() => setShowModal(false)}>
-                            <PlaylistForm onClose={() => setShowModal(false)}/>
-                        </Modal>
-                    )}
+            <div className='app-left-radio'>
+                <img src={radioIcon} className='radio-logo' />
+                <span>Radio</span>
             </div>
-            <div>
+            <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
+            <img src={createIcon} className='main-logo' />
+                <span>New Playlist</span>
+            </div> 
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <PlaylistForm onClose={() => setShowModal(false)}/>
+                    </Modal>
+                )}
+            <div className='app-left-playlistarea'>
                <Playlist/> 
             </div>
-        </>
+        </div>
     )
 }
 

@@ -11,7 +11,7 @@
 body {
     font-family: 'Roboto Mono', monospace; 
     box-sizing: border-box;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     position: relative;
 
     

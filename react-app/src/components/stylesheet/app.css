@@ -1,31 +1,60 @@
 .main-app {
     min-width: 1024px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     height: 100%;
 }
 .app-left-container {
-    width: 20%;
     height: 100%;
+    width: 20%;
     box-sizing: border-box;
-    border: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
     display: flex;
     flex-direction: column;
+    /* background-color: #e6e6e6; */
 
 }
+
+.app-left-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    
+}
+.app-left-logo, .app-left-search, .app-letf-listen, .app-left-radio, .app-left-make-playlistcomp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem;
+}
+
+.app-left-logo > span, .app-letf-listen > span, .app-left-make-playlistcomp > span, .app-left-radio > span {
+    margin-left: 0.5rem; 
+}
+
 .main-logo {
     width: 1.5rem;
     height: 1.5rem;
     box-sizing: border-box;
     border-radius: 0.2rem;
 }
+.radio-logo {
+    width: 1.5rem;
+}
 
+.playmusic-logo {
+    width: 1.5rem;
+
+}
 .musicnote {
     width: 1.5rem;
     height: 1.5rem;
 }
 
-
+.app-left-make-playlistcomp {
+    cursor: pointer;
+}
 
 .playlistform-container {
     display: flex;
@@ -41,12 +70,24 @@
     justify-content: space-between;
 }
 
+.playlistform-header-btn-close {
+    background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
+.playlistform-header-btn-close:hover {
+    color: var(--melodify-red-close);
+}
 
 .playlistform-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    margin-top: 10px;
 }
 
 .playlistform-logo {
@@ -62,26 +103,13 @@
 
 }
 
-
-
 .playlistform-content-form {
     width: 60%;
     display: flex;
     flex-direction: column;
-    
 }
 
-.playlistform-header-btn-close {
-    background: none;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-}
 
-.playlistform-header-btn-close:hover {
-    color: var(--melodify-red-close);
-}
 .app-right-container {
     width: 75%;
 }
