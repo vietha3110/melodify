@@ -99,7 +99,7 @@
 
 .playlistform-logo > img {
     object-fit: cover;
-    width: 100px;
+    width: 114.4px;
 
 }
 
@@ -109,6 +109,31 @@
     flex-direction: column;
 }
 
+.playlistform-content-form-name, .playlistform-content-form-desc {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.playlistform-content-form-name > input {
+    width: 100%;
+    border: 1px solid #cccccc;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.playlistform-content-form-desc > textarea {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #cccccc;
+    padding-left: 5px;
+    resize: none;
+}
+
+.playlistform-content-form-name > input:focus {
+    background-color: #d6d6d6;
+}
 
 .app-right-container {
     width: 75%;

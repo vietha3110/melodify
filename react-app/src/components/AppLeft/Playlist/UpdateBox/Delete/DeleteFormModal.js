@@ -15,7 +15,7 @@ const DeleteFormModal = ({ playlist, closeDropdown, openModal, closeModal }) => 
         document.addEventListener('click', e => {
             closeDropdown();
         });
-    });
+    }, []);
 
     return (
         <button onClick={onClick} className='deleteform-btn'>
