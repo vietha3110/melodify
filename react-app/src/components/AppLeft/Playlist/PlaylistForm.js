@@ -40,22 +40,32 @@ const PlaylistForm = ({onClose}) => {
     
     return (
         <div className='playlistform-container'>
-            <div className='playlistform-header'>
-                <div className='playlistform-header-label'>
-                    <span>Make New Playlist</span>
+            <div className='playlistform-head'>
+                <div  className='playlistform-header'>
+                    <div className='playlistform-header-label'>
+                        <span>Make New Playlist</span>
+                    </div>
+                    
+                    <div className='playlistform-header-btn'>
+                        <button className='playlistform-header-btn-close' onClick={handleCancel}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
                 </div>
-                <div className='playlistform-header-btn'>
-                    <button className='playlistform-header-btn-close' onClick={handleCancel}>
-                        <i className="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
+                {
+                    errors && 
+                    <div className='playlistform-errors'>
+                            <div>{errors.name}</div>
+                            <div>{errors.description}</div>
+                    </div>
+                }
             </div>
             <div className='playlistform-content'>
                 <div className='playlistform-logo'>
                     <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg'/>
                 </div>
                 <form onSubmit={handleSubmit} className='playlistform-content-form'>
-                    <div className='playlistform-content-form-name'>
+                    <div className='playlistform-content-form-name form-focus'>
                         <input
                             type='text'
                             placeholder='Add a name (required *)'
@@ -63,20 +73,16 @@ const PlaylistForm = ({onClose}) => {
                             onChange={e => setName(e.target.value)}
                             required
                         />
-                        <p className="error-label">
-                            {errors.name}
-                        </p>
+                       
                     </div>
-                    <div className='playlistform-content-form-desc'>
+                    <div className='playlistform-content-form-desc form-focus'>
                         <textarea
                             type='text'
                             placeholder='Add an optional description'
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
-                        <p className="error-label">
-                            {errors.description}
-                        </p>
+                     
                     </div>
                     <div>
                         <button type='submit'>Save</button>

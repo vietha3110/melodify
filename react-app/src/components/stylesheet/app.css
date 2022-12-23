@@ -16,7 +16,7 @@
 }
 
 .app-left-main {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     margin-left: 1rem;
@@ -49,18 +49,61 @@
 }
 .musicnote {
     width: 1.5rem;
-    height: 1.5rem;
 }
 
 .app-left-make-playlistcomp {
     cursor: pointer;
 }
 
+/* playlist display */
+
+.playlist-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem;
+}
+
+.playlist-icon {
+    width: 1.5rem;
+}
+
+.playlist-header > span{
+    margin-left: 0.5rem; 
+}
+
+.playlist-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.playlist-content-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.playlist-content-name:hover {
+    background-color: var(--melodify-banerDarkGray);
+    color: #fff;
+    
+}
+.updatebox-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* form */
 .playlistform-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 400px;
+    height: 250px;
     margin: 10px;
 }
 
@@ -80,6 +123,21 @@
 
 .playlistform-header-btn-close:hover {
     color: var(--melodify-red-close);
+}
+
+.playlistform-errors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--melodify-red-close);
+    font-size: 0.8rem;
+}
+.error-label {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .playlistform-content {
@@ -131,10 +189,13 @@
     resize: none;
 }
 
-.playlistform-content-form-name > input:focus {
+.form-focus > input:focus {
     background-color: #d6d6d6;
 }
 
+.playlistform-content-form-desc > textarea {
+    background-color: #d6d6d6;
+}
 .app-right-container {
     width: 75%;
 }

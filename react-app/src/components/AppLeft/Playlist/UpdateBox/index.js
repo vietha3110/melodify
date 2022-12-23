@@ -22,7 +22,7 @@ const UpdateBox = ({ playlist, i, openModal, closeModal }) => {
 
 
     return (
-        <div>
+        <div className="playlist-content-name-button">
             <button className='updatebox-btn' onClick={handleClickBtn(i)}>
                 <i className="fa-solid fa-ellipsis"></i>
             </button>
