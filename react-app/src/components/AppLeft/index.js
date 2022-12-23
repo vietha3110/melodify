@@ -4,11 +4,14 @@ import Playlist from './Playlist/Playlist';
 import PlaylistForm from './Playlist/PlaylistForm';
 import { Modal } from '../Modal';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import createIcon from './Playlist/createicon.png';
 import radioIcon from './Playlist/radioicon.png';
 import playMusic from './Playlist/playmusic.png'
 const LeftBox = () => {
     const [showModal, setShowModal] = useState(false); 
+    const user = useSelector(state => state.session.user); 
+
 
     return (
         <div className='app-left-main'>
@@ -25,10 +28,12 @@ const LeftBox = () => {
                 <img src={radioIcon} className='radio-logo' />
                 <span>Radio</span>
             </div>
-            <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
-            <img src={createIcon} className='main-logo' />
+            {user !== null &&  <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
+                <img src={createIcon} className='main-logo' />
                 <span>New Playlist</span>
-            </div> 
+            </div>
+            
+            }
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <PlaylistForm onClose={() => setShowModal(false)}/>
