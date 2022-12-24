@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import ProfileDropdown from './auth/ProfileDropDown';
+import ProfileDropdown from './AppRight/auth/ProfileDropDown';
 import { Modal } from './Modal';
-import LoginForm from './auth/Login/LoginForm';
+import LoginForm from './AppRight/auth/Login/LoginForm';
 const NavBar = () => {
   const user = useSelector(state => state.session.user); 
   const [showModal, setShowModal] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../../../store/session';
-import { signUp } from '../../../store/session';
+import { login } from '../../../../store/session';
+import { signUp } from '../../../../store/session';
 const LoginForm = ({onClose}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -12,7 +12,6 @@ const LoginForm = ({onClose}) => {
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('')
-  const [checkFe, setCheckFe] = useState({});
   const dispatch = useDispatch();
  
  
@@ -20,6 +19,9 @@ const LoginForm = ({onClose}) => {
     e.preventDefault();
     setErrors([]);
     const data = await dispatch(login(email, password));
+    if (data === null) {
+      onClose();
+    }
     if (data) {
       setErrors(data);
     }
@@ -92,7 +94,6 @@ const LoginForm = ({onClose}) => {
                   onChange={(e) => setEmail(e.target.value)}
                   required  
                 />
-                 
               </div>
               <div className='login-password login-info'>
                 <input
@@ -103,16 +104,12 @@ const LoginForm = ({onClose}) => {
                   onChange={e => setPassword(e.target.value)}
                   required
                 />
-              
                 </div>
-              
-              
                 {errors.length > 0 && (
                   <div className='login-error'>
                     <span>Invalid data! Please try again!</span>
                   </div>
-              )}
-            
+                )}
               <div className='login-button login-info'>
                 <button type='submit'>Login</button>
             </div>
