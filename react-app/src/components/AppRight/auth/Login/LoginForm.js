@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../../../store/session';
-import { signUp } from '../../../store/session';
+import { login } from '../../../../store/session';
+import { signUp } from '../../../../store/session';
 const LoginForm = ({onClose}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
