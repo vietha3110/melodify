@@ -5,6 +5,8 @@ import NavBar from './components/NavBar';
 import { authenticate } from './store/session';
 import './components/stylesheet/app.css'
 import LeftBox from './components/AppLeft';
+import UploadSong from './components/AppRight/Upload'; 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -22,16 +24,33 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className='main-app'>
-      <div className='app-left-container'>
-         <LeftBox/>
-      </div>
-      <div className='app-right-container'>
-          <>
-            <NavBar />
-          </>
-        </div>
-      </div>
+      <Switch>
+        <Route exact path='/'>
+          <div className='main-app'>
+          <div className='app-left-container'>
+             <LeftBox/>
+          </div>
+          <div className='app-right-container'>
+              <>
+                <NavBar />
+              </>
+            </div>
+          </div>
+        </Route>
+        <Route path='/upload'>
+          <div className='main-app'>
+            <div className='app-left-container'>
+             <LeftBox/>
+            </div>
+          <div className='app-right-container'>
+              <>
+                <NavBar />
+                <UploadSong/>
+              </>
+            </div>
+          </div>
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }

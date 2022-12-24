@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import LogoutButton from "../LogoutButton"
+import LogoutButton from "../LogoutButton";
+import { Link } from "react-router-dom";
 
 const ProfileDropdown = () => {
     const [showMenu, setShowMenu] = useState(false); 
@@ -31,6 +32,9 @@ const ProfileDropdown = () => {
                     <div>
                         <span>Hello, {user.firstName}</span>        
                     </div> 
+                    <div>
+                          <Link to='/upload'>Upload  </Link>
+                    </div>    
                     <div>
                         <LogoutButton/>
                     </div>    
