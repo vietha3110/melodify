@@ -495,3 +495,7 @@
 .test{
     height: 300px;
 }
+
+input[type='file'] {
+    color: transparent;
+}
