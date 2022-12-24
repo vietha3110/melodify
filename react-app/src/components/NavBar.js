@@ -8,6 +8,12 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user); 
   const [showModal, setShowModal] = useState(false);
   
+  const handleClick = (e) => {
+    e.stopPropagation();
+    console.log('someone click me?')
+    setShowModal(true);
+  }
+  console.log('re-render');
   
   return (
     <div className='navbar-container'>
@@ -25,18 +31,22 @@ const NavBar = () => {
       </div>
       <div className='navbar-button-signin'>
         {user == null && 
-          <div className='navbar-signin' onClick={() => setShowModal(true)}>
-              <span>Sign in</span>
+          <div className='navbar-signin' >
+              <span onClick={handleClick}>Sign in</span>
               {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
+                    <Modal>
                         <LoginForm onClose={() => setShowModal(false)}/>
                     </Modal>
                 )}
           </div>
         }
-      </div>
-      <div>
-        <ProfileDropdown />
+      
+      
+        {user !== null &&
+          <div>
+            <ProfileDropdown />
+          </div>
+        }
       </div>
     </div>
   );
