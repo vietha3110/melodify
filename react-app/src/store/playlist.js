@@ -139,7 +139,7 @@ const playlistReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD_USERPLAYLISTS:
-            newState = deepcopy(state);
+            newState = deepCopy(state);
             let newList = action.playlists.reduce((data, list) => {
                 data[list.id] = list;
                 return data;
@@ -147,18 +147,18 @@ const playlistReducer = (state = {}, action) => {
             newState.playlists = newList;
             return newState;
         case ADD_PLAYLIST:
-            newState = deepcopy(state);
+            newState = deepCopy(state);
             newState.playlists[action.playlist.id] = action.playlist;
             return newState;
         
         case EDIT_PLAYLIST:
-            newState = deepcopy(state);
+            newState = deepCopy(state);
             const playlist = action.playlist;
             newState.playlists[playlist.id] = playlist;
             return newState;
             
         case REMOVE_PLAYLIST:
-            newState = deepcopy(state);
+            newState = deepCopy(state);
             delete newState.playlists[action.playlistId];
             return newState;
     
@@ -166,5 +166,22 @@ const playlistReducer = (state = {}, action) => {
             return state
     }
 }
+
+function deepCopy(value) {
+    if (typeof value === 'object') {
+        if (Array.isArray(value)) {
+            return value.map(element => deepCopy(element));
+        } else {
+            const result = {};
+            Object.entries(value).forEach(entry => {
+                result[entry[0]] = deepCopy(entry[1]);
+            });
+            return result;
+        }
+    } else {
+        return value;
+    }
+}
+
 
 export default playlistReducer;
