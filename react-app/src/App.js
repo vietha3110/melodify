@@ -13,10 +13,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
+    dispatch(authenticate());
+    setLoaded(true);
   }, [dispatch]);
 
   if (!loaded) {
