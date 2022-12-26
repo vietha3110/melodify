@@ -83,7 +83,7 @@ export const createSong = (song) => async dispatch => {
 const songReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
-        case LOAD_USERSONGS: 
+        case LOAD_ALLSONGS: 
             newState = deepCopy(state);
             let newSong = action.songs.reduce((data, song) => {
                 data[song.id] = song;
@@ -95,6 +95,9 @@ const songReducer = (state = {}, action) => {
             newState = deepCopy(state);
             newState.songs[action.song.id] = action.song;
             return newState;
+        
+        default:
+            return state;
     }
 }
 
