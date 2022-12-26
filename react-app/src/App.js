@@ -6,16 +6,15 @@ import { authenticate } from './store/session';
 import './components/stylesheet/app.css'
 import LeftBox from './components/AppLeft';
 import UploadSong from './components/AppRight/Upload'; 
+import Home from './components/AppRight/Home';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
+    dispatch(authenticate());
+    setLoaded(true);
   }, [dispatch]);
 
   if (!loaded) {
@@ -33,6 +32,7 @@ function App() {
           <div className='app-right-container'>
               <>
                 <NavBar />
+                <Home/>
               </>
             </div>
           </div>

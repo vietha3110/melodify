@@ -485,17 +485,29 @@
     align-items: center;
 }
 
-
-.uploadsong-drag-drop {
-    height: 400px;
+.uploadsong-content {
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     border: 1px solid #cccccc;
+    height: 350px;
+
 }
 
-.test{
-    height: 300px;
+.uploadinfo {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
 
-input[type='file'] {
+.uploadinfo > input {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    margin: 5px 5px 0px 0px;
+}
+
+
+
+/* input[type='file'] {
     color: transparent;
-}
+} */
