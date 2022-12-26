@@ -49,4 +49,4 @@ def upload_song():
         except Exception:
             return {'error': 'there is an error, please try again'}, 500
     if form.errors: 
-        return {'error': form.erros}, 400
+        return {'error': form.errors}, 400
