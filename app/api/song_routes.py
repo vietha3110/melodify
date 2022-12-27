@@ -60,7 +60,19 @@ def upload_song():
 
 @song_routes.route('/file/<int:id>')
 def get_file(id):
-    file = File.query.get(id)
-    response = make_response(file.file_song)
-    response.headers['Content-Type'] = 'audio/mpeg'
-    return response
+    try: 
+        file = File.query.get(id)
+        if file: 
+            response = make_response(file.file_song)
+            response.headers['Content-Type'] = 'audio/mpeg'
+            return response
+        else: 
+            print('here')
+            return {
+                'error': {
+                    'message': 'Can not find song',
+                    'statusCode': 404
+                }
+            }, 404
+    except Exception as exception:
+        return {'error': 'there is an error, please try again'}, 500
