@@ -55,6 +55,7 @@ const UploadSong = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [temp, setTemp] = useState(null);
+    const [submitStatus, setSubmitStatus] = useState('NOT_SUBMITTING');
 
     const updateFile = async (e) => {
         setFileStatus('LOADING');
@@ -81,15 +82,17 @@ const UploadSong = () => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        setSubmitStatus('SUBMITTING');
         e.preventDefault();
         const audioFile = file;
         const song = { name, artist_name, genre, length, audioFile };
-        dispatch(songActions.createSong(song));
+        await dispatch(songActions.createSong(song));
+        setSubmitStatus('SUBMITTED');
         history.push('/');
     }
 
-    const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '';
+    const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '' && submitStatus === 'NOT_SUBMITTING';
 
     return (
         <div className="uploadsong-container" onSubmit={handleSubmit} >
@@ -152,7 +155,7 @@ const UploadSong = () => {
                         <div>Loading file</div>
                     }
                     <div className="uploadsong-btnupload">
-                        <button type="submit" disabled={!isSubmitEnabled}>Upload</button>
+                        <button type="submit" disabled={!isSubmitEnabled}>{submitStatus === 'SUBMITTING' ? 'Uploading' : 'Upload'}</button>
                     </div>
                 </div>
             </form>

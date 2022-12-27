@@ -24,5 +24,8 @@ class Song(db.Model):
             'name': self.name, 
             'artistName': self.artist_name, 
             'userId': self.user_id, 
-            'length': self.length
+            'length': self.length,
+            'genre': self.genre,
+            'fileId': self.file_id,
+            'createdAt': self.created_at
         }

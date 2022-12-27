@@ -53,7 +53,6 @@ export const fetchUserSongs = () => async dispatch => {
 }
 
 export const createSong = (song) => async dispatch => {
-    console.log('line56, song',song);
     const { name, artist_name, genre, length, audioFile } = song;
     try {
         const response = await fetch(`/api/songs/`, {

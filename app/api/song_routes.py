@@ -58,9 +58,9 @@ def upload_song():
     if form.errors:
         return {'error': form.errors}, 400
 
-@song_routes.route('/file')
-def get_file():
-    file = File.query.get(17)
+@song_routes.route('/file/<int:id>')
+def get_file(id):
+    file = File.query.get(id)
     response = make_response(file.file_song)
     response.headers['Content-Type'] = 'audio/mpeg'
     return response

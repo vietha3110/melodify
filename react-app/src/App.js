@@ -7,6 +7,7 @@ import './components/stylesheet/app.css'
 import LeftBox from './components/AppLeft';
 import UploadSong from './components/AppRight/Upload'; 
 import Home from './components/AppRight/Home';
+import SongAudio from './components/AppRight/Song';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +47,19 @@ function App() {
               <>
                 <NavBar />
                 <UploadSong/>
+              </>
+            </div>
+          </div>
+        </Route>
+        <Route path='/songs/:fileId'>
+          <div className='main-app'>
+            <div className='app-left-container'>
+             <LeftBox/>
+            </div>
+          <div className='app-right-container'>
+              <>
+                <NavBar />
+                <SongAudio/>
               </>
             </div>
           </div>
