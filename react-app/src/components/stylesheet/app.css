@@ -511,3 +511,33 @@
 /* input[type='file'] {
     color: transparent;
 } */
+
+
+/* ------------------ */
+.song-box { 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    border: 1px solid #cccccc;
+    width: 12rem;
+    height: 14rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8rem;
+}
+
+.song-left-img > img {
+    width: 9rem;
+    border-radius: 0.5rem;
+}
+
+.song-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-right-title {
+    display: flex;
+    flex-direction: column;
+}

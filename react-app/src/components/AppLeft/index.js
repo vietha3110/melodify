@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import createIcon from './Playlist/createicon.png';
 import radioIcon from './Playlist/radioicon.png';
-import playMusic from './Playlist/playmusic.png'
+import playMusic from './Playlist/playmusic.png'; 
+import { Link } from 'react-router-dom';
 const LeftBox = () => {
     const [showModal, setShowModal] = useState(false); 
     const user = useSelector(state => state.session.user); 
@@ -15,10 +16,10 @@ const LeftBox = () => {
 
     return (
         <div className='app-left-main'>
-            <div className='app-left-logo'>
+            <Link className='app-left-logo' to='/'>
                 <img src={logo} className='main-logo' />
                 <span>Music</span>
-            </div>
+            </Link>
             <div className='app-left-search'>Search</div>
             <div className='app-letf-listen'>
                 <img src={playMusic} className='playmusic-logo' />
