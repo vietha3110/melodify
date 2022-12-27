@@ -13,12 +13,11 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            Song will be here
             {songs && Object.values(songs).map(
                 (song, i) => (
                     <Link key={i} className="song-box" to={`/songs/${song.fileId}`}>
                         <div className='song-left-img'>
-                            <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg'/>
+                            <img src='https://static.vecteezy.com/system/resources/previews/004/813/745/original/christmas-greeting-card-design-with-christmas-tree-xmas-white-card-with-red-ornaments-gift-box-social-media-banner-with-the-pine-tree-candy-cane-sock-on-a-white-background-xmas-banner-xmas-card-free-vector.jpg'/>
                         </div>
                         <div className='song-right'>
                             <div className='song-right-title'>

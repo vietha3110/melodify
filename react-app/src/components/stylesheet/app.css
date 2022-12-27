@@ -39,6 +39,7 @@
     flex-direction: row;
     align-items: center;
     margin: 1rem;
+    font-size: 0.85rem;
 }
 
 .app-left-logo > span, .app-letf-listen > span, .app-left-make-playlistcomp > span, .app-left-radio > span {
@@ -82,6 +83,7 @@
     flex-direction: row;
     align-items: center;
     margin: 1rem;
+    font-size: 0.85rem;
 }
 
 .playlist-icon {
@@ -534,27 +536,31 @@
 
 
 /* ------------------ */
+.home-container {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 .song-box { 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     margin: 2rem;
-    border: 1px solid #cccccc;
     width: 12rem;
-    height: 14rem;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.8rem;
+    height: 15rem;
+    text-decoration: none;
+    color:#1d1d1f;
 }
 
 .song-left-img > img {
-    width: 9rem;
-    border-radius: 0.5rem;
+    width: 12rem;
 }
 
 .song-right {
     display: flex;
     flex-direction: column;
+    margin-left: 1rem;
 }
 
 .song-right-title {
