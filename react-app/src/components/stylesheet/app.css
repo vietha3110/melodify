@@ -22,6 +22,18 @@
     margin-left: 1rem;
     
 }
+
+.app-left-logo {
+    text-decoration: none;
+}
+.app-left-logo:visited {
+    color: black;
+}
+
+.app-left-logo:hover {
+    font-weight: 700;
+}
+
 .app-left-logo, .app-left-search, .app-letf-listen, .app-left-radio, .app-left-make-playlistcomp {
     display: flex;
     flex-direction: row;
@@ -33,6 +45,14 @@
     margin-left: 0.5rem; 
 }
 
+.app-left-search {
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+    height: 30px;
+    color: #cccccc;
+    font-size: 0.8rem;
+
+}
 .main-logo {
     width: 1.5rem;
     height: 1.5rem;

@@ -18,9 +18,16 @@ const LeftBox = () => {
         <div className='app-left-main'>
             <Link className='app-left-logo' to='/'>
                 <img src={logo} className='main-logo' />
-                <span>Music</span>
+                <span style={{fontSize: '1.4rem'}}>Melodify</span>
             </Link>
-            <div className='app-left-search'>Search</div>
+            <div className='app-left-search'>
+                <span class="material-symbols-outlined" style={{padding: 8}}>
+                    search
+                </span>
+                <span style={{ padding: 6}}>
+                    Search
+                </span>
+            </div>
             <div className='app-letf-listen'>
                 <img src={playMusic} className='playmusic-logo' />
                 <span> Listen Now</span>
