@@ -176,3 +176,27 @@ def add_song(playlist_id):
         
     if form.errors: 
         return {'error': form.errors}, 401
+
+@playlist_routes.route('/songs/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id):
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    delete_song = Playlist_Song.query.get(song_id)
+    
+    if not delete_song:
+        return {'error': {
+            'message': 'Can not find song',
+            'statusCode': 404
+        }}, 404
+
+    playlist = Playlist.query.get(delete_song.playlist_id)
+    if playlist.user_id != current_user_id:
+        return {'error': {
+                'message': 'Forbidden',
+                'statusCode': 403
+        }}, 403
+
+    db.session.delete(delete_song)
+    db.session.commit()
+    return {'message': 'Successfully delete song'}
