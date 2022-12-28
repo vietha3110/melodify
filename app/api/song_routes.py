@@ -60,7 +60,49 @@ def upload_song():
 
 @song_routes.route('/file/<int:id>')
 def get_file(id):
-    file = File.query.get(id)
-    response = make_response(file.file_song)
-    response.headers['Content-Type'] = 'audio/mpeg'
-    return response
+    try: 
+        file = File.query.get(id)
+        if file: 
+            response = make_response(file.file_song)
+            response.headers['Content-Type'] = 'audio/mpeg'
+            return response
+        else: 
+            print('here')
+            return {
+                'error': {
+                    'message': 'Can not find song',
+                    'statusCode': 404
+                }
+            }, 404
+    except Exception as exception:
+        return {'error': 'there is an error, please try again'}, 500
+
+
+
+@song_routes.route('/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id): 
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    delete_song = Song.query.get(song_id)
+    if delete_song: 
+        if delete_song.user_id == current_user_id: 
+            db.session.delete(delete_song)
+            db.session.commit()
+            return {
+                'message': 'Successfully delete'
+            }
+        else: 
+            return {
+                'error': {
+                    'message': 'Forbidden',
+                    'statusCode': 403
+                }
+            }, 403
+    else: 
+        return {
+            'error': {
+                'message': 'Can not find song',
+                'statusCode': 404
+            }
+        }

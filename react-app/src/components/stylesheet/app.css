@@ -1,26 +1,26 @@
 .main-app {
-    min-width: 1024px;
-    display: flex;
-    /* justify-content: center; */
-    height: 100%;
+    /* min-width: 1024px; */
+    display: grid;
+    grid-template-columns: 0.7fr 3.3fr;
+    align-items: stretch;
+    height: 2000px;
+    margin: 0px;
+
 }
 .app-left-container {
-    height: 100%;
-    width: 20%;
+    width: 100%;
     box-sizing: border-box;
     border-right: 1px solid #cccccc;
     display: flex;
     flex-direction: column;
-    /* background-color: #e6e6e6; */
+    background-color: rgba(60,60,67,.03);
 
 }
 
 .app-left-main {
-    width: 90%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
-    
+    flex-direction: column;    
 }
 
 .app-left-logo {
@@ -99,6 +99,7 @@
     flex-direction: column;
     font-size: 0.8rem;
     width: 100%;
+    height: 130px;
 }
 
 .playlist-content-name {
@@ -126,7 +127,7 @@
     justify-content: center;
     width: 400px;
     height: 250px;
-    margin: 10px;
+    margin: 5px 15px 5px 15px;
 }
 
 .playlistform-head {
@@ -139,7 +140,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
 }
 
 .playlistform-header-btn-close {
@@ -184,12 +184,12 @@
    width: 40%;
    display: flex;
    justify-content: center;
-   align-items: center;
 }
 
 .playlistform-logo > img {
     object-fit: cover;
-    width: 114.4px;
+    width: 100px;
+    height: 100px;
 
 }
 
@@ -225,7 +225,7 @@
     background-color: #d6d6d6;
 }
 
-.playlistform-content-form-desc > textarea:focus {
+.playlistform-content-form-name > input:focus, .playlistform-content-form-desc > textarea:focus {
     background-color: #d6d6d6;
 }
 
@@ -301,22 +301,34 @@
 }
 
 .app-right-container {
-    width: 75%;
+    width: 100%;
 }
 
 .navbar-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 1.2rem 0rem 0rem 1rem;
+    height: 60px;
 }
 
+.navbar-button-signin {
+    display: flex;
+    justify-content: center;
+}
 .navbar-signin {
     cursor: pointer;
     border: 1px solid #cccccc;
     background-color: #d60017;
     color: #fff;
     padding: 0.5rem;
-    border-radius: 0.8rem;
+    border-radius: 0.5rem;
+    width: 4rem;
+    height: 0.8rem;
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Login Modal */
@@ -329,7 +341,7 @@
     color: var(--melodify-red-close);
 }
 
-.login-container {
+.login-container, .signup-container {
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
@@ -340,6 +352,11 @@
     justify-content: center;
     align-items: center;
 }
+
+.signup-container {
+    padding: 20px;
+}
+
 
 .login-header {
     display: flex;
@@ -432,16 +449,7 @@
 
 
 /* SignUp Modal */
-.signup-container {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 600px;
-    height: 500px;
-    padding: 20px;
-    /* justify-content: center; */
-    align-items: center;
-}
+
 
 .signup-header-logo > img {
     width: 50px;

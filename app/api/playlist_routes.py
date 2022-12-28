@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, make_response
 from flask_login import login_required, current_user
-from ..models import db, Playlist
-from ..forms import PlaylistForm
+from ..models import db, Playlist, Playlist_Song, Song
+from ..forms import PlaylistForm, AddSongForm
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -115,3 +115,88 @@ def delete_playlist(playlist_id):
                 'statusCode': 404
             }
         }, 404
+
+@playlist_routes.route('/<int:playlist_id>/songs', methods=['POST'])
+@login_required
+def add_song(playlist_id): 
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    playlist = Playlist.query.get(playlist_id)
+
+    if not playlist: 
+        return {
+            'error': {
+                'message': 'Can not find playlist',
+                'statusCode': 404
+            }
+        }, 404
+
+    form = AddSongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    song_id = form.data['song_id']
+
+    if playlist.user_id != current_user_id: 
+        return {
+                'error': {
+                    'message': 'Forbidden',
+                    'statusCode': 403
+                }
+            }, 403
+    if form.validate():
+        added_song = Song.query.get(song_id)
+        if not added_song: 
+            return {
+                'error': {
+                    'message': 'The song does not exist',
+                    'statusCode': 403
+                }
+            }, 403
+        
+        # for playlist in playlist.playlist_songs: 
+        #     print('**********', playlist.__dict__.keys())
+
+        if song_id in [s.song_id for s in playlist.playlist_songs] :
+            return {
+                'error': {
+                    'message': 'Song already exist in this playlist', 
+                    'statusCode': 403
+                }
+            }, 403
+
+        try: 
+            new_song = Playlist_Song(
+                    playlist_id = playlist_id,
+                    song_id= form.data['song_id']
+                )
+            db.session.add(new_song)
+            db.session.commit()
+            return new_song.to_dict(), 200 
+        except Exception: 
+            return {'error': 'there is an error. Please try again'}
+        
+    if form.errors: 
+        return {'error': form.errors}, 401
+
+@playlist_routes.route('/songs/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id):
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    delete_song = Playlist_Song.query.get(song_id)
+    
+    if not delete_song:
+        return {'error': {
+            'message': 'Can not find song',
+            'statusCode': 404
+        }}, 404
+
+    playlist = Playlist.query.get(delete_song.playlist_id)
+    if playlist.user_id != current_user_id:
+        return {'error': {
+                'message': 'Forbidden',
+                'statusCode': 403
+        }}, 403
+
+    db.session.delete(delete_song)
+    db.session.commit()
+    return {'message': 'Successfully delete song'}
