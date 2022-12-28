@@ -23,12 +23,6 @@ const NavBar = () => {
       <div className='navbar-logo'>
         Logo 
       </div>
-      <div className='navbar-volume'>
-        volume
-      </div>
-      <div className='navbar-next'>
-        <button>Open Next</button>
-      </div>
       <div className='navbar-button-signin'>
         {user == null && 
           <div className='navbar-signin' >

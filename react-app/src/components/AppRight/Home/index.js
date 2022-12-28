@@ -3,6 +3,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+function changeSecondToTime(length) {
+    const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
+    const second = Math.floor(length % 60).toString().padStart(2, '0');
+    return minute + ":" + second;
+}
+
 const Home = () => {
     const dispatch = useDispatch();
     const songs = useSelector(state => state.songs.songs);
@@ -24,8 +30,10 @@ const Home = () => {
                                 <span>{song.name}</span>
                             </div>
                     
-                            <div className='song-right-genre'>
-                                <div>Dec-2022</div>
+                            <div className='song-right-info'>
+                                <div>
+                                    {changeSecondToTime(song.length)}
+                                </div>
 
                             </div>
                         </div>

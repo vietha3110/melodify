@@ -1,5 +1,4 @@
 .main-app {
-    /* min-width: 1024px; */
     display: grid;
     grid-template-columns: 0.7fr 3.3fr;
     align-items: stretch;
@@ -109,16 +108,31 @@
     width: 100%;
 }
 
-.playlist-content-name:hover {
-    background-color: var(--melodify-banerDarkGray);
-    color: #fff;
-    
-}
+
+/* update dropdown */
 .updatebox-btn {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
+
+.updatebox-dropdown {
+    height: 60px;
+    border: 1px solid #cccccc;
+    background: #fff;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    cursor: pointer;
+}
+
+
+.btn-edit, .deleteform-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
 
 /* form */
 .playlistform-container {
@@ -306,9 +320,10 @@
 
 .navbar-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin: 1.2rem 0rem 0rem 1rem;
+    width: 100%;
+    grid-template-columns: 2fr 2fr 1fr ;
     height: 60px;
+    border-bottom: 1px solid #cccccc;
 }
 
 .navbar-button-signin {
