@@ -590,3 +590,15 @@
     display: flex;
     flex-direction: column;
 }
+
+
+/* audio */
+.audio-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.audio-container > audio {
+    align-items: center;
+}

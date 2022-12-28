@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from 'react';
+
 const deepcopy = require('deepcopy');
 
 const LOAD_ALL = 'playlist/loadAll';
@@ -42,6 +44,21 @@ export function editPlaylist(playlist) {
         playlist
     }
 }
+
+export function addSong(song) {
+    return {
+        type: ADD_SONG,
+        song
+    }
+}
+
+export function removeSong(songId) {
+    return {
+        type: REMOVE_SONG, 
+        songId
+    }
+}
+
 
 export const fetchAll = () => async dispatch => {
     const response = await fetch(`/api/playlists/all`); 
@@ -113,6 +130,55 @@ export const updatePlaylist = (playlist) => async dispatch => {
     }
 }
 
+
+export const removeSongFromPlaylist = (songId) => async dispatch => {
+    try {
+        const response = await fetch(`/api/songs/${songId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(songId)
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(removeSong(songId));
+            return data;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+
+    } catch (err) {
+        throw(err)
+    }
+}
+
+export const addSongToPlaylist = (song) => async dispatch => {
+    try {
+        const response = await fetch(`/api/playlists/$playlistId/songs`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(song)
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(addSong(song));
+            return data
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+    } catch (err) {
+        throw (err)
+    }
+}
 
 export const deletePlaylist = (playlistId) => async dispatch => {
     try {
