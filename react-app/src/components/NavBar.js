@@ -10,10 +10,8 @@ const NavBar = () => {
   
   const handleClick = (e) => {
     e.stopPropagation();
-    console.log('someone click me?')
     setShowModal(true);
   }
-  console.log('re-render');
   
   return (
     <div className='navbar-container'>

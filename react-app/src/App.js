@@ -10,6 +10,7 @@ import Home from './components/AppRight/Home';
 import SongAudio from './components/AppRight/Song';
 import ProtectedRoute from './components/ProtectedRoute';
 import PlaylistPage from './components/AppRight/PlaylistPage';
+import UserPage from './components/AppRight/UserPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -76,6 +77,16 @@ function App() {
                 <NavBar />
                 <PlaylistPage/>
               </>
+            </div>
+          </div>
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile'>
+          <div className='main-app'>
+            <div className='app-left-container'>
+             <LeftBox/>
+            </div>
+            <div className='app-right-container'>
+              <UserPage/>
             </div>
           </div>
         </ProtectedRoute>
