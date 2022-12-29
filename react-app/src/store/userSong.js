@@ -25,8 +25,9 @@ export const fetchUserSongs = () => async dispatch => {
 }
 
 export const deleteSong = (songId) => async dispatch => {
+    console.log('***************', songId);
     try {
-        const response = await fetch(`/api/songs/songId`, {
+        const response = await fetch(`/api/songs/${songId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,8 +59,10 @@ const userSongReducer = (state = {}, action) => {
             newState.songs = newSong;
             return newState;
         
-        // case REMOVE_SONG:
-        //     newState = deepCopy(state);
+        case REMOVE_SONG:
+            newState = deepCopy(state);
+            delete newState.songs[action.songId];
+            return newState;
 
         
         default:

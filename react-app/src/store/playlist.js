@@ -52,10 +52,10 @@ export function addSong(song) {
     }
 }
 
-export function removeSong(songId) {
+export function removeSong(song) {
     return {
         type: REMOVE_SONG, 
-        songId
+        song
     }
 }
 
@@ -131,18 +131,19 @@ export const updatePlaylist = (playlist) => async dispatch => {
 }
 
 
-export const removeSongFromPlaylist = (songId) => async dispatch => {
+export const removeSongFromPlaylist = (song) => async dispatch => {
+    const { id, playlist_id } = song;
     try {
-        const response = await fetch(`/api/songs/${songId}`, {
+        const response = await fetch(`/api/playlists/songs/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(songId)
+            body: JSON.stringify({song_id: id})
         });
         if (response.ok) {
             const data = await response.json();
-            dispatch(removeSong(songId));
+            dispatch(removeSong(song));
             return data;
         } else {
             const data = await response.json();
@@ -158,7 +159,6 @@ export const removeSongFromPlaylist = (songId) => async dispatch => {
 
 export const addSongToPlaylist = (song) => async dispatch => {
     const { playlistId, song_id } = song;
-    console.log('********************', song)
     try {
         const response = await fetch(`/api/playlists/${playlistId}/songs`, {
             method: 'POST',
@@ -230,12 +230,12 @@ const playlistReducer = (state = {}, action) => {
             delete newState.playlists[action.playlistId];
             return newState;
         
-        // case REMOVE_SONG:
-        //     newState = deepCopy(state);
-        //     let { playlistId, stockId } = action.info;
-        //     let stocklists = newState.watchlists[watchlistId].watchlist_stocks.filter(stock => stock.id !== stockId);
-        //     newState.watchlists[watchlistId].watchlist_stocks = stocklists;
-        //     return newState;
+        case REMOVE_SONG:
+            newState = deepCopy(state);
+            let { playlist_id, id } = action.song;
+            let playlists_songs = newState.playlists[playlist_id].playlist_songs.filter(song => song.id !== id);
+            newState.playlists[playlist_id].playlist_songs = playlists_songs;
+            return newState;
     
         default:
             return state
