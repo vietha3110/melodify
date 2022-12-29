@@ -62,7 +62,7 @@ const UploadSong = () => {
         const file = e.target.files[0];
 
         if (file.type !== "audio/mpeg") {
-            setError('Please upload mp3, ')
+            return setError('Please upload mp3, ')
         }
 
         if (file.size > 5000000) {

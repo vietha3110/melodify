@@ -5,7 +5,8 @@ import { Modal } from '../../Modal';
 import musicNote from '../Playlist/musicNote.png';
 import playlistIcon from '../Playlist/playlist-icon.png';
 import UpdateBox from './UpdateBox';
-import listIcon from '../Playlist/list-icon.png'
+import listIcon from '../Playlist/list-icon.png';
+import { Link } from 'react-router-dom';
 
 const Playlist = () => {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Playlist = () => {
                     (playlist, i) => (
                         <div key={i} className='playlist-content-name'>
                             <div className='playlist-content-name-span' onClick={handleClick(i)}>
-                                <span>{playlist.name}</span>
+                                <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
                             </div>
                             <>
                                 {modalInfo.show && (

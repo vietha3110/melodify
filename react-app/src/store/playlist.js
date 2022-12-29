@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from 'react';
+
 const deepcopy = require('deepcopy');
 
 const LOAD_ALL = 'playlist/loadAll';
@@ -42,6 +44,21 @@ export function editPlaylist(playlist) {
         playlist
     }
 }
+
+export function addSong(song) {
+    return {
+        type: ADD_SONG,
+        song
+    }
+}
+
+export function removeSong(songId) {
+    return {
+        type: REMOVE_SONG, 
+        songId
+    }
+}
+
 
 export const fetchAll = () => async dispatch => {
     const response = await fetch(`/api/playlists/all`); 
@@ -114,6 +131,57 @@ export const updatePlaylist = (playlist) => async dispatch => {
 }
 
 
+export const removeSongFromPlaylist = (songId) => async dispatch => {
+    try {
+        const response = await fetch(`/api/songs/${songId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(songId)
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(removeSong(songId));
+            return data;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+
+    } catch (err) {
+        throw(err)
+    }
+}
+
+export const addSongToPlaylist = (song) => async dispatch => {
+    const { playlistId, song_id } = song;
+    console.log('********************', song)
+    try {
+        const response = await fetch(`/api/playlists/${playlistId}/songs`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ song_id })
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(fetchUserList());
+            return data
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+    } catch (err) {
+        throw (err)
+    }
+}
+
 export const deletePlaylist = (playlistId) => async dispatch => {
     try {
         const response = await fetch(`/api/playlists/${playlistId}`, {
@@ -161,6 +229,13 @@ const playlistReducer = (state = {}, action) => {
             newState = deepCopy(state);
             delete newState.playlists[action.playlistId];
             return newState;
+        
+        // case REMOVE_SONG:
+        //     newState = deepCopy(state);
+        //     let { playlistId, stockId } = action.info;
+        //     let stocklists = newState.watchlists[watchlistId].watchlist_stocks.filter(stock => stock.id !== stockId);
+        //     newState.watchlists[watchlistId].watchlist_stocks = stocklists;
+        //     return newState;
     
         default:
             return state

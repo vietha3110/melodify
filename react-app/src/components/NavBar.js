@@ -10,10 +10,8 @@ const NavBar = () => {
   
   const handleClick = (e) => {
     e.stopPropagation();
-    console.log('someone click me?')
     setShowModal(true);
   }
-  console.log('re-render');
   
   return (
     <div className='navbar-container'>
@@ -22,12 +20,6 @@ const NavBar = () => {
       </div>
       <div className='navbar-logo'>
         Logo 
-      </div>
-      <div className='navbar-volume'>
-        volume
-      </div>
-      <div className='navbar-next'>
-        <button>Open Next</button>
       </div>
       <div className='navbar-button-signin'>
         {user == null && 
