@@ -8,6 +8,7 @@ import LeftBox from './components/AppLeft';
 import UploadSong from './components/AppRight/Upload'; 
 import Home from './components/AppRight/Home';
 import SongAudio from './components/AppRight/Song';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,7 @@ function App() {
             </div>
           </div>
         </Route>
-        <Route path='/upload'>
+        <ProtectedRoute path='/upload'>
           <div className='main-app'>
             <div className='app-left-container'>
              <LeftBox/>
@@ -50,7 +51,7 @@ function App() {
               </>
             </div>
           </div>
-        </Route>
+        </ProtectedRoute>
         <Route path='/songs/:fileId'>
           <div className='main-app'>
             <div className='app-left-container'>

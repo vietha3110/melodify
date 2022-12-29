@@ -19,13 +19,13 @@ const PlaylistSong = ({songId, onClose}) => {
                 onClose();
             })
             .catch((err) => {
-                console.log('error', err);
                 setError(err);
                 setShowModal(true);
             })
        
     }
     const closeModal = (e) => {
+        e.stopPropagation();
         setShowModal(false);
     }
 
