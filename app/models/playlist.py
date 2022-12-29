@@ -20,5 +20,5 @@ class Playlist(db.Model):
             'id': self.id,
             'name': self.name,
             'description': self.description, 
-            'playlist_songs': [[playlist_song.to_dict() for playlist_song in self.playlist_songs]]
+            'playlist_songs': [playlist_song.to_dict() for playlist_song in self.playlist_songs]
         }

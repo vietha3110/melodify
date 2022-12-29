@@ -203,3 +203,26 @@ def delete_song(song_id):
     db.session.delete(delete_song)
     db.session.commit()
     return {'message': 'Successfully delete song'}
+
+# query playlist 
+
+@playlist_routes.route('/<int:playlist_id>')
+@login_required
+def get_list(playlist_id): 
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    
+    playlist = Playlist.query.get(playlist_id)
+    if not playlist: 
+        return {'error': {
+            'message': 'Can not find playlist',
+            'statusCode': 404
+        }}, 404
+
+    if playlist.user_id != current_user_id: 
+        return {'error': {
+                'message': 'Forbidden',
+                'statusCode': 403
+        }}, 403
+
+    return playlist.to_dict(), 200
