@@ -24,6 +24,27 @@ export const fetchUserSongs = () => async dispatch => {
     }
 }
 
+export const deleteSong = (songId) => async dispatch => {
+    try {
+        const response = await fetch(`/api/songs/songId`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ songId })
+        })
+        if (response.ok) {
+            dispatch(removeSong(songId));
+            return response;
+        } else {
+            const data = response.json();
+            return data;
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
 
 const userSongReducer = (state = {}, action) => {
     let newState;
@@ -36,6 +57,10 @@ const userSongReducer = (state = {}, action) => {
             }, {});
             newState.songs = newSong;
             return newState;
+        
+        // case REMOVE_SONG:
+        //     newState = deepCopy(state);
+
         
         default:
             return state;
