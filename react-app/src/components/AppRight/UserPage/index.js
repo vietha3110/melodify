@@ -10,22 +10,21 @@ const UserPage = () => {
         dispatch(userSongsAction.fetchUserSongs())
     }, [])
 
-    const deleteSong = (i) => (e) => {
+    const deleteSong = (i, song) => (e) => {
         e.stopPropagation();
-        console.log('remove', i)
+        dispatch(userSongsAction.deleteSong(song.id));
     }
 
 
     return (
-        <div>
-            
-            <div>
+        <div className="userprofile-container">
+            <div className="userprofile-info">
                 User Info
             </div>
-            <div>
-                Song Uploaded 
-                <>
-                    <div>
+            <div className="userprofile-song">
+                Songs
+                <div className="userprofile-song-main">
+                    <div className="userprofile-song-label userprofile-content">
                         <span>
                             Title
                         </span>
@@ -38,22 +37,24 @@ const UserPage = () => {
                     </div>
                     {
                         songs && Object.values(songs).map((song, i) => (
-                            <div key={i}>
+                            <div key={i} className="userprofile-song-content userprofile-content">
                                 <span>
                                     {song.name}
                                 </span>
                                 <span>
                                     {song.artistName}
                                 </span>
-                                <div onClick={deleteSong(i)}>
+                                <span onClick={deleteSong(i, song)}>
                                     Delete
-                                </div>
+                                </span>
                             </div>
                         ))
                     }
-                </>
+                </div>
             </div>
-           
+            <div>
+                Playlists
+            </div>
             <div>
                 Like - COMING SOON
             </div>

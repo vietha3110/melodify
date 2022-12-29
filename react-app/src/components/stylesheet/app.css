@@ -632,3 +632,28 @@
     font-size: 2.5rem;
     font-weight: 700;
 }
+
+
+
+
+
+/* user profile page */
+.userprofile-container{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+.userprofile-info{
+}
+
+.userprofile-song {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userprofile-content {
+    display: grid;
+    grid-template-columns: 20rem 15rem 5rem;
+    height: 30px;
+  
+}
