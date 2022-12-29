@@ -611,7 +611,7 @@
 }
 .listpage-content {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
     margin: 2rem;
     height: 30px;
     align-items: center;

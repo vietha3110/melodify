@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
     const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
     const second = Math.floor(length % 60).toString().padStart(2, '0');
@@ -13,8 +14,17 @@ const PlaylistPage = () => {
     const { playlistId } = useParams();
     const playlists = useSelector(state => state.playlists.playlists);
     const playlist = playlists[+playlistId]
-    console.log(playlist.playlist_songs)
+    const dispatch = useDispatch();
 
+ 
+    const removeSong = (i, song) => (e) => {
+        e.stopPropagation();
+        const id = song.id;
+        const playlist_id = +playlistId;
+        const songInfo = {id, playlist_id }
+        dispatch(playlistAction.removeSongFromPlaylist(songInfo));
+       
+    }
 
     return (
         <div className="listpage-container">
@@ -27,12 +37,13 @@ const PlaylistPage = () => {
                 <span>Artist</span>
                 <span>Genre</span>
                 <span>Time</span>
+                <span></span>
             </div>
             {
                 playlist.playlist_songs.map((song, i) =>
                  
                        
-                        <div className="listpage-content listpage-song">
+                        <div className="listpage-content listpage-song" key={i}>
                             <span>
                                 {i + 1}
                             </span>
@@ -49,6 +60,9 @@ const PlaylistPage = () => {
                                 {
                                     changeSecondToTime(song.song.length)
                                 }
+                            </span>
+                            <span onClick={removeSong(i, song)}>
+                                delete
                             </span>
                         </div>
                     
