@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as songAction from "../../../store/song"
+import * as songAction from "../../../store/song";
+import PlaylistSong from "./PlaylistSong";
 
 const SongAudio = () => {
     const { fileId } = useParams();
@@ -9,7 +10,9 @@ const SongAudio = () => {
     const [error, setError] = useState('');
     // const dispatch = useDispatch();
     // const songs = useSelector(state => state.songs.songs);
-
+    // const [showModal, setShowModal] = useState(false);
+    const [open, setOpen] = useState(false);
+    //check user if user === null => k hien thi add to list
 
     useEffect(() => {
         console.log(`i'm running`)
@@ -22,7 +25,11 @@ const SongAudio = () => {
             })
             .catch((err) => setError('Please try again!'));
     }, [])
-
+    
+    const handleClick = (e) => {
+        e.stopPropagation();
+        setOpen(true);
+    }
     
     return (
         <div className="audio-container"> 
@@ -32,8 +39,12 @@ const SongAudio = () => {
                 </audio>
             </div>
             <div>
-                <button> Add to playlist</button>
+                <button onClick={handleClick}> Add to playlist</button>
             </div>
+            {
+                open && 
+                <PlaylistSong songId={fileId} onClose={ ()=>setOpen(false)} />
+            }
             {
                 error && (
                     <div>

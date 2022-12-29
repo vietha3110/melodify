@@ -142,6 +142,8 @@ def add_song(playlist_id):
                     'statusCode': 403
                 }
             }, 403
+
+    print('*************************',form.data)
     if form.validate():
         added_song = Song.query.get(song_id)
         if not added_song: 
@@ -164,6 +166,7 @@ def add_song(playlist_id):
             }, 403
 
         try: 
+            print('im running 167')
             new_song = Playlist_Song(
                     playlist_id = playlist_id,
                     song_id= form.data['song_id']

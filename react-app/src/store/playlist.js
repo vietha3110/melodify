@@ -157,17 +157,19 @@ export const removeSongFromPlaylist = (songId) => async dispatch => {
 }
 
 export const addSongToPlaylist = (song) => async dispatch => {
+    const { playlistId, song_id } = song;
+    console.log('********************', song)
     try {
-        const response = await fetch(`/api/playlists/$playlistId/songs`, {
+        const response = await fetch(`/api/playlists/${playlistId}/songs`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(song)
+            body: JSON.stringify({ song_id })
         });
         if (response.ok) {
             const data = await response.json();
-            dispatch(addSong(song));
+            dispatch(fetchUserList());
             return data
         } else {
             const data = await response.json();
@@ -227,6 +229,13 @@ const playlistReducer = (state = {}, action) => {
             newState = deepCopy(state);
             delete newState.playlists[action.playlistId];
             return newState;
+        
+        // case REMOVE_SONG:
+        //     newState = deepCopy(state);
+        //     let { playlistId, stockId } = action.info;
+        //     let stocklists = newState.watchlists[watchlistId].watchlist_stocks.filter(stock => stock.id !== stockId);
+        //     newState.watchlists[watchlistId].watchlist_stocks = stocklists;
+        //     return newState;
     
         default:
             return state
