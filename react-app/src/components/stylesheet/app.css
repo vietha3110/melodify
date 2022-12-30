@@ -1,10 +1,9 @@
 .main-app {
     display: grid;
-    grid-template-columns: 0.7fr 3.3fr;
+    grid-template-columns: 0.8fr 3.3fr;
     align-items: stretch;
-    height: 2000px;
     margin: 0px;
-
+    min-height: 1400px;
 }
 .app-left-container {
     width: 100%;
@@ -38,7 +37,7 @@
     flex-direction: row;
     align-items: center;
     margin: 1rem;
-    font-size: 0.85rem;
+    font-size: 1rem;
 }
 
 .app-left-logo > span, .app-letf-listen > span, .app-left-make-playlistcomp > span, .app-left-radio > span {
@@ -50,7 +49,7 @@
     border-radius: 2px;
     height: 30px;
     color: #cccccc;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 
 }
 .main-logo {
@@ -59,17 +58,10 @@
     box-sizing: border-box;
     border-radius: 0.2rem;
 }
-.radio-logo {
+.radio-logo, .playmusic-logo,.musicnote {
     width: 1.5rem;
 }
 
-.playmusic-logo {
-    width: 1.5rem;
-
-}
-.musicnote {
-    width: 1.5rem;
-}
 
 .app-left-make-playlistcomp {
     cursor: pointer;
@@ -82,7 +74,7 @@
     flex-direction: row;
     align-items: center;
     margin: 1rem;
-    font-size: 0.85rem;
+    font-size: 1rem;
 }
 
 .playlist-icon {
@@ -96,20 +88,36 @@
 .playlist-content {
     display: flex;
     flex-direction: column;
-    font-size: 0.8rem;
+    font-size: 1rem;
     width: 100%;
-    height: 130px;
+    margin-top: 2rem;
 }
 
 .playlist-content-name {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
+    height: 30px;
+    margin-left: 1rem;
+    position: relative;
+
 }
 
+.playlist-link {
+    text-decoration: none;
+    color: #1d1d1f;
+}
+
+.playlist-link:hover {
+    color: var(--melodify-red-close);
+    font-weight: 700;
+}
 
 /* update dropdown */
+/* .playlist-content-name-button {
+    position: relative;
+} */
 .updatebox-btn {
     background-color: transparent;
     border: none;
@@ -123,8 +131,22 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     cursor: pointer;
+    position: absolute;
+    z-index: 1000;
+    right: 0.2rem;
+    width: 5rem;
+    border-radius: 5px;
 }
 
+.updatebox-info {
+    width: 100%;
+    align-items: center;
+}
+
+
+.updatebox-info:hover {
+    background-color: #cccccc;
+}
 
 .btn-edit, .deleteform-btn {
     background-color: transparent;
@@ -552,10 +574,6 @@
 }
 
 
-
-/* input[type='file'] {
-    color: transparent;
-} */
 
 
 /* ------------------ */

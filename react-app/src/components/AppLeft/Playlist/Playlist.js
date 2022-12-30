@@ -45,7 +45,7 @@ const Playlist = () => {
                     (playlist, i) => (
                         <div key={i} className='playlist-content-name'>
                             <div className='playlist-content-name-span' onClick={handleClick(i)}>
-                                <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
+                                <Link to={`/playlists/${playlist.id}`} className="playlist-link">{playlist.name}</Link>
                             </div>
                             <>
                                 {modalInfo.show && (
