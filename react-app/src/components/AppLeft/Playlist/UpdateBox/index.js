@@ -28,10 +28,10 @@ const UpdateBox = ({ playlist, i, openModal, closeModal }) => {
             </button>
             {open[i] &&
                 <div className="updatebox-dropdown">
-                    <div className="updatebox-dropdown-update">
+                    <div className="updatebox-dropdown-update updatebox-info">
                         <EditFormModal playlist={playlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal} />
                     </div>
-                    <div className="updatebox-dropdown-delete">
+                    <div className="updatebox-dropdown-delete updatebox-info">
                         <DeleteFormModal playlist={playlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal}/>
                     </div>
                 </div>

@@ -17,7 +17,6 @@ const EditFormModal = ({ playlist, closeDropdown, openModal, closeModal }) => {
 
     return (
         <button onClick={onClick} className='btn-edit'>
-            <i className="fa-solid fa-gear"></i>
             <span className="updateform-spanedit">Edit</span>
         </button>
     );

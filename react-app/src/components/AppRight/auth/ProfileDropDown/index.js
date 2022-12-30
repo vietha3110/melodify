@@ -23,23 +23,22 @@ const ProfileDropdown = () => {
 
     return (
         <div>
-            <button onClick={openMenu}>
+            <button onClick={openMenu} className="profile-user-btn">
                 <i className="fas fa-user-circle" />
-                <span>Profile</span>
             </button>
             {
                 showMenu && 
                 <div className="profile-dropdown">
-                    <div>
-                        <span>Hello, {user.firstName}</span>        
+                    <div  className="profile-dropdown-info profile-hover">
+                        <span className="profile-dropdown-content">Hello, {user.firstName}</span>        
                     </div> 
-                    <div>
-                          <Link to='/upload'>Upload  </Link>
+                    <div  className="profile-dropdown-info profile-hover">
+                          <Link to='/upload' className="profile-dropdown-content">Upload  </Link>
                     </div>
-                    <div>
-                         <Link to='/profile'>Account</Link>       
+                    <div  className="profile-dropdown-info profile-hover">
+                         <Link to='/profile' className="profile-dropdown-content">Account</Link>       
                     </div>    
-                    <div>
+                    <div className="profile-logout profile-hover">
                         <LogoutButton/>
                     </div>    
                 </div>

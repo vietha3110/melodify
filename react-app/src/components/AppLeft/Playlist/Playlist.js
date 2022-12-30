@@ -2,10 +2,10 @@ import * as playlistAction from '../../../store/playlist';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../Modal';
-import musicNote from '../Playlist/musicNote.png';
+// import musicNote from '../Playlist/musicNote.png';
 import playlistIcon from '../Playlist/playlist-icon.png';
 import UpdateBox from './UpdateBox';
-import listIcon from '../Playlist/list-icon.png';
+// import listIcon from '../Playlist/list-icon.png';
 import { Link } from 'react-router-dom';
 
 const Playlist = () => {
@@ -45,7 +45,7 @@ const Playlist = () => {
                     (playlist, i) => (
                         <div key={i} className='playlist-content-name'>
                             <div className='playlist-content-name-span' onClick={handleClick(i)}>
-                                <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
+                                <Link to={`/playlists/${playlist.id}`} className="playlist-link">{playlist.name}</Link>
                             </div>
                             <>
                                 {modalInfo.show && (
