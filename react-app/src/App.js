@@ -11,7 +11,7 @@ import SongAudio from './components/AppRight/Song';
 import ProtectedRoute from './components/ProtectedRoute';
 import PlaylistPage from './components/AppRight/PlaylistPage';
 import UserPage from './components/AppRight/UserPage';
-
+import Footer from './components/Footer';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -38,7 +38,9 @@ function App() {
                 <NavBar />
                 <Home/>
               </>
+              <Footer/>
             </div>
+        
           </div>
         </Route>
         <ProtectedRoute path='/upload'>
