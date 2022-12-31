@@ -699,22 +699,66 @@
 
 /* audio */
 .audio-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20rem;
-    flex-direction: column;
+    height: 100%;
 }
 
+.audio-info {
+    height: 20%;
+    max-height: 500px;
+    min-height: 300px; 
+    display: flex;
+    max-width: none;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.audio-info-main {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+}
+.audio-info-main > span {
+    line-height: normal;
+    margin-top: 8px;
+    overflow: hidden;
+    text-align: left;
+    width: 100%;
+    word-break: break-word;
+}
+.audio-name {
+    font-size: 2.5rem;
+}
 
 .audio-container > audio {
     align-items: center;
-    
 }
 
-.audio-info-artist > span {
-    margin: 1rem;
+.audio-player-main {
+    display: flex;
+    flex-direction: row;
+    margin: 5rem;
+    justify-content: center;
+    width: 100%;
 }
+
+.audio-display, .audio-display-addbtn {
+    height: 40px;
+    width: 50%;
+    display: flex;
+
+}
+
+.audio-display {
+    justify-content: flex-end;
+}
+ .audio-display-addbtn {
+    margin:0.5rem 0rem 1rem 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative
+ }
+
+
 /* LIST PAGE */
 .listpage-container {
     margin: 1rem;
@@ -847,4 +891,16 @@ animation-name: quiet;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Add List Song */ 
+.addlist-container {
+    width: 200px;
+    border: 1px solid #cccccc;
+    background: #fff;
+    cursor: pointer;
+    right: 1;
+    position: absolute;
+    border-radius: 5px;
+    padding: 5px;
 }
