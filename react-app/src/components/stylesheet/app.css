@@ -701,15 +701,20 @@
 .audio-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 20rem;
+    flex-direction: column;
 }
 
 
 .audio-container > audio {
     align-items: center;
+    
 }
 
-
-
+.audio-info-artist > span {
+    margin: 1rem;
+}
 /* LIST PAGE */
 .listpage-container {
     margin: 1rem;

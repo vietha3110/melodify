@@ -9,17 +9,18 @@ const SongAudio = () => {
     const id = +fileId;
     const [error, setError] = useState('');
     // const dispatch = useDispatch();
-    // const songs = useSelector(state => state.songs.songs);
-    // const [showModal, setShowModal] = useState(false);
+    const songs = useSelector(state => state.songs.songs);
+    const listSongs = Object.values(songs);
+    const songInfo = listSongs.filter(song => song.id === id)[0];
+        // const [showModal, setShowModal] = useState(false);
     const [open, setOpen] = useState(false);
     //check user if user === null => k hien thi add to list
+    const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        console.log(`i'm running`)
         fetch(`/api/songs/file/${id}`)
             .then((res) => {
                 if (res.status === 400) {
-                    console.log('here')
                     setError('Can not find this song! Please try again')
                 }
             })
@@ -30,17 +31,32 @@ const SongAudio = () => {
         e.stopPropagation();
         setOpen(true);
     }
-    
+    document.addEventListener('click', e => {
+        setOpen(false);
+    });
     return (
         <div className="audio-container"> 
+            <div className="audio-info">
+                <div className="audio-info-name">
+                    {songInfo.name}
+                </div>
+                <div  className="audio-info-artist">
+                    <span>{songInfo.artistName}</span>
+                    <span>{songInfo.genre}</span>
+                </div>
+               
+            </div>
+            
             <div>
                 <audio controls>
                     <source src={`/api/songs/file/${id}`} />
                 </audio>
             </div>
-            <div>
-                <button onClick={handleClick}> Add to playlist</button>
-            </div>
+            { user !== null && 
+                <div>
+                    <button onClick={handleClick}> Add to playlist</button>
+                </div>
+            }
             {
                 open && 
                 <PlaylistSong songId={fileId} onClose={ ()=>setOpen(false)} />
