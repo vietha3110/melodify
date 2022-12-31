@@ -789,7 +789,10 @@
     font-weight: 700;
 }
 
-
+.listpage-nosong {
+    display: flex;
+    justify-content: center;
+}
 
 
 

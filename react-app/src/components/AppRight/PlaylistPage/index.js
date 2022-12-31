@@ -30,16 +30,18 @@ const PlaylistPage = () => {
             <div className="listpage-title">
                 {playlist.name}
             </div>
-            <div className="listpage-content listpage-head">
-                <span>#</span>
-                <span>Title</span>
-                <span>Artist</span>
-                <span>Genre</span>
-                <span>Time</span>
-                <span></span>
-            </div>
+            {  playlist.playlist_songs.length > 0 &&
+                <div className="listpage-content listpage-head">
+                    <span>#</span>
+                    <span>Title</span>
+                    <span>Artist</span>
+                    <span>Genre</span>
+                    <span>Time</span>
+                    <span></span>
+                </div>
+            }
             {
-                playlist.playlist_songs.map((song, i) =>
+                playlist.playlist_songs.length > 0 && playlist.playlist_songs.map((song, i) =>
                         <div className="listpage-content listpage-song" key={i}>
                             <span>
                                 {i + 1}
@@ -64,6 +66,13 @@ const PlaylistPage = () => {
                         </div>
                     
                 )
+            }
+            {
+                playlist.playlist_songs.length === 0 && 
+                <div className="listpage-nosong">
+                    Empty here. Let's find something for your playlist!
+                </div>
+                
             }
            
         </div>

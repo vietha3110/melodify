@@ -17,7 +17,6 @@ const NavBar = () => {
   return (
     <div className='navbar-container'>
       <div className='navbar-player'>
-        Player
       </div>
       <div className='navbar-logo'>
         <div className='navbar-logo-img'>
