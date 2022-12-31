@@ -407,8 +407,7 @@
     display: flex;
     align-items: center;
 }
-.profile-dropdown-content {
-    padding: 0.5rem;
+.profile-hover {
     text-decoration: none;
     color: #000;;
 }
@@ -417,6 +416,21 @@
     background-color: #ececec;
 }
 
+.profile-dropdown-content{
+    padding: 10px;
+    overflow: hidden;
+}
+
+.btn-signout {
+    width: 100%;
+    color: var(--melodify-red-close);
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    margin-left: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+}
 
 .navbar-signin {
     cursor: pointer;

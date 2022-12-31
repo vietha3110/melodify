@@ -11,7 +11,7 @@ const LogoutButton = () => {
     // <Redirect to='/'/>
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <button onClick={onLogout} className='btn-signout'>Sign Out</button>;
 };
 
 export default LogoutButton;
