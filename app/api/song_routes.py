@@ -106,11 +106,13 @@ def delete_song(song_id):
             }
         }
 
-@song_routes.route('/<int:song_id>')
+@song_routes.route('/<int:song_id>', methods=['GET'])
 def get_songinfo(song_id): 
+    print('*******************************',song_id)
     song_info = Song.query.get(song_id)
 
     if song_info: 
+        print('return')
         return song_info.to_dict(), 201
     else: 
         return {

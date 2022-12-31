@@ -89,8 +89,8 @@ export const createSong = (song) => async dispatch => {
     }
 }
 
-export const fetchOneSong = (id) => async dispatch => {
-    const response = await fetch(`/api/songs/${id}`);
+export const fetchOneSong = (song_id) => async dispatch => {
+    const response = await fetch(`/api/songs/${song_id}`);
     if (response.ok) {
         const data = await response.json(); 
         dispatch(loadOneSong(data));
@@ -116,8 +116,8 @@ const songReducer = (state = {}, action) => {
         
         case LOAD_ONESONG:
             newState = deepCopy(state);
-            newState = action.song;
-            console.log(newState);
+            console.log(action.song);
+            newState.singleSong = action.song;
             return newState;
         default:
             return state;
