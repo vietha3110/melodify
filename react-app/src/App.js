@@ -29,19 +29,20 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          <div className='main-app'>
-          <div className='app-left-container'>
-             <LeftBox/>
-          </div>
-          <div className='app-right-container'>
-              <>
-                <NavBar />
-                <Home/>
-              </>
-              <Footer/>
+          <>
+            <div className='main-app'>
+            <div className='app-left-container'>
+               <LeftBox/>
             </div>
-        
-          </div>
+            <div className='app-right-container'>
+                <>
+                  <NavBar />
+                  <Home/>
+                </>
+              </div>
+            </div>
+            <Footer/>
+          </>
         </Route>
         <ProtectedRoute path='/upload'>
           <div className='main-app'>

@@ -11,7 +11,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+const initialState = localStorage.getItem('user') || { user: null };
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -101,9 +101,11 @@ export const signUp = (firstName, lastName, email, password) => async (dispatch)
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      localStorage.setItem('user', { user: action.payload });
+      return { user: action.payload };
     case REMOVE_USER:
-      return { user: null }
+      localStorage.setItem('user', { user: null });
+      return { user: null };
     default:
       return state;
   }

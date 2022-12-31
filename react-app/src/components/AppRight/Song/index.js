@@ -19,23 +19,6 @@ const SongAudio = () => {
     const [song, setSong] = useState({});
     const dispatch = useDispatch();
 
-
-    // useEffect(() => {
-    //     fetch(`/api/songs/file/${id}`)
-    //         .then((res) => {
-    //             if (res.status === 400) {
-    //                 setError('Can not find this song! Please try again')
-    //             }
-    //         })
-    //         .catch((err) => setError('Please try again!'));
-    // }, [])
-    
-    // useEffect(() => {
-    //     console.log('imrunning');
-    //     dispatch(songAction.fetchOneSong(id));
-     
-    // }, [dispatch])
-
     const handleClick = (e) => {
         e.stopPropagation();
         setOpen(true);

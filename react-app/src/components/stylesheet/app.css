@@ -763,7 +763,7 @@
 
 /* LIST PAGE */
 .listpage-container {
-    margin: 1rem;
+    margin: 10rem 1rem 1rem 1rem;
 }
 .listpage-content {
     display: grid;
@@ -771,6 +771,7 @@
     margin: 2rem;
     height: 30px;
     align-items: center;
+    overflow: scroll;
 
 }
 .listpage-head {
