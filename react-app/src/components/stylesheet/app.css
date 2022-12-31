@@ -101,9 +101,11 @@
     height: 30px;
     margin-left: 1rem;
     position: relative;
-
 }
 
+.playlist-content-name-span {
+    overflow: hidden;
+}
 .playlist-link {
     text-decoration: none;
     color: #1d1d1f;
@@ -346,7 +348,7 @@
     width: 100%;
     grid-template-columns: 1fr 2fr 1fr ;
     height: 60px;
-    border-bottom: 1px solid #cccccc;
+    /* border-bottom: 1px solid #cccccc; */
 }
 
 .navbar-button-signin {
@@ -903,4 +905,9 @@ animation-name: quiet;
     position: absolute;
     border-radius: 5px;
     padding: 5px;
+}
+
+.fa-solid:hover {
+    color: var(--melodify-red-close);
+    cursor: pointer;
 }

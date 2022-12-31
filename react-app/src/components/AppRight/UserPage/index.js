@@ -45,7 +45,7 @@ const UserPage = () => {
                                     {song.artistName}
                                 </span>
                                 <span onClick={deleteSong(i, song)}>
-                                    Delete
+                                    <i className="fa-solid fa-xmark"></i>
                                 </span>
                             </div>
                         ))

@@ -29,7 +29,6 @@ const EditPlaylistForm = ({playlist, onClose}) => {
             setErrors(errors);
             return;
         }
-
         dispatch(playlistAction.updatePlaylist({id, name, description }));
         onClose();
        

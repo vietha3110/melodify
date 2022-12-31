@@ -40,8 +40,6 @@ const PlaylistPage = () => {
             </div>
             {
                 playlist.playlist_songs.map((song, i) =>
-                 
-                       
                         <div className="listpage-content listpage-song" key={i}>
                             <span>
                                 {i + 1}
@@ -61,7 +59,7 @@ const PlaylistPage = () => {
                                 }
                             </span>
                             <span onClick={removeSong(i, song)}>
-                                delete
+                                <i className="fa-solid fa-xmark"></i>
                             </span>
                         </div>
                     
