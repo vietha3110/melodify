@@ -30,12 +30,11 @@ const PlaylistSong = ({songId, onClose}) => {
     }
 
     return (
-        <div>
-            List Here
+        <div className='addlist-container'>
             {playlists && Object.values(playlists).map(
                 (playlist, i) => (
                     <>
-                        <div key={i} onClick={addToList(i, playlist)}>
+                        <div key={i} onClick={addToList(i, playlist)} className='addlist-info'>
                             <span>{playlist.name}</span>
                         </div>
                         {

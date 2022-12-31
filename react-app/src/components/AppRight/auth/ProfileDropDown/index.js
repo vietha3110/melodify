@@ -32,12 +32,12 @@ const ProfileDropdown = () => {
                     <div  className="profile-dropdown-info profile-hover">
                         <span className="profile-dropdown-content">Hello, {user.firstName}</span>        
                     </div> 
-                    <div  className="profile-dropdown-info profile-hover">
-                          <Link to='/upload' className="profile-dropdown-content">Upload  </Link>
-                    </div>
-                    <div  className="profile-dropdown-info profile-hover">
-                         <Link to='/profile' className="profile-dropdown-content">Account</Link>       
-                    </div>    
+                    <Link to='/upload' className="profile-dropdown-info profile-hover">
+                          <span className="profile-dropdown-content">Upload  </span>
+                    </Link>
+                    <Link to='/profile'  className="profile-dropdown-info profile-hover">
+                         <span className="profile-dropdown-content">Account</span>       
+                    </Link>    
                     <div className="profile-logout profile-hover">
                         <LogoutButton/>
                     </div>    

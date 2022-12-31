@@ -3,7 +3,7 @@ const Footer = () => {
         <div> 
             <div>
                 <span>
-                    Copyright 2022 melodify
+                    © 2022 melodify.
                 </span>
             </div>
             <div>

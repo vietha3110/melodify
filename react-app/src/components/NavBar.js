@@ -17,19 +17,18 @@ const NavBar = () => {
   return (
     <div className='navbar-container'>
       <div className='navbar-player'>
-        Player
       </div>
       <div className='navbar-logo'>
         <div className='navbar-logo-img'>
           <img src={logoNote} style={{width: '1.5rem'}} />
         </div>
         <div className='navbar-logo-gif'>
-          <div class="boxContainer">
-            <div class="box box1"></div>
-            <div class="box box2"></div>
-            <div class="box box3"></div>
-            <div class="box box4"></div>
-            <div class="box box5"></div>
+          <div className="boxContainer">
+            <div className="box box1"></div>
+            <div className="box box2"></div>
+            <div className="box box3"></div>
+            <div className="box box4"></div>
+            <div className="box box5"></div>
           </div>
         </div>
       </div>

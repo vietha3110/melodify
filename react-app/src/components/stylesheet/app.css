@@ -101,9 +101,11 @@
     height: 30px;
     margin-left: 1rem;
     position: relative;
-
 }
 
+.playlist-content-name-span {
+    overflow: hidden;
+}
 .playlist-link {
     text-decoration: none;
     color: #1d1d1f;
@@ -344,9 +346,9 @@
 .navbar-container {
     display: grid;
     width: 100%;
-    grid-template-columns: 2fr 2fr 1fr ;
+    grid-template-columns: 1fr 2fr 1fr ;
     height: 60px;
-    border-bottom: 1px solid #cccccc;
+    /* border-bottom: 1px solid #cccccc; */
 }
 
 .navbar-button-signin {
@@ -405,8 +407,7 @@
     display: flex;
     align-items: center;
 }
-.profile-dropdown-content {
-    padding: 0.5rem;
+.profile-hover {
     text-decoration: none;
     color: #000;;
 }
@@ -415,6 +416,21 @@
     background-color: #ececec;
 }
 
+.profile-dropdown-content{
+    padding: 10px;
+    overflow: hidden;
+}
+
+.btn-signout {
+    width: 100%;
+    color: var(--melodify-red-close);
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    margin-left: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+}
 
 .navbar-signin {
     cursor: pointer;
@@ -610,19 +626,26 @@
 }
 
 /* UPLOAD SONG */
-.uploadsong-container {
+.uploadsong-container, .uploadsong-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
+
+.uploadsong-container {
+    margin: 5rem;
+}
+
+
 
 .uploadsong-content {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     border: 1px solid #cccccc;
+    width: 24rem;
     height: 350px;
-
 }
 
 .uploadinfo {
@@ -637,8 +660,24 @@
     margin: 5px 5px 0px 0px;
 }
 
+.uploadinfo > input:focus {
+    border: 1px solid var(--melodify-banerDarkGray)
+}
 
+.uploadsong-btnupload {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
 
+.uploadsong-upload {
+    height: 60px;;
+}
+.upload-error > span{
+    font-size: 1rem;
+    color: var(--melodify-red-close);
+    font-weight: 700;
+}
 
 /* ------------------ */
 .home-container {
@@ -676,20 +715,69 @@
 
 /* audio */
 .audio-container {
+    height: 100%;
+}
+
+.audio-info {
+    height: 20%;
+    max-height: 500px;
+    min-height: 300px; 
     display: flex;
+    max-width: none;
+    overflow: hidden;
     justify-content: center;
 }
 
+.audio-info-main {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+}
+.audio-info-main > span {
+    line-height: normal;
+    margin-top: 8px;
+    overflow: hidden;
+    text-align: left;
+    width: 100%;
+    word-break: break-word;
+}
+.audio-name {
+    font-size: 2.5rem;
+}
 
 .audio-container > audio {
     align-items: center;
 }
 
+.audio-player-main {
+    display: flex;
+    flex-direction: row;
+    margin: 5rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.audio-display, .audio-display-addbtn {
+    height: 40px;
+    width: 50%;
+    display: flex;
+
+}
+
+.audio-display {
+    justify-content: flex-end;
+}
+ .audio-display-addbtn {
+    margin:0.5rem 0rem 1rem 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative
+ }
 
 
 /* LIST PAGE */
 .listpage-container {
-    margin: 1rem;
+    margin: 10rem 1rem 1rem 1rem;
 }
 .listpage-content {
     display: grid;
@@ -697,6 +785,7 @@
     margin: 2rem;
     height: 30px;
     align-items: center;
+    overflow: scroll;
 
 }
 .listpage-head {
@@ -715,31 +804,38 @@
     font-weight: 700;
 }
 
-
+.listpage-nosong {
+    display: flex;
+    justify-content: center;
+}
 
 
 
 /* user profile page */
 .userprofile-container{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 30px;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5rem;
 }
 .userprofile-info{
 }
 
-.userprofile-song {
+.userprofile-song-main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 1rem;
 }
 .userprofile-content {
     display: grid;
     grid-template-columns: 20rem 15rem 5rem;
-    height: 30px;
-  
+    height: 40px;
+ 
 }
 
+.userprofile-song-label {
+    height: 50px;
+}
 
 @keyframes quiet {
     25%{
@@ -819,4 +915,21 @@ animation-name: quiet;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Add List Song */ 
+.addlist-container {
+    width: 200px;
+    border: 1px solid #cccccc;
+    background: #fff;
+    cursor: pointer;
+    right: 1;
+    position: absolute;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.fa-solid:hover {
+    color: var(--melodify-red-close);
+    cursor: pointer;
 }

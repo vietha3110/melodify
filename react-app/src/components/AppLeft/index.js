@@ -21,7 +21,7 @@ const LeftBox = () => {
                 <span style={{fontSize: '1.4rem'}}>Melodify</span>
             </Link>
             <div className='app-left-search'>
-                <span class="material-symbols-outlined" style={{padding: 8}}>
+                <span className="material-symbols-outlined" style={{padding: 8}}>
                     search
                 </span>
                 <span style={{ padding: 6}}>

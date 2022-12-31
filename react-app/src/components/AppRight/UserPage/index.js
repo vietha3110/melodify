@@ -19,16 +19,15 @@ const UserPage = () => {
     return (
         <div className="userprofile-container">
             <div className="userprofile-info">
-                User Info
             </div>
             <div className="userprofile-song">
-                Songs
+                <span style={{fontSize:"1.5rem", margin:"10px"}}>Songs</span>
                 <div className="userprofile-song-main">
                     <div className="userprofile-song-label userprofile-content">
-                        <span>
+                        <span style={{fontWeight:"700", fontSize:"1.2rem"}}>
                             Title
                         </span>
-                        <span>
+                        <span  style={{fontWeight:"700", fontSize:"1.2rem"}}>
                             Artist
                         </span>
                         <span>
@@ -45,7 +44,7 @@ const UserPage = () => {
                                     {song.artistName}
                                 </span>
                                 <span onClick={deleteSong(i, song)}>
-                                    Delete
+                                    <i className="fa-solid fa-xmark"></i>
                                 </span>
                             </div>
                         ))
@@ -53,10 +52,7 @@ const UserPage = () => {
                 </div>
             </div>
             <div>
-                Playlists
-            </div>
-            <div>
-                Like - COMING SOON
+                <span style={{ fontSize: "1.5rem", margin:"10px" }}>Like - COMING SOON</span>
             </div>
         </div>
     )

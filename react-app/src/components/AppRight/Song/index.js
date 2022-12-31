@@ -7,51 +7,51 @@ import PlaylistSong from "./PlaylistSong";
 const SongAudio = () => {
     const { fileId } = useParams();
     const id = +fileId;
-    const [error, setError] = useState('');
-    // const dispatch = useDispatch();
-    // const songs = useSelector(state => state.songs.songs);
-    // const [showModal, setShowModal] = useState(false);
+   
     const [open, setOpen] = useState(false);
-    //check user if user === null => k hien thi add to list
+    const user = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
+    const songInfo = useSelector(state => state.songs.singleSong);
 
     useEffect(() => {
-        console.log(`i'm running`)
-        fetch(`/api/songs/file/${id}`)
-            .then((res) => {
-                if (res.status === 400) {
-                    console.log('here')
-                    setError('Can not find this song! Please try again')
-                }
-            })
-            .catch((err) => setError('Please try again!'));
-    }, [])
-    
+        dispatch(songAction.fetchOneSong(id));
+    },[dispatch])
+
     const handleClick = (e) => {
         e.stopPropagation();
         setOpen(true);
     }
-    
+    document.addEventListener('click', e => {
+        setOpen(false);
+    });
     return (
         <div className="audio-container"> 
-            <div>
-                <audio controls>
-                    <source src={`/api/songs/file/${id}`} />
-                </audio>
-            </div>
-            <div>
-                <button onClick={handleClick}> Add to playlist</button>
-            </div>
-            {
-                open && 
-                <PlaylistSong songId={fileId} onClose={ ()=>setOpen(false)} />
-            }
-            {
-                error && (
-                    <div>
-                        {error}
+            <div className="audio-info">
+                { songInfo &&
+                    <div className="audio-info-main">
+                        <span className="audio-name">{songInfo.name}</span>
+                        <span>{songInfo.artistName} - {songInfo.genre}</span>
                     </div>
-                )
-            }
+                }
+               
+            </div>
+
+            <div className="audio-player-main">
+                <div className="audio-display">
+                    <audio controls>
+                        <source src={`/api/songs/file/${id}`} />
+                    </audio>
+                </div>
+                { user !== null &&
+                    <div className="audio-display-addbtn">
+                        <button onClick={handleClick}> Add to playlist</button>
+                        {
+                    open &&
+                    <PlaylistSong songId={fileId} onClose={ ()=>setOpen(false)} />
+                }
+                    </div>
+                }
+            </div>
         </div>
     )
 }
