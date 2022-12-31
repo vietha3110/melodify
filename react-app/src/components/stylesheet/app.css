@@ -344,7 +344,7 @@
 .navbar-container {
     display: grid;
     width: 100%;
-    grid-template-columns: 2fr 2fr 1fr ;
+    grid-template-columns: 1fr 2fr 1fr ;
     height: 60px;
     border-bottom: 1px solid #cccccc;
 }
@@ -610,19 +610,26 @@
 }
 
 /* UPLOAD SONG */
-.uploadsong-container {
+.uploadsong-container, .uploadsong-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
+
+.uploadsong-container {
+    margin: 5rem;
+}
+
+
 
 .uploadsong-content {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     border: 1px solid #cccccc;
+    width: 24rem;
     height: 350px;
-
 }
 
 .uploadinfo {
@@ -637,8 +644,24 @@
     margin: 5px 5px 0px 0px;
 }
 
+.uploadinfo > input:focus {
+    border: 1px solid var(--melodify-banerDarkGray)
+}
 
+.uploadsong-btnupload {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
 
+.uploadsong-upload {
+    height: 60px;;
+}
+.upload-error > span{
+    font-size: 1rem;
+    color: var(--melodify-red-close);
+    font-weight: 700;
+}
 
 /* ------------------ */
 .home-container {

@@ -46,7 +46,7 @@ function getDuration(dataUrl) {
 
 const UploadSong = () => {
     const [file, setFile] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState({});
     const [name, setName] = useState('');
     const [artist_name, setArtistName] = useState('');
     const [genre, setGenre] = useState('pop');
@@ -60,13 +60,20 @@ const UploadSong = () => {
     const updateFile = async (e) => {
         setFileStatus('LOADING');
         const file = e.target.files[0];
-
+        setError({});
+        const errors = {};
         if (file.type !== "audio/mpeg") {
-            return setError('Please upload mp3, ')
+            errors.type = 'Please upload mp3 file.';
         }
 
         if (file.size > 5000000) {
-            return setError('Please upload file below 5mb');
+            // return setError('Please upload file below 5mb');
+            errors.size = 'Please upload file below 5mb';
+        }
+
+        if (Object.keys(errors).length > 0) {
+            setError(errors);
+            return;
         }
 
         const binaryString = await readAsUtf8String(file);
@@ -81,7 +88,7 @@ const UploadSong = () => {
         setGenre(e.target.value)
     }
 
-
+  
     const handleSubmit = async (e) => {
         setSubmitStatus('SUBMITTING');
         e.preventDefault();
@@ -92,14 +99,10 @@ const UploadSong = () => {
         history.push('/');
     }
 
-    const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '' && submitStatus === 'NOT_SUBMITTING';
+    const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '' && submitStatus === 'NOT_SUBMITTING' && name.trim() !== "" && artist_name !== "";
 
     return (
         <div className="uploadsong-container" onSubmit={handleSubmit} >
-            {/* <audio controls>
-                <source src="http://localhost:5000/api/songs/file"/>
-            </audio> */}
-
             <form className="uploadsong-form">
                 <div className="uploadsong-title">
                     <h1>Drop your music here</h1>
@@ -110,15 +113,23 @@ const UploadSong = () => {
                         <label> Title:</label>
                         <input
                             type="text"
-                            placeholder="ADD NAME"
+                            placeholder="ADD TITLE (required *)"
                             value={name}
                             onChange={e => setName(e.target.value)}
                             required
+                            minLength="1"
+                            maxLength="100"
                         />
+                        {
+                              error && 
+                              <div className="upload-error">
+                                      <span>{error.name}</span>
+                              </div>
+                        }
                     </div>
                     <div className="uploadsong-genre uploadinfo">
                         <label>Genre: </label>
-                        <select onChange={handleSelect}>
+                        <select onChange={handleSelect} style={{padding: "5px", margin: "5px 5px 0px 0px"}}>
                             <option value="pop">Pop</option>
                             <option value="rnb">R&B</option>
                             <option value="rock">Rock</option>
@@ -132,28 +143,38 @@ const UploadSong = () => {
                         <label>Artist: </label>
                         <input
                             type="text"
-                            placeholder="Artist name"
+                            placeholder="Artist name (required *)"
                             value={artist_name}
                             onChange={e => setArtistName(e.target.value)}
                             required
+                            minLength="1"
+                            maxLength="100"
                         />
+                         {
+                              error && 
+                              <div className="upload-error">
+                                      <span>{error.artist}</span>
+                              </div>
+                        }
                     </div>
                     <div className="uploadsong-upload uploadinfo">
                         <input
                             type="file"
                             onChange={updateFile}
                         />
+                        {
+                            error && 
+                            <div className="upload-error">
+                                <span>{error.type}</span>
+                                <span>{error.size}</span>
+                            </div>
+                        }
                     </div>
-                    {
-                        error && 
-                        <div>
-                            {error}
-                        </div>
-                    }
-                    {
-                        fileStatus === "LOADING" &&
-                        <div>Loading file</div>
-                    }
+                    
+                        {
+                            fileStatus === "LOADING" &&
+                            <div>Loading file</div>
+                        }
                     <div className="uploadsong-btnupload">
                         <button type="submit" disabled={!isSubmitEnabled}>{submitStatus === 'SUBMITTING' ? 'Uploading' : 'Upload'}</button>
                     </div>
