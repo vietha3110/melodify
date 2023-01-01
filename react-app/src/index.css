@@ -1,4 +1,5 @@
 /* TODO Add site wide styles */
+
 :root {
     --melodify-gray:#8e8e93;
     --melodify-banerDarkGray: #444;
@@ -6,10 +7,12 @@
     --melodify-dropdown-light-gray: #707070;
     --melodify-playerBackground:hsla(0,0%,100%,.88);
     --melodify-red-close:#fa233b;
+    --melodify-footer-gray: #fbfbfb;
+    --melodify-red-key: #d60017;
 }
   
 body {
-    font-family: 'Roboto Mono', monospace; 
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     /* font-size: 1rem; */
     position: relative;

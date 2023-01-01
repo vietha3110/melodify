@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import ProfileDropdown from './AppRight/auth/ProfileDropDown';
 import { Modal } from './Modal';
 import LoginForm from './AppRight/auth/Login/LoginForm';
-import logoNote from './logonote.png';
+import Player from './AppRight/Player';
+
 const NavBar = () => {
   const user = useSelector(state => state.session.user); 
   const [showModal, setShowModal] = useState(false);
@@ -16,22 +17,7 @@ const NavBar = () => {
   
   return (
     <div className='navbar-container'>
-      <div className='navbar-player'>
-      </div>
-      <div className='navbar-logo'>
-        <div className='navbar-logo-img'>
-          <img src={logoNote} style={{width: '1.5rem'}} />
-        </div>
-        <div className='navbar-logo-gif'>
-          <div className="boxContainer">
-            <div className="box box1"></div>
-            <div className="box box2"></div>
-            <div className="box box3"></div>
-            <div className="box box4"></div>
-            <div className="box box5"></div>
-          </div>
-        </div>
-      </div>
+      <Player/>
       <div className='navbar-button-signin'>
         {user == null && 
           <div className='navbar-signin' >

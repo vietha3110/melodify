@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userSongsAction from "../../../store/userSong";
+import userProfile from "./userProfile.png";
 
 const UserPage = () => {
     const songs = useSelector(state => state.userSongs.songs); 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(userSongsAction.fetchUserSongs())
+        dispatch(userSongsAction.fetchUserSongs());
     }, [])
 
     const deleteSong = (i, song) => (e) => {
@@ -19,6 +21,22 @@ const UserPage = () => {
     return (
         <div className="userprofile-container">
             <div className="userprofile-info">
+                {user && 
+                    <div className="userprofile-info-main">
+                        <div className="userprofile-info-img">
+                            <img src={userProfile} />
+                        </div>
+                        <div className="userprofile-info-content">
+                            <div className="userprofile-info-content-profile" >
+                                Profile 
+                            </div>
+                            <div className="userprofile-info-content-name" style={{fontSize: "2rem"}}>
+                                {user.firstName} {user.lastName}
+                            </div>
+
+                        </div>
+                    </div>
+                }
             </div>
             <div className="userprofile-song">
                 <span style={{fontSize:"1.5rem", margin:"10px"}}>Songs</span>
