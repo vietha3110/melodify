@@ -5,7 +5,7 @@ import * as playerAction from '../../../store/player';
 
 
 const Player = () => {
-    const { song, playing, duration, currentTime } = useSelector(state => state.player);
+    const { song, playing, duration, currentTime, volume } = useSelector(state => state.player);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,6 +31,10 @@ const Player = () => {
     const onSliderChange = (time) => {
         dispatch(playerAction.seek(time));
     };
+
+    const onChangeVolume = (number) => {
+        dispatch(playerAction.adjustVolume(number / 100));
+    }
     
     return (
         <div className='navbar-player'>
@@ -77,6 +81,16 @@ const Player = () => {
                 </div>
             </div>
             <div className='player-volume'>
+                <i class="fa-solid fa-volume-high"></i>
+                <ReactSlider
+                        onChange={onChangeVolume}
+                        className="player-lcd-progress-slider"
+                        thumbClassName="player-lcd-progress-thumb"
+                        trackClassName="player-lcd-progress-track"
+                        value={volume ? volume : 0}
+                        max={volume ? 100 : 0}
+                        renderThumb={(props, state) => <div {...props}></div>}
+                    />
             </div>
         </div>
     )

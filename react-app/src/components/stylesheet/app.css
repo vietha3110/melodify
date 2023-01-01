@@ -460,7 +460,17 @@
 
 .player-volume {
     width: 170px;
+    display: flex;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.5);
+    align-items: center;
 }
+
+.player-volume > .fa-volume-high {
+    padding: 0px 10px 0px 10px;
+}
+
+
 
 .navbar-player > audio {
     display: none;
