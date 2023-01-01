@@ -818,6 +818,17 @@
     gap: 5rem;
 }
 .userprofile-info{
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  background-color: #cccccc;
+}
+.userprofile-info-main {
+    margin: 1rem;
+}
+
+.userprofile-info-content {
+    margin: 2rem;
 }
 
 .userprofile-song-main {
@@ -825,6 +836,15 @@
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+}
+
+.userprofile-info-main {
+    display: flex;
+    flex-direction: row;
+}
+.userprofile-info-img > img {
+    width: 8rem;
+    border-radius: 100%;
 }
 .userprofile-content {
     display: grid;
