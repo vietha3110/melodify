@@ -32,10 +32,10 @@ const Player = () => {
         dispatch(playerAction.seek(time));
     };
 
-    const onChangeVolume = (number) => {
-        dispatch(playerAction.adjustVolume(number / 100));
+    const onChangeVolume = (volume) => {
+        dispatch(playerAction.adjustVolume(volume));
     }
-    
+
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
@@ -87,8 +87,8 @@ const Player = () => {
                         className="player-lcd-progress-slider"
                         thumbClassName="player-lcd-progress-thumb"
                         trackClassName="player-lcd-progress-track"
-                        value={volume ? volume : 0}
-                        max={volume ? 100 : 0}
+                        value={volume}
+                        max={100}
                         renderThumb={(props, state) => <div {...props}></div>}
                     />
             </div>

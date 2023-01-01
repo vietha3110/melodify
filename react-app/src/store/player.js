@@ -9,6 +9,10 @@ const ADJUST_VOLUME = "player/adjustVolume";
 class AudioController {
     constructor(audio) {
         this.audio = audio;
+        if (!localStorage.getItem('volume')) {
+            localStorage.setItem('volume', 0.7);
+        }
+        this.audio.volume = localStorage.getItem('volume');
     }
 
     loadSource(src) {        
@@ -37,10 +41,12 @@ class AudioController {
     }
     
     volume() {
-        return this.audio.volume;
+        return this.audio.volume * 100.0;
     }
+
     adjustVolume(number) {
-        this.audio.volume = number;
+        localStorage.setItem('volume', number / 100.0);
+        this.audio.volume = number / 100.0;
     }
 }
 
@@ -96,7 +102,7 @@ export function adjustVolume(number) {
     return {
         type: ADJUST_VOLUME,
         number
-    }
+    };
 }
 
 const initialState = {
@@ -104,7 +110,7 @@ const initialState = {
     playing: false,
     currentTime: null,
     duration: null,
-    volume: null,
+    volume: controller.volume(),
 };
 
 const playerReducer = (state = initialState, action) => {
