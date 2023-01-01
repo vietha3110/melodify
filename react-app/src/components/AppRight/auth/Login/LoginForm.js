@@ -31,12 +31,12 @@ const LoginForm = ({onClose}) => {
     e.preventDefault(); 
     setErrors([]);
     
-    if(!emailSignUp.trim()
-               .match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)) 
-    {
-      setErrors(['Please provide a valid Email.']);
-      return;
-    }
+    // if(!emailSignUp.trim()
+    //            .match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)) 
+    // {
+    //   setErrors(['Please provide a valid Email.']);
+    //   return;
+    // }
 
     if (passwordSignUp.length < 6) {
       setErrors(["Password must be greater than 6 characters."]);
