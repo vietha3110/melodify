@@ -840,66 +840,92 @@
 .song-box { 
     display: flex;
     flex-direction: column;
-    width: 10rem;
+    width: 13rem;
     height: 15rem;
     text-decoration: none;
     /* color:#1d1d1f; */
+    /* border: 1px solid #cccccc; */
 }
 
 .song-box-img {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.song-box-img > img {
-    width: 12rem;;
-    border: transparent;
-    object-fit: cover;
+    position: relative;
+  
 }
 
-.song-box-playbutton-wrapper {
-    width: 3rem;
-    height: 3rem;
+.song-box-img > img {
+    width: 100%;
+    border: transparent;
+    object-fit: cover;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 1%), 0 2px 2px rgb(0 0 0 / 1%), 0 4px 4px rgb(0 0 0 / 2%), 0 8px 8px rgb(0 0 0 / 3%), 0 14px 14px rgb(0 0 0 / 3%) ;
 }
-.song-box-playbutton {
+
+
+.song-box-playbutton, .song-box-addbutton {
     visibility: hidden;
     border: #cccccc;
     border-radius: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left:1rem ;
+    margin:1rem ;
+    position: absolute;
+    bottom: -0.8rem;
+}
+
+
+.song-box-playbutton {
+    left: 0.5rem;
+}
+
+.song-box-addbutton {
+    right: 0.5rem;
+}
+
+.song-box-playbutton > .fa-play, .song-box-addbutton > .fa-ellipsis {
+    font-size: 0.9rem;
 }
 .song-box:hover .song-box-playbutton{
     visibility: visible;
     
 }
+.song-box:hover .song-box-addbutton{
+    visibility: visible;
+}
+.song-box-addbutton > .fa-ellipsis, .song-box-addbutton > .fa-ellipsis:hover {
+    color: #fff;
+}
+
 
 .song-box-playbutton > .fa-play, .song-box-playbutton > .fa-play:hover  {
     color: #fff;
 }
 
-.song-box-playbutton:hover {
+.song-box-playbutton:hover, .song-box-addbutton:hover {
     background-color: var(--melodify-red-close);
     border: var(--melodify-red-close);
 }
 
-.song-right {
+.song-box-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
+    margin-top: 1rem;
 }
-
-.song-right-title {
+.song-box-info-title, .song-box-info-artist {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
-
+.song-box-info-artist {
+    color: rgba(0, 0, 0, 0.5);
+}
 
 /* audio */
 .audio-container {
