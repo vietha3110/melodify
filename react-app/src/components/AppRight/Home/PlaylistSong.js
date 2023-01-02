@@ -30,35 +30,36 @@ const PlaylistSong = ({song, i, onClose }) => {
         setShowModal(false);
     }
     
-
+    useEffect(() => {
+        dispatch(playlistAction.fetchUserList());
+    }, [dispatch])
     return (
         <>
-
-                <div className='addlist-container'>
-                    {playlists && Object.values(playlists).map(
-                        (playlist, i) => (
-                            <>
-                                <div key={i} onClick={addToList(i, playlist)} className='addlist-info'>
-                                    <span>{playlist.name}</span>
-                                </div>
-                                {
-                                    error && (
-                                        showModal && (
-                                            <Modal>
-                                                <div>
-                                                    {error}
-                                                </div>
-                                                <div onClick={closeModal}>
-                                                    <span>OK</span>
-                                                </div>
-                                            </Modal>
-                                        )
+            <div className='addlist-container'>
+                {playlists && Object.values(playlists).map(
+                    (playlist, i) => (
+                        <>
+                            <div key={i} onClick={addToList(i, playlist)} className='addlist-info'>
+                                <span>{playlist.name}</span>
+                            </div>
+                            {
+                                error && (
+                                    showModal && (
+                                        <Modal>
+                                            <div className="addlist-error">
+                                                {error}
+                                            </div>
+                                            <div onClick={closeModal} className="addlist-error-confirm">
+                                                <span>OK</span>
+                                            </div>
+                                        </Modal>
                                     )
-            
-                                }
-                            </>
-                        )
-                    )}
+                                )
+        
+                            }
+                        </>
+                    )
+                )}
                 </div>
         </>
     )

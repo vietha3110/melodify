@@ -2,6 +2,7 @@ import * as songAction from '../../../store/song';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as playerAction from '../../../store/player';
+import * as playlistAction from '../../../store/playlist';
 import imgBox from './imgBox.png';
 import PlaylistSong from './PlaylistSong';
 
@@ -15,10 +16,14 @@ const Home = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const songs = useSelector(state => state.songs.songs);
+    const playlists = useSelector(state => state.playlists.playlists);
+    // console.log('hihihihihihih',Object.keys(playlists).length);
     const [openings, setOpenings] = useState({});
 
     useEffect(() => {
         dispatch(songAction.fetchAllSongs());
+        dispatch(playlistAction.fetchUserList());
+     
     }, [dispatch]);
 
     const onSongClick = (song) => () => {
@@ -26,7 +31,6 @@ const Home = () => {
     };
 
     const addSongClick = (i) => () => {
-        console.log('hihihihihihih', openings[i])
         const newOpenings = {
             ...openings,
             [i]: !openings[i]
@@ -44,7 +48,7 @@ const Home = () => {
                                 <div className='song-box-playbutton' onClick={onSongClick(song)}>
                                     <i className="fa-solid fa-play"></i>
                                 </div>
-                            {user !== null && 
+                            {user !== null && playlists && Object.keys(playlists).length > 0 &&
                                 <div>
                                     <div className='song-box-addbutton' onClick={addSongClick(i)}>
                                         <i className="fa-solid fa-ellipsis"></i>

@@ -542,6 +542,7 @@
     background-color: rgb(254, 254, 254);
     border-radius: 5px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .profile-dropdown-info {
@@ -841,7 +842,7 @@
     display: flex;
     flex-direction: column;
     width: 13rem;
-    height: 15rem;
+    /* height: 15rem; */
     text-decoration: none;
     /* color:#1d1d1f; */
     /* border: 1px solid #cccccc; */
@@ -993,11 +994,14 @@
 .addlist-container {
     width: 10rem;
     border: 1px solid #cccccc;
-    background: rgba(60,60,67,.03);
+    background: rgb(254, 254, 254);
     cursor: pointer;
     position: absolute;
     border-radius: 5px;
-    left: 7rem;
+    left: 10rem;
+    /* bottom: -10rem; */
+    z-index: 1000;
+    /* height: 100%; */
 }
 
 .addlist-info {
@@ -1005,6 +1009,7 @@
     overflow: hidden;
     width: 100%;
     text-align: left;
+    padding-top: 0.5rem;
 }
 .addlist-info > span {
    margin: 2rem;
@@ -1015,7 +1020,32 @@
     color: #fff;
 }
 
+.addlist-error {
+    width: 300px; 
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
 
+.addlist-error-confirm {
+    display: flex;
+    justify-content: flex-end;
+    padding:10px 30px 10px 10px;
+}
+
+.addlist-error-confirm > span {
+    border: 1px solid  var(--melodify-red-close);
+    width: 60px;
+    height: 30px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--melodify-red-close);
+    color: #fff;
+    cursor: pointer;
+}
  .audio-display-addbtn > button {
     background-color: var(--melodify-red-key);
     border: var(--melodify-red-key);
