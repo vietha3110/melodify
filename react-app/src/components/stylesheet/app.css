@@ -507,7 +507,8 @@
 
 .navbar-button-signin {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     position: relative;
     margin: 0.5rem;
 }
