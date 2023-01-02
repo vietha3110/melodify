@@ -405,6 +405,14 @@
     flex-direction: row;
     border: 1px solid #d6d6d6;
 }
+.player-lcd-nosong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+    color:rgba(0, 0, 0, 0.56)
+}
 
 .player-lcd-artwork {
     width: 50px;

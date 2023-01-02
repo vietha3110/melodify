@@ -58,25 +58,30 @@ const Player = () => {
                 <div className='player-lcd-artwork'>
                     <img src='https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/e6/14/14/e6141444-6597-4c3a-7ad1-86304528acf4/22UMGIM45569.rgb.jpg/88x88bb.jpg'/>
                 </div>
+                {
+                            !song && 
+                            <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" ></i></div>
+                        }
                 <div className='player-lcd-meta'>
                     <div className='player-lcd-meta-title'>
                         {song && 
                             song.name
                         }
+                        
                     </div>
                     <div className='player-lcd-meta-artist'>
                         {song && song.artistName}
                     </div>
                     <div>
-                    <ReactSlider
-                        onChange={onSliderChange}
-                        className="player-lcd-progress-slider"
-                        thumbClassName="player-lcd-progress-thumb"
-                        trackClassName="player-lcd-progress-track"
-                        value={currentTime ? currentTime : 0}
-                        max={duration ? duration : 0}
-                        renderThumb={(props, state) => <div {...props}></div>}
-                    />
+                        {song && <ReactSlider
+                            onChange={onSliderChange}
+                            className="player-lcd-progress-slider"
+                            thumbClassName="player-lcd-progress-thumb"
+                            trackClassName="player-lcd-progress-track"
+                            value={currentTime ? currentTime : 0}
+                            max={duration ? duration : 0}
+                            renderThumb={(props, state) => <div {...props}></div>}
+                        />}
                     </div>
                 </div>
             </div>
