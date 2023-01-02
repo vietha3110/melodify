@@ -27,6 +27,8 @@ const Home = () => {
     }, [dispatch]);
 
     const onSongClick = (song) => () => {
+                console.log('hihihihihihih',song);
+
         dispatch(playerAction.loadSong(song));
     };
 

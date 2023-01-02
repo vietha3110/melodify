@@ -7,7 +7,6 @@ import './components/stylesheet/app.css'
 import LeftBox from './components/AppLeft';
 import UploadSong from './components/AppRight/Upload'; 
 import Home from './components/AppRight/Home';
-import SongAudio from './components/AppRight/Song';
 import ProtectedRoute from './components/ProtectedRoute';
 import PlaylistPage from './components/AppRight/PlaylistPage';
 import UserPage from './components/AppRight/UserPage';
@@ -57,19 +56,6 @@ function App() {
             </div>
           </div>
         </ProtectedRoute>
-        {/* <Route path='/songs/:fileId'>
-          <div className='main-app'>
-            <div className='app-left-container'>
-             <LeftBox/>
-            </div>
-          <div className='app-right-container'>
-              <>
-                <NavBar />
-                <SongAudio/>
-              </>
-            </div>
-          </div>
-        </Route> */}
         <ProtectedRoute path='/playlists/:playlistId'>
           <div className='main-app'>
             <div className='app-left-container'>

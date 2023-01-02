@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import * as playerAction from '../../../store/player';
+
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
     const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
@@ -24,9 +26,13 @@ const PlaylistPage = () => {
         e.stopPropagation();
         const id = song.id;
         const playlist_id = +playlistId;
-        const songInfo = {id, playlist_id }
+        const songInfo = { id, playlist_id }
         dispatch(playlistAction.removeSongFromPlaylist(songInfo));
-    }
+    };
+    const onSongClick = (song) => () => {
+        const songInfo = { id: song.songId, artistName: song.song.artistName, name: song.song.name};
+        dispatch(playerAction.loadSong(songInfo));
+    };
 
     return (
         <div>
@@ -51,9 +57,9 @@ const PlaylistPage = () => {
                                 <span>
                                     {i + 1}
                                 </span>
-                                <Link to={`/songs/${song.songId}`}>
+                                <div onClick={onSongClick(song)} className='listpage-content-name' style={{cursor:"pointer"}}>
                                     {song.song.name}
-                                </Link>
+                                </div>
                                 <span>
                                     {song.song.artistName}
                                 </span>
