@@ -1085,6 +1085,11 @@
     background: #cccccc;
 }
 
+.listpage-content-name:hover {
+    color: var(--melodify-red-key);
+    font-weight: 500;
+}
+
 .listpage-title {
     display: flex;
     justify-content: center;
