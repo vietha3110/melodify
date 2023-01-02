@@ -1,13 +1,19 @@
 const LOAD_SONG = "player/loadSong"; 
 const PLAY = "player/play";
 const PAUSE = "player/pause";
+const ENDED = "player/ended";
 const SYNC_PROGRESS = "player/syncProgress";
 const SEEK = "player/seek";
+const ADJUST_VOLUME = "player/adjustVolume";
 
 
 class AudioController {
     constructor(audio) {
         this.audio = audio;
+        if (!localStorage.getItem('volume')) {
+            localStorage.setItem('volume', 0.7);
+        }
+        this.audio.volume = localStorage.getItem('volume');
     }
 
     loadSource(src) {        
@@ -34,19 +40,36 @@ class AudioController {
     seek(time) {
         this.audio.currentTime = time;
     }
+    
+    volume() {
+        return this.audio.volume * 100.0;
+    }
+
+    adjustVolume(number) {
+        localStorage.setItem('volume', number / 100.0);
+        this.audio.volume = number / 100.0;
+    }
+
+    onEnded(cb) {
+        this.audio.onended = cb;
+    }
 }
 
 const controller = new AudioController(document.getElementById('audio-control'));
 
-export function loadSong(song) {
+export const loadSong = (song) => async (dispatch) => {
     controller.loadSource(`/api/songs/file/${song.id}`);
+    controller.onEnded (() => {
+        dispatch(ended());
+    });
 
-    return {
+    dispatch({
         type: LOAD_SONG,
         song,
         currentTime: controller.currentTime(),
-        duration: controller.duration()
-    };
+        duration: controller.duration(),
+        volume: controller.volume()
+    });
 };
 
 export function play() {
@@ -62,6 +85,12 @@ export function pause() {
 
     return {
         type: PAUSE
+    };
+}
+
+export function ended() {
+    return {
+        type: ENDED
     };
 }
 
@@ -82,11 +111,20 @@ export function seek(time) {
     };
 }
 
+export function adjustVolume(number) {
+    controller.adjustVolume(number);
+    return {
+        type: ADJUST_VOLUME,
+        number
+    };
+}
+
 const initialState = {
     song: null,
     playing: false,
     currentTime: null,
     duration: null,
+    volume: controller.volume(),
 };
 
 const playerReducer = (state = initialState, action) => {
@@ -97,6 +135,7 @@ const playerReducer = (state = initialState, action) => {
                 playing: true,
                 currentTime: action.currentTime,
                 duration: action.duration,
+                volume: action.volume
             };
         case PLAY:
             return {
@@ -109,6 +148,11 @@ const playerReducer = (state = initialState, action) => {
                 ...state,
                 playing: false,
             };
+        case ENDED:
+            return {
+                ...state,
+                playing: false
+            };
         case SYNC_PROGRESS:
             return {
                 ...state,
@@ -119,6 +163,11 @@ const playerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentTime: action.time
+            };
+        case ADJUST_VOLUME: 
+            return {
+                ...state, 
+                volume: action.number
             }
         default:
             return state;

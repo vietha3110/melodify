@@ -57,7 +57,7 @@ function App() {
             </div>
           </div>
         </ProtectedRoute>
-        <Route path='/songs/:fileId'>
+        {/* <Route path='/songs/:fileId'>
           <div className='main-app'>
             <div className='app-left-container'>
              <LeftBox/>
@@ -69,7 +69,7 @@ function App() {
               </>
             </div>
           </div>
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/playlists/:playlistId'>
           <div className='main-app'>
             <div className='app-left-container'>

@@ -405,6 +405,14 @@
     flex-direction: row;
     border: 1px solid #d6d6d6;
 }
+.player-lcd-nosong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+    color:rgba(0, 0, 0, 0.56)
+}
 
 .player-lcd-artwork {
     width: 50px;
@@ -460,6 +468,53 @@
 
 .player-volume {
     width: 170px;
+    display: flex;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    padding-left: 30px;
+}
+
+.player-volume-on-off {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+}
+
+.player-volume > .fa-volume-high {
+    padding: 0px 10px 0px 10px;
+    font-size: 12px;
+}
+
+.player-volume > .fa-volume-off {
+    padding: 0px 10px 0px 10px;
+    font-size: 12px;
+}
+
+.player-volume > .fa-solid:hover {
+    color: rgba(0, 0, 0, 0.88);
+}
+.player-volume-progress-thumb {
+    border: 2px solid #cccccc;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    background-color: #fff;
+    top: -5.5px;
+    cursor: pointer;
+}
+
+.player-volume-progress-slider {
+    height: 3px;
+    width: 60%;
+    background-color: #e9e9e9;
+    border-radius: 10px;
+}
+.player-volume-progress-track-0 {
+    background-color: #d3d3d3;
+    height: 3px;
+    border-radius: 10px;
 }
 
 .navbar-player > audio {
@@ -468,7 +523,8 @@
 
 .navbar-button-signin {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     position: relative;
     margin: 0.5rem;
 }
@@ -494,6 +550,7 @@
     background-color: rgb(254, 254, 254);
     border-radius: 5px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .profile-dropdown-info {
@@ -790,31 +847,94 @@
 }
 
 .song-box { 
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 2rem;
-    width: 12rem;
-    height: 15rem;
+    width: 13rem;
+    /* height: 15rem; */
     text-decoration: none;
-    color:#1d1d1f;
+    /* color:#1d1d1f; */
+    /* border: 1px solid #cccccc; */
 }
 
-.song-left-img > img {
-    width: 12rem;
-}
-
-.song-right {
+.song-box-img {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
+    position: relative;
+  
 }
 
-.song-right-title {
+.song-box-img > img {
+    width: 100%;
+    border: transparent;
+    object-fit: cover;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 1%), 0 2px 2px rgb(0 0 0 / 1%), 0 4px 4px rgb(0 0 0 / 2%), 0 8px 8px rgb(0 0 0 / 3%), 0 14px 14px rgb(0 0 0 / 3%) ;
+}
+
+
+.song-box-playbutton, .song-box-addbutton {
+    visibility: hidden;
+    border: #cccccc;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:1rem ;
+    position: absolute;
+    bottom: -0.8rem;
+}
+
+
+.song-box-playbutton {
+    left: 0.5rem;
+}
+
+.song-box-addbutton {
+    right: 0.5rem;
+}
+
+.song-box-playbutton > .fa-play, .song-box-addbutton > .fa-ellipsis {
+    font-size: 0.9rem;
+}
+.song-box:hover .song-box-playbutton{
+    visibility: visible;
+    
+}
+.song-box:hover .song-box-addbutton{
+    visibility: visible;
+}
+.song-box-addbutton > .fa-ellipsis, .song-box-addbutton > .fa-ellipsis:hover {
+    color: #fff;
+}
+
+
+.song-box-playbutton > .fa-play, .song-box-playbutton > .fa-play:hover  {
+    color: #fff;
+}
+
+.song-box-playbutton:hover, .song-box-addbutton:hover {
+    background-color: var(--melodify-red-close);
+    border: var(--melodify-red-close);
+}
+
+.song-box-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 }
-
+.song-box-info-title, .song-box-info-artist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.song-box-info-artist {
+    color: rgba(0, 0, 0, 0.5);
+}
 
 /* audio */
 .audio-container {
@@ -882,11 +1002,14 @@
 .addlist-container {
     width: 10rem;
     border: 1px solid #cccccc;
-    background: rgba(60,60,67,.03);
+    background: rgb(254, 254, 254);
     cursor: pointer;
     position: absolute;
     border-radius: 5px;
-    left: 7rem;
+    left: 10rem;
+    /* bottom: -10rem; */
+    z-index: 1000;
+    /* height: 100%; */
 }
 
 .addlist-info {
@@ -894,6 +1017,7 @@
     overflow: hidden;
     width: 100%;
     text-align: left;
+    padding-top: 0.5rem;
 }
 .addlist-info > span {
    margin: 2rem;
@@ -904,7 +1028,32 @@
     color: #fff;
 }
 
+.addlist-error {
+    width: 300px; 
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
 
+.addlist-error-confirm {
+    display: flex;
+    justify-content: flex-end;
+    padding:10px 30px 10px 10px;
+}
+
+.addlist-error-confirm > span {
+    border: 1px solid  var(--melodify-red-close);
+    width: 60px;
+    height: 30px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--melodify-red-close);
+    color: #fff;
+    cursor: pointer;
+}
  .audio-display-addbtn > button {
     background-color: var(--melodify-red-key);
     border: var(--melodify-red-key);
