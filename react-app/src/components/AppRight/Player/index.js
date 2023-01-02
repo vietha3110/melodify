@@ -81,12 +81,19 @@ const Player = () => {
                 </div>
             </div>
             <div className='player-volume'>
-                <i class="fa-solid fa-volume-high"></i>
+                {
+                    volume === 0 && 
+                    <i class="fa-solid fa-volume-off"></i>
+                }
+                { 
+                    volume !== 0 &&
+                    <i class="fa-solid fa-volume-high"></i>
+                }
                 <ReactSlider
                         onChange={onChangeVolume}
-                        className="player-lcd-progress-slider"
-                        thumbClassName="player-lcd-progress-thumb"
-                        trackClassName="player-lcd-progress-track"
+                        className="player-volume-progress-slider"
+                        thumbClassName="player-volume-progress-thumb"
+                        trackClassName="player-volume-progress-track"
                         value={volume}
                         max={100}
                         renderThumb={(props, state) => <div {...props}></div>}
