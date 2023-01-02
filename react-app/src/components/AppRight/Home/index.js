@@ -2,6 +2,7 @@ import * as songAction from '../../../store/song';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as playerAction from '../../../store/player';
+import stereoSound from './stereoSound.png';
 
 function changeSecondToTime(length) {
     const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
@@ -15,18 +16,24 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(songAction.fetchAllSongs());
-    },[dispatch])
-    const onSongClick = (song) => (e) => {
+    }, [dispatch]);
+
+    const onSongClick = (song) => () => {
         dispatch(playerAction.loadSong(song));
-    }
+    };
     
     return (
         <div className="home-container">
             {songs && Object.values(songs).map(
                 (song, i) => (
-                    <div key={i} className="song-box" onClick={onSongClick(song)}>
-                        <div className='song-left-img'>
-                            <img src='https://static.vecteezy.com/system/resources/previews/004/813/745/original/christmas-greeting-card-design-with-christmas-tree-xmas-white-card-with-red-ornaments-gift-box-social-media-banner-with-the-pine-tree-candy-cane-sock-on-a-white-background-xmas-banner-xmas-card-free-vector.jpg'/>
+                    <div key={i} className="song-box" >
+                        <div className='song-box-img'>
+                            <img src='https://www.teachhub.com/wp-content/uploads/2019/10/Our-Top-10-Songs-About-School-768x569.png' />
+                        </div>
+                        <div className='song-box-playbutton-wrapper'>
+                            <div className='song-box-playbutton' onClick={onSongClick(song)}>
+                                    <i className="fa-solid fa-play"></i>
+                                </div>
                         </div>
                         <div className='song-right'>
                             <div className='song-right-title'>

@@ -1,6 +1,7 @@
 const LOAD_SONG = "player/loadSong"; 
 const PLAY = "player/play";
 const PAUSE = "player/pause";
+const ENDED = "player/ended";
 const SYNC_PROGRESS = "player/syncProgress";
 const SEEK = "player/seek";
 const ADJUST_VOLUME = "player/adjustVolume";
@@ -48,20 +49,27 @@ class AudioController {
         localStorage.setItem('volume', number / 100.0);
         this.audio.volume = number / 100.0;
     }
+
+    onEnded(cb) {
+        this.audio.onended = cb;
+    }
 }
 
 const controller = new AudioController(document.getElementById('audio-control'));
 
-export function loadSong(song) {
+export const loadSong = (song) => async (dispatch) => {
     controller.loadSource(`/api/songs/file/${song.id}`);
+    controller.onEnded (() => {
+        dispatch(ended());
+    });
 
-    return {
+    dispatch({
         type: LOAD_SONG,
         song,
         currentTime: controller.currentTime(),
         duration: controller.duration(),
         volume: controller.volume()
-    };
+    });
 };
 
 export function play() {
@@ -77,6 +85,12 @@ export function pause() {
 
     return {
         type: PAUSE
+    };
+}
+
+export function ended() {
+    return {
+        type: ENDED
     };
 }
 
@@ -133,6 +147,11 @@ const playerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 playing: false,
+            };
+        case ENDED:
+            return {
+                ...state,
+                playing: false
             };
         case SYNC_PROGRESS:
             return {

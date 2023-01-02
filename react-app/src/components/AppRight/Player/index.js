@@ -81,14 +81,16 @@ const Player = () => {
                 </div>
             </div>
             <div className='player-volume'>
-                {
-                    volume === 0 && 
-                    <i class="fa-solid fa-volume-off"></i>
-                }
-                { 
-                    volume !== 0 &&
-                    <i class="fa-solid fa-volume-high"></i>
-                }
+                <div className='player-volume-on-off'>
+                    {
+                        volume === 0 &&
+                        <i class="fa-solid fa-volume-off"></i>
+                    }
+                    {
+                        volume !== 0 &&
+                        <i class="fa-solid fa-volume-high"></i>
+                    }
+                </div>
                 <ReactSlider
                         onChange={onChangeVolume}
                         className="player-volume-progress-slider"
