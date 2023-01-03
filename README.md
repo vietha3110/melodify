@@ -26,3 +26,14 @@ Melodify is a music streaming website inspired by Apple Music. This website was 
 - Hosting:
 
 ![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+
+
+## Features: 
+
+1. All users can play song on the website. 
+
+2. Logged-in user can create and modify(update, delete) playlist. 
+
+3. Logged-in user can upload and remove song. 
+
+4. Play a playlist/ a song on player and adjust volume
