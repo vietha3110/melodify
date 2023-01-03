@@ -5,6 +5,7 @@ const ENDED = "player/ended";
 const SYNC_PROGRESS = "player/syncProgress";
 const SEEK = "player/seek";
 const ADJUST_VOLUME = "player/adjustVolume";
+const MUTE = "player/mute";
 
 
 class AudioController {
@@ -52,6 +53,14 @@ class AudioController {
 
     onEnded(cb) {
         this.audio.onended = cb;
+    }
+   
+    mute(muted) {
+        this.audio.muted = muted;
+    }
+
+    isMuted() {
+        return this.audio.muted;
     }
 }
 
@@ -113,10 +122,20 @@ export function seek(time) {
 
 export function adjustVolume(number) {
     controller.adjustVolume(number);
+    controller.mute(false);
     return {
         type: ADJUST_VOLUME,
         number
     };
+}
+
+export function mute(muted) {
+    controller.mute(muted);
+
+    return {
+        type: MUTE,
+        muted
+    }
 }
 
 const initialState = {
@@ -125,6 +144,7 @@ const initialState = {
     currentTime: null,
     duration: null,
     volume: controller.volume(),
+    muted: controller.isMuted(),
 };
 
 const playerReducer = (state = initialState, action) => {
@@ -167,7 +187,13 @@ const playerReducer = (state = initialState, action) => {
         case ADJUST_VOLUME: 
             return {
                 ...state, 
-                volume: action.number
+                volume: action.number,
+                muted: false
+            }
+        case MUTE: 
+            return {
+                ...state, 
+                muted: action.muted
             }
         default:
             return state;

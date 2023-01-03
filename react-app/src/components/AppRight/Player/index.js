@@ -1,11 +1,11 @@
 import ReactSlider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as playerAction from '../../../store/player';
 
 
 const Player = () => {
-    const { song, playing, duration, currentTime, volume } = useSelector(state => state.player);
+    const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,6 +34,14 @@ const Player = () => {
 
     const onChangeVolume = (volume) => {
         dispatch(playerAction.adjustVolume(volume));
+    }
+
+    const toggleMute = () => {
+        dispatch(playerAction.mute(true));
+    }
+
+    const toggleUnMute = () => {
+        dispatch(playerAction.mute(false));
     }
 
     return (
@@ -88,12 +96,12 @@ const Player = () => {
             <div className='player-volume'>
                 <div className='player-volume-on-off'>
                     {
-                        volume === 0 &&
-                        <i class="fa-solid fa-volume-off"></i>
+                        (volume === 0 || muted) &&
+                        <i class="fa-solid fa-volume-off" onClick={toggleUnMute}></i>
                     }
                     {
-                        volume !== 0 &&
-                        <i class="fa-solid fa-volume-high"></i>
+                        (volume !== 0 && !muted)  &&
+                        <i class="fa-solid fa-volume-high" onClick={toggleMute}></i>
                     }
                 </div>
                 <ReactSlider
@@ -101,7 +109,7 @@ const Player = () => {
                         className="player-volume-progress-slider"
                         thumbClassName="player-volume-progress-thumb"
                         trackClassName="player-volume-progress-track"
-                        value={volume}
+                        value={muted ? 0 : volume}
                         max={100}
                         renderThumb={(props, state) => <div {...props}></div>}
                     />
