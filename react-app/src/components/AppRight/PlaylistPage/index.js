@@ -35,11 +35,12 @@ const PlaylistPage = () => {
     };
 
     return (
-        <div>
+        <div className="listpage-main" style={{
+            width:"100%"}}>
             {playlists && playlists[+playlistId] &&
                 <div className="listpage-container">
                     <div className="listpage-title">
-                        {playlists[+playlistId].name}
+                        <span>{playlists[+playlistId].name}</span>
                     </div>
                     {playlists[+playlistId].playlist_songs.length > 0 &&
                         <div className="listpage-content listpage-head">
@@ -51,33 +52,34 @@ const PlaylistPage = () => {
                             <span></span>
                         </div>
                     }
-                    {
-                        playlists[+playlistId].playlist_songs.length > 0 && playlists[+playlistId].playlist_songs.map((song, i) =>
-                            <div className="listpage-content listpage-song" key={i}>
-                                <span>
-                                    {i + 1}
-                                </span>
-                                <div onClick={onSongClick(song)} className='listpage-content-name' style={{cursor:"pointer"}}>
-                                    {song.song.name}
+                    <div>
+                        {
+                            playlists[+playlistId].playlist_songs.length > 0 && playlists[+playlistId].playlist_songs.map((song, i) =>
+                                <div className="listpage-content listpage-song" key={i} style={{marginTop:"1rem"}}>
+                                    <span>
+                                        {i + 1}
+                                    </span>
+                                    <span onClick={onSongClick(song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
+                                        {song.song.name}
+                                    </span>
+                                    <span className='listpage-content-name'>
+                                        {song.song.artistName}
+                                    </span>
+                                    <span className='listpage-content-name'>
+                                        {song.song.genre}
+                                    </span>
+                                    <span className='listpage-content-name'>
+                                        {
+                                            changeSecondToTime(song.song.length)
+                                        }
+                                    </span>
+                                    <span onClick={removeSong(i, song)}>
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </span>
                                 </div>
-                                <span>
-                                    {song.song.artistName}
-                                </span>
-                                <span>
-                                    {song.song.genre}
-                                </span>
-                                <span>
-                                    {
-                                        changeSecondToTime(song.song.length)
-                                    }
-                                </span>
-                                <span onClick={removeSong(i, song)}>
-                                    <i className="fa-solid fa-xmark"></i>
-                                </span>
-                            </div>
-            
-                        )
-                    }
+                            )
+                        }
+                    </div>
                     {
                         playlists[+playlistId].playlist_songs.length === 0 &&
                         <div className="listpage-nosong">
