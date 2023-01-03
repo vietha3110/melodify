@@ -704,7 +704,6 @@
     font-size: 0.8rem;
     text-decoration: underline;
     border-radius: 5px;
-    padding-left: 10px;
     cursor: pointer;   
 }
 
@@ -732,6 +731,7 @@
     width: 50px;
     height: 50px;
     border-radius: 5px;
+    margin: 5px;
 }
 
 .signup-content {
@@ -782,7 +782,7 @@
     color: var(--melodify-red-close);
     font-weight: 500;
     font-size: 0.8rem;
-    padding-top: 5px;
+    padding-top: 15px;
 }
 
 /* UPLOAD SONG */

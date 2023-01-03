@@ -13,7 +13,10 @@ const LoginForm = ({onClose}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('')
   const dispatch = useDispatch();
- 
+  
+  const regex = RegExp(
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+  );
  
   const onLogin = async (e) => {
     e.preventDefault();
@@ -30,7 +33,10 @@ const LoginForm = ({onClose}) => {
   const onSignUp = async (e) => {
     e.preventDefault(); 
     setErrors([]);
-    
+    if (!emailSignUp.trim().match(regex)) {
+      setErrors(['Please provide a valid Email.']);
+      return;
+    }
     // if(!emailSignUp.trim()
     //            .match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)) 
     // {

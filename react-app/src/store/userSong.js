@@ -25,7 +25,6 @@ export const fetchUserSongs = () => async dispatch => {
 }
 
 export const deleteSong = (songId) => async dispatch => {
-    console.log('***************', songId);
     try {
         const response = await fetch(`/api/songs/${songId}`, {
             method: 'DELETE',

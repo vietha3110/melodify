@@ -116,7 +116,6 @@ const songReducer = (state = {}, action) => {
         
         case LOAD_ONESONG:
             newState = deepCopy(state);
-            console.log(action.song);
             newState.singleSong = action.song;
             return newState;
         default:
