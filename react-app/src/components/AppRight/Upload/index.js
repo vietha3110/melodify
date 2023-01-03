@@ -58,16 +58,20 @@ const UploadSong = () => {
     const [submitStatus, setSubmitStatus] = useState('NOT_SUBMITTING');
 
     const updateFile = async (e) => {
-        setFileStatus('LOADING');
-        const file = e.target.files[0];
         setError({});
         const errors = {};
+        const file = e.target.files[0];
+        if (!file) {
+            errors.type = 'Please upload mp3 file.';
+            setError(errors);
+            return;
+        }
+        
         if (file.type !== "audio/mpeg") {
             errors.type = 'Please upload mp3 file.';
         }
 
         if (file.size > 5000000) {
-            // return setError('Please upload file below 5mb');
             errors.size = 'Please upload file below 5mb';
         }
 
@@ -76,6 +80,7 @@ const UploadSong = () => {
             return;
         }
 
+        setFileStatus('LOADING');
         const binaryString = await readAsUtf8String(file);
         const dataUrl = await readAsDataURL(file);
         const duration = await getDuration(dataUrl);
@@ -92,11 +97,21 @@ const UploadSong = () => {
     const handleSubmit = async (e) => {
         setSubmitStatus('SUBMITTING');
         e.preventDefault();
+        setError({});
+        const errors = {};
         const audioFile = file;
         const song = { name, artist_name, genre, length, audioFile };
-        await dispatch(songActions.createSong(song));
+        const data = await dispatch(songActions.createSong(song));
         setSubmitStatus('SUBMITTED');
-        history.push('/');
+        if (!data) {
+            console.log('*****************************', 'im running')
+            history.push('/');
+        } else {
+            errors.type = "An error occurred. Please try again"
+            setError(errors);
+            return;
+        }
+       
     }
 
     const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '' && submitStatus === 'NOT_SUBMITTING' && name.trim() !== "" && artist_name !== "";
@@ -113,7 +128,7 @@ const UploadSong = () => {
                         <label> Title:</label>
                         <input
                             type="text"
-                            placeholder="ADD TITLE (required *)"
+                            placeholder="Title must be less than 100 characters(required *)"
                             value={name}
                             onChange={e => setName(e.target.value)}
                             required
@@ -143,7 +158,7 @@ const UploadSong = () => {
                         <label>Artist: </label>
                         <input
                             type="text"
-                            placeholder="Artist name (required *)"
+                            placeholder="Artist name must be less than 100 characters (required *)"
                             value={artist_name}
                             onChange={e => setArtistName(e.target.value)}
                             required

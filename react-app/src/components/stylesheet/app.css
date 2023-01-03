@@ -794,7 +794,7 @@
 }
 
 .uploadsong-container {
-    margin: 5rem;
+    margin: 4rem;
 }
 
 
@@ -839,11 +839,19 @@
     font-weight: 700;
 }
 
+select:focus {
+    
+    outline: none;
+    scroll-behavior: smooth;
+}
+
 /* ------------------ */
 .home-container {
-    margin: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    margin: 4rem 1rem 4rem 1rem;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: row; */
+    /* width: 750px; */
 }
 
 .song-box { 
@@ -852,6 +860,7 @@
     width: 13rem;
     /* height: 15rem; */
     text-decoration: none;
+    margin: 1rem;
     /* color:#1d1d1f; */
     /* border: 1px solid #cccccc; */
 }

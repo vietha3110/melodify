@@ -75,7 +75,7 @@ export const createSong = (song) => async dispatch => {
         if (response.ok) {
             const data = await response.json();
             dispatch(addSong(data));
-            return data;
+            return null;
         } else {
             const data = await response.json();
             if (data) {
