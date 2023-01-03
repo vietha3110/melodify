@@ -75,7 +75,7 @@ export const createSong = (song) => async dispatch => {
         if (response.ok) {
             const data = await response.json();
             dispatch(addSong(data));
-            return data;
+            return null;
         } else {
             const data = await response.json();
             if (data) {
@@ -116,7 +116,6 @@ const songReducer = (state = {}, action) => {
         
         case LOAD_ONESONG:
             newState = deepCopy(state);
-            console.log(action.song);
             newState.singleSong = action.song;
             return newState;
         default:

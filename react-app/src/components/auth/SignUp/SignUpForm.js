@@ -12,8 +12,30 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const regex = RegExp(
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+  );
+
   const onSignUp = async (e) => {
     e.preventDefault(); 
+    // const errors = {};
+    // e.preventDefault();
+    // if (firstName.length > 0 === false) errors.firstName = "Please enter your first name.";
+    // if (lastName.length > 0 === false) errors.lastName = "Please enter your last name.";
+    // if (email.length > 0 === false) errors.email = "Please enter your email.";
+    // else if (!email.trim().match(regex)) {
+    //   errors.email = 'Please provide a valid Email';
+    // }
+
+    // if (password.length >= 10 === false) errors.password = "Password must be at least 10 characters long";
+    // if (repeatPassword.length > 0 === false) errors.repeatPassword = "Please retype your password.";
+    // else if (repeatPassword !== password) errors.repeatPassword = "Passwords must match!";
+
+    // if (Object.keys(errors).length > 0) {
+    //   setErrors(errors);
+    //   return;
+    // }
+
     const data = await dispatch(signUp(firstName,lastName,emailSignUp, passwordSignUp));
     if (data) {
       setErrors(data)
