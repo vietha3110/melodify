@@ -21,8 +21,8 @@ const EditPlaylistForm = ({playlist, onClose}) => {
             errors.name = 'Name can not be blank.';
         }
 
-        if (description.length > 300) {
-            errors.description = 'Description must be less than 300 characters.';
+        if (description.length > 200) {
+            errors.description = 'Description must be less than 200 characters.';
         }
         
         if (Object.keys(errors).length > 0) {
