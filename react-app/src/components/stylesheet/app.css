@@ -1235,6 +1235,7 @@ select:focus {
     --boxSize: 8px;
     --gutter: 4px;
     width: calc((var(--boxSize) + var(--gutter)) * 5);
+    margin-top: 8px;
 }
 
 .box{

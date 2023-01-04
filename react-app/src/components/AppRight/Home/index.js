@@ -28,7 +28,7 @@ const Home = () => {
 
     const onSongClick = (song) => () => {
         // dispatch(playerAction.loadSong(song));
-        dispatch(queueAction.updateList([song]));
+        dispatch(queueAction.updateList({ list: [song]}));
     };
 
     const addSongClick = (i) => () => {

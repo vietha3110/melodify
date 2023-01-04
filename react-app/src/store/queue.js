@@ -12,7 +12,7 @@ export const updateList = (playlist) => async (dispatch) => {
         type: UPDATE_LIST,
         playlist,
     });
-    dispatch(playerAction.loadSong(playlist[0]));
+    dispatch(playerAction.loadSong(playlist.list[0]));
 }
 
 export const nextSong = () => async (dispatch, getState) => {
@@ -58,16 +58,18 @@ export const playSong = (songId) => async (dispatch, getState) => {
 const initialState = {
     list: null,
     currentPlayingSong: 0,
-    repeated: false
+    repeated: false,
+    listId: null
 }
 
 const queueReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_LIST: 
             return {
-                list: action.playlist,
+                list: action.playlist.list,
                 currentPlayingSong: 0,
-                repeated: false
+                repeated: false,
+                listId: action.playlist.playlistId
             }
         case NEXT_SONG: 
             return {
