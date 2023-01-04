@@ -18,7 +18,11 @@ export const updateList = (playlist) => async (dispatch) => {
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
     const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
-
+    // if (state.currentPlayingSong === state.list.length - 1) {
+    //     // console.log('what?', state.currentPlayingSong)
+    //     dispatch(playerAction.ended());
+    //     return;
+    // }
     dispatch({
         type: NEXT_SONG,
         nextSongId: nextSongId
@@ -27,10 +31,19 @@ export const nextSong = () => async (dispatch, getState) => {
     dispatch(playerAction.loadSong(state.list[nextSongId]));
 }
 
-export function previousSong() {
-    return {
-        type: PREVIOUS_SONG
+export const previousSong = () => async (dispatch, getState) => {
+    const state = getState().queue;
+   
+    if (state.currentPlayingSong === 0) {
+        return;
     }
+    const previousSongId = (state.currentPlayingSong - 1) % state.list.length;
+    
+    dispatch({
+        type: PREVIOUS_SONG,
+        previousSongId
+    })
+    dispatch(playerAction.loadSong(state.list[previousSongId]));
 }
 
 export const playSong = (songId) => async (dispatch, getState) => {
@@ -61,11 +74,11 @@ const queueReducer = (state = initialState, action) => {
                 ...state, 
                 currentPlayingSong: action.nextSongId,
             }
-        // case PREVIOUS_SONG: 
-        //     return {
-        //         ...state, 
-
-        //     }
+        case PREVIOUS_SONG: 
+            return {
+                ...state, 
+                currentPlayingSong: action.previousSongId,
+            }
         case PLAY_SONG_FROM_LIST: 
             return {
                 ...state, 

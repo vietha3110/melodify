@@ -50,11 +50,16 @@ const Player = () => {
         dispatch(queueAction.nextSong());
     }
 
+    const onBackwardClick = () => {
+        console.log('im running')
+        dispatch(queueAction.previousSong());
+    }
+
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
                 <i class="fa-solid fa-shuffle"></i>
-                <i class="fa-solid fa-backward"></i>
+                <i class="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
                         playing &&
@@ -73,13 +78,13 @@ const Player = () => {
                     <img src='https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/e6/14/14/e6141444-6597-4c3a-7ad1-86304528acf4/22UMGIM45569.rgb.jpg/88x88bb.jpg'/>
                 </div>
                 {
-                            !song && 
-                            <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" ></i></div>
-                        }
+                    !song && 
+                    <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" ></i></div>
+                }
                 <div className='player-lcd-meta'>
                     <div className='player-lcd-meta-title'>
-                        {song && 
-                            song.name
+                        {
+                            song && song.name
                         }
                         
                     </div>
