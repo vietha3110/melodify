@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userSongsAction from "../../../store/userSong";
 import userProfile from "./userProfile.png";
@@ -10,7 +10,7 @@ const UserPage = () => {
 
     useEffect(() => {
         dispatch(userSongsAction.fetchUserSongs());
-    }, [])
+    }, [dispatch])
 
     const deleteSong = (i, song) => (e) => {
         e.stopPropagation();
@@ -23,7 +23,7 @@ const UserPage = () => {
                 {user && 
                     <div className="userprofile-info-main">
                         <div className="userprofile-info-img">
-                            <img src={userProfile} />
+                            <img src={userProfile} alt='icon'/>
                         </div>
                         <div className="userprofile-info-content">
                             <div className="userprofile-info-content-profile" >

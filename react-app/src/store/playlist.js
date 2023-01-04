@@ -1,7 +1,3 @@
-import { useSyncExternalStore } from 'react';
-
-const deepcopy = require('deepcopy');
-
 const LOAD_ALL = 'playlist/loadAll';
 const LOAD_USERPLAYLISTS = 'playlist/loadUserPlaylists'; 
 const ADD_PLAYLIST = 'playlist/addPlaylist';

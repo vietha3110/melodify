@@ -11,9 +11,9 @@ const PlaylistSong = ({song, i, onClose }) => {
 
     const addToList = (i, playlist) => (e) => {
         const songInfo = {
-            playlistId: playlist.id, 
+            playlistId: playlist.id,
             song_id: song.id
-        }
+        };
 
         const res = dispatch(playlistAction.addSongToPlaylist(songInfo))
             .then(res => {
@@ -22,14 +22,16 @@ const PlaylistSong = ({song, i, onClose }) => {
             .catch((err) => {
                 setError(err);
                 setShowModal(true);
-            })
+            });
        
     }
     const closeModal = (e) => {
         e.stopPropagation();
         setShowModal(false);
-    }
+    };
+
     
+
     useEffect(() => {
         dispatch(playlistAction.fetchUserList());
     }, [dispatch])

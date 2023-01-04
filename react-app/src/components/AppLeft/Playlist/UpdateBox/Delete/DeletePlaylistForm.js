@@ -1,6 +1,6 @@
 import * as playlistAction from '../../../../../store/playlist';
 import { useDispatch } from 'react-redux';
-import { useState, useSelector } from 'react';
+import { useState} from 'react';
 
 
 const DeletePlaylistForm = ({ playlist, onClose }) => {

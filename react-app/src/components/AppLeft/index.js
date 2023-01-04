@@ -1,10 +1,9 @@
 import logo from '../AppLeft/Playlist/Melodify.png';
-// import PlaylistModal from './Playlist';
 import Playlist from './Playlist/Playlist';
 import PlaylistForm from './Playlist/PlaylistForm';
 import { Modal } from '../Modal';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import createIcon from './Playlist/createicon.png';
 import radioIcon from './Playlist/radioicon.png';
 import playMusic from './Playlist/playmusic.png'; 
@@ -17,7 +16,7 @@ const LeftBox = () => {
     return (
         <div className='app-left-main'>
             <Link className='app-left-logo' to='/'>
-                <img src={logo} className='main-logo' />
+                <img src={logo} className='main-logo' alt='logo'/>
                 <span style={{fontSize: '1.4rem'}}>Melodify</span>
             </Link>
             <div className='app-left-search'>
@@ -29,15 +28,15 @@ const LeftBox = () => {
                 </span>
             </div>
             <div className='app-letf-listen'>
-                <img src={playMusic} className='playmusic-logo' />
+                <img src={playMusic} className='playmusic-logo' alt='logo'/>
                 <span> Listen Now</span>
             </div>
             <div className='app-left-radio'>
-                <img src={radioIcon} className='radio-logo' />
+                <img src={radioIcon} className='radio-logo' alt='logo'/>
                 <span>Radio</span>
             </div>
             {user !== null &&  <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
-                <img src={createIcon} className='main-logo' />
+                <img src={createIcon} className='main-logo' alt='logo'/>
                 <span>New Playlist</span>
             </div>
             

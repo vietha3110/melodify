@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { logout } from '../../../store/session';
 
 const LogoutButton = () => {
@@ -8,7 +7,6 @@ const LogoutButton = () => {
   const onLogout = (e) => {
     e.stopPropagation();
     dispatch(logout());
-    // <Redirect to='/'/>
   };
 
   return <button onClick={onLogout} className='btn-signout'>Sign Out</button>;

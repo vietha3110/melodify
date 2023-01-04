@@ -91,7 +91,7 @@ const LoginForm = ({onClose}) => {
           <form onSubmit={onLogin} className='login-container'>
             <div className='login-header'>
               <div className='login-header-logo'>
-                <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg' />
+                <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg'  alt='login'/>
               </div>
               <div className='login-header-title'>
                 <span>Welcome back!</span>
@@ -144,7 +144,7 @@ const LoginForm = ({onClose}) => {
         !showSignIn && (
         <form onSubmit={onSignUp} className='signup-container'>
          <div className='signup-header-logo'>
-            <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg' />
+            <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg' alt='signup'/>
           </div>
           <div className='signup-header-title'>
             <span>Create melodify account</span>

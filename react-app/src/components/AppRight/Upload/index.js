@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as songActions from "../../../store/song";
 import { useHistory } from "react-router-dom";

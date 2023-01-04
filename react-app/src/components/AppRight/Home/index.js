@@ -1,17 +1,10 @@
 import * as songAction from '../../../store/song';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as playerAction from '../../../store/player';
 import * as playlistAction from '../../../store/playlist';
 import imgBox from './imgBox.png';
 import PlaylistSong from './PlaylistSong';
 import * as queueAction from '../../../store/queue';
-
-function changeSecondToTime(length) {
-    const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
-    const second = Math.floor(length % 60).toString().padStart(2, '0');
-    return minute + ":" + second;
-}
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -45,7 +38,7 @@ const Home = () => {
                     (song, i) => (
                         <div key={i} className="song-box" >
                             <div className='song-box-img'>
-                                <img src={imgBox} />
+                                <img src={imgBox} alt='icon'/>
                                     <div className='song-box-playbutton' onClick={onSongClick(song)}>
                                         <i className="fa-solid fa-play" style={{marginLeft: "0.1rem"}}></i>
                                     </div>
