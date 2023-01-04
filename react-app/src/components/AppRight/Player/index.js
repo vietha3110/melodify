@@ -2,6 +2,7 @@ import ReactSlider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as playerAction from '../../../store/player';
+import * as queueAction from '../../../store/queue';
 
 
 const Player = () => {
@@ -25,6 +26,7 @@ const Player = () => {
         if (!song) {
             return;
         }
+
         dispatch(playerAction.play());
     };
 
@@ -44,11 +46,19 @@ const Player = () => {
         dispatch(playerAction.mute(false));
     }
 
+    const onForwardClick = () => {
+        dispatch(queueAction.nextSong());
+    }
+
+    const onBackwardClick = () => {
+        dispatch(queueAction.previousSong());
+    }
+
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
                 <i class="fa-solid fa-shuffle"></i>
-                <i class="fa-solid fa-backward"></i>
+                <i class="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
                         playing &&
@@ -59,7 +69,7 @@ const Player = () => {
                         <i className="fa-solid fa-play" onClick={onPlayClick}></i>
                     }
                 </div>
-                <i className="fa-solid fa-forward"></i>
+                <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
                 <i class="fa-solid fa-repeat"></i>
             </div>
             <div className='player-lcd'>
@@ -67,13 +77,13 @@ const Player = () => {
                     <img src='https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/e6/14/14/e6141444-6597-4c3a-7ad1-86304528acf4/22UMGIM45569.rgb.jpg/88x88bb.jpg'/>
                 </div>
                 {
-                            !song && 
-                            <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" ></i></div>
-                        }
+                    !song && 
+                    <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" ></i></div>
+                }
                 <div className='player-lcd-meta'>
                     <div className='player-lcd-meta-title'>
-                        {song && 
-                            song.name
+                        {
+                            song && song.name
                         }
                         
                     </div>

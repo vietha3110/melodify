@@ -1,3 +1,5 @@
+import * as queueAction from "./queue";
+
 const LOAD_SONG = "player/loadSong"; 
 const PLAY = "player/play";
 const PAUSE = "player/pause";
@@ -69,7 +71,8 @@ const controller = new AudioController(document.getElementById('audio-control'))
 export const loadSong = (song) => async (dispatch) => {
     controller.loadSource(`/api/songs/file/${song.id}`);
     controller.onEnded (() => {
-        dispatch(ended());
+        // dispatch(ended());
+        dispatch(queueAction.nextSong());
     });
 
     dispatch({
@@ -136,6 +139,10 @@ export function mute(muted) {
         type: MUTE,
         muted
     }
+}
+
+export function loadQueue(queue) {
+    
 }
 
 const initialState = {

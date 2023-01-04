@@ -5,6 +5,7 @@ import * as playerAction from '../../../store/player';
 import * as playlistAction from '../../../store/playlist';
 import imgBox from './imgBox.png';
 import PlaylistSong from './PlaylistSong';
+import * as queueAction from '../../../store/queue';
 
 function changeSecondToTime(length) {
     const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
@@ -26,7 +27,8 @@ const Home = () => {
     }, [dispatch]);
 
     const onSongClick = (song) => () => {
-        dispatch(playerAction.loadSong(song));
+        // dispatch(playerAction.loadSong(song));
+        dispatch(queueAction.updateList([song]));
     };
 
     const addSongClick = (i) => () => {
@@ -57,15 +59,12 @@ const Home = () => {
                                             <PlaylistSong i={i} song={song} onClose={ ()=> setOpenings(true)} />
                                         }
                                     </div>
-                
                                 }
                             </div>
-                
                             <div className='song-box-info'>
                                 <div className='song-box-info-title'>
                                     <span>{song.name}</span>
                                 </div>
-                
                                 <div className='song-box-info-artist'>
                                     <span>
                                         {song.artistName}
