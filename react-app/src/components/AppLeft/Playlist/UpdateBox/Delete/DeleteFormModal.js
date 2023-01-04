@@ -18,7 +18,7 @@ const DeleteFormModal = ({ playlist, closeDropdown, openModal, closeModal }) => 
     }, []);
 
     return (
-        <button onClick={onClick} className='deleteform-btn'>
+        <button onClick={onClick} className='deleteform-btn'style={{width:"100%", textAlign:"left"}}>
             <span className="deleteform-span">Delete</span>
         </button>
     );

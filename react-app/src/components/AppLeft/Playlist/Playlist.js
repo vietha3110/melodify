@@ -2,10 +2,8 @@ import * as playlistAction from '../../../store/playlist';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../Modal';
-// import musicNote from '../Playlist/musicNote.png';
 import playlistIcon from '../Playlist/playlist-icon.png';
 import UpdateBox from './UpdateBox';
-// import listIcon from '../Playlist/list-icon.png';
 import { Link } from 'react-router-dom';
 
 const Playlist = () => {
