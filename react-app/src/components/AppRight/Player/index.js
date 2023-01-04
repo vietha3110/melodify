@@ -51,7 +51,6 @@ const Player = () => {
     }
 
     const onBackwardClick = () => {
-        console.log('im running')
         dispatch(queueAction.previousSong());
     }
 

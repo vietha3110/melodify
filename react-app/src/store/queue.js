@@ -19,7 +19,6 @@ export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
     const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
     // if (state.currentPlayingSong === state.list.length - 1) {
-    //     // console.log('what?', state.currentPlayingSong)
     //     dispatch(playerAction.ended());
     //     return;
     // }
