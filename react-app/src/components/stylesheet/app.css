@@ -1295,3 +1295,7 @@ animation-name: quiet;
     justify-content: center;
     padding: 5px;
 }
+
+.footer-link > a:visited {
+    text-decoration: #000;
+}
