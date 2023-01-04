@@ -50,10 +50,10 @@ const PlaylistPage = () => {
             {playlists && playlists[+playlistId] &&
                 <div className="listpage-container">
                     <div className="listpage-title">
-                        <span>{playlists[+playlistId].name}</span>
-                        <div >
+                        <div style={{marginRight:"15px"}}>
                             <i className="fa-solid fa-play" onClick={onPlaylistClick(playlists[+playlistId])}/>
                         </div>
+                        <span>{playlists[+playlistId].name}</span>
                     </div>
                     {playlists[+playlistId].playlist_songs.length > 0 &&
                         <div className="listpage-content listpage-head">

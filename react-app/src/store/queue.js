@@ -17,17 +17,18 @@ export const updateList = (playlist) => async (dispatch) => {
 
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
-    const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
-    // if (state.currentPlayingSong === state.list.length - 1) {
-    //     dispatch(playerAction.ended());
-    //     return;
-    // }
-    dispatch({
-        type: NEXT_SONG,
-        nextSongId: nextSongId
-    });
-
-    dispatch(playerAction.loadSong(state.list[nextSongId]));
+   
+    if (state.currentPlayingSong === state.list.length - 1) {
+        dispatch(playerAction.ended());
+        return;
+    } else {
+        const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
+        dispatch({
+            type: NEXT_SONG,
+            nextSongId: nextSongId
+        });
+        dispatch(playerAction.loadSong(state.list[nextSongId]));
+    }
 }
 
 export const previousSong = () => async (dispatch, getState) => {
