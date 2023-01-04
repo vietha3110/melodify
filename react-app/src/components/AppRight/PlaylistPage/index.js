@@ -35,9 +35,13 @@ const PlaylistPage = () => {
     };
     
     const onPlaylistClick = (playlist) => (e) => {
+        const list = [];
+        for (let song of playlist.playlist_songs) {
+            list.push(song.song);
+        }
        
-        console.log('**********************************', playlist.playlist_songs); 
-        dispatch(queueAction.addSong( playlist.playlist_songs))
+        dispatch(queueAction.updateList(list));
+
     }
 
     return (

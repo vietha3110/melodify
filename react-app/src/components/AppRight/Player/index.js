@@ -2,12 +2,11 @@ import ReactSlider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as playerAction from '../../../store/player';
-import Queue from './queue';
+import * as queueAction from '../../../store/queue';
 
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
-    const {list} = useSelector(state => state.queue);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -47,6 +46,10 @@ const Player = () => {
         dispatch(playerAction.mute(false));
     }
 
+    const onForwardClick = () => {
+        dispatch(queueAction.nextSong());
+    }
+
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
@@ -62,7 +65,7 @@ const Player = () => {
                         <i className="fa-solid fa-play" onClick={onPlayClick}></i>
                     }
                 </div>
-                <i className="fa-solid fa-forward"></i>
+                <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
                 <i class="fa-solid fa-repeat"></i>
             </div>
             <div className='player-lcd'>
@@ -117,7 +120,6 @@ const Player = () => {
                         renderThumb={(props, state) => <div {...props}></div>}
                     />
             </div>
-            <Queue />
         </div>
     )
 }

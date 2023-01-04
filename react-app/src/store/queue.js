@@ -5,17 +5,26 @@ const NEXT_SONG = "queue/nextSong";
 const PREVIOUS_SONG = "queue/previousSong";
 const PLAY_SONG_FROM_LIST = "queue/playSong"
 
-export function updateList(playlist) {
-    return {
-        type: UPDATE_LIST, 
-        playlist
-    }
+
+// accessing state in action creators - use GetState in thunks (Redux Thunk middleware )
+export const updateList = (playlist) => async (dispatch) => {
+    dispatch({
+        type: UPDATE_LIST,
+        playlist,
+    });
+    dispatch(playerAction.loadSong(playlist[0]));
 }
 
-export function nextSong() {
-    return {
-        type: NEXT_SONG
-    }
+export const nextSong = () => async (dispatch, getState) => {
+    const state = getState().queue;
+    const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
+
+    dispatch({
+        type: NEXT_SONG,
+        nextSongId: nextSongId
+    });
+
+    dispatch(playerAction.loadSong(state.list[nextSongId]));
 }
 
 export function previousSong() {
@@ -24,17 +33,18 @@ export function previousSong() {
     }
 }
 
-export const playSong = (song) => async(dispatch) => {
-    dispatch(playerAction.loadSong(song.id));
+export const playSong = (songId) => async (dispatch, getState) => {
+    const song = getState().queue.list[songId];
+    dispatch(playerAction.loadSong(song));
     dispatch({
         type: PLAY_SONG_FROM_LIST, 
-        song
+        songId
     })
 }
 
 const initialState = {
     list: null,
-    currentPlayingSong: null,
+    currentPlayingSong: 0,
     repeated: false
 }
 
@@ -43,24 +53,26 @@ const queueReducer = (state = initialState, action) => {
         case UPDATE_LIST: 
             return {
                 list: action.playlist,
-                currentPlayingSong: action.playlist[0],
+                currentPlayingSong: 0,
                 repeated: false
             }
         case NEXT_SONG: 
             return {
                 ...state, 
-                // currentPlayingSong: action.playlist
+                currentPlayingSong: action.nextSongId,
             }
-        case PREVIOUS_SONG: 
-            return {
-                ...state, 
+        // case PREVIOUS_SONG: 
+        //     return {
+        //         ...state, 
 
-            }
+        //     }
         case PLAY_SONG_FROM_LIST: 
             return {
                 ...state, 
-                currentPlayingSong: action.song
+                currentPlayingSong: action.songId
             }
+        default:
+            return state;
     }
 }
 
