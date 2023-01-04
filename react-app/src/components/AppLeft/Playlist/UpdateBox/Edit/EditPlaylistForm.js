@@ -74,7 +74,6 @@ const EditPlaylistForm = ({playlist, onClose}) => {
                         onChange={e => setName(e.target.value)}
                         required
                     />
-                    
                 </div>
                 <div className='playlistform-content-form-desc'>
                     <textarea
@@ -83,9 +82,6 @@ const EditPlaylistForm = ({playlist, onClose}) => {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
-                    <p className="error-label">
-                        {errors.description}
-                    </p>
                 </div>
                 <div className='playlistform-content-form-btn'>
                         <button type='submit'>Save</button>

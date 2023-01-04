@@ -51,8 +51,13 @@ const LoginForm = ({onClose}) => {
       return;
     }
 
-    if (passwordSignUp.length < 6) {
-      setErrors(["Password must be greater than 6 characters."]);
+    if (email.length > 255) {
+      setErrors(['Email must be less than 255 characters.']);
+      return;
+    }
+
+    if (passwordSignUp.length < 6 || passwordSignUp.length > 255) {
+      setErrors(["Password must be greater than 6 characters and less than 255 characters."]);
       return;
     }
     
