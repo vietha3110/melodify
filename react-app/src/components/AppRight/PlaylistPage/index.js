@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
+import WaveBox from "../../Box";
 
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
@@ -15,6 +16,8 @@ function changeSecondToTime(length) {
 const PlaylistPage = () => {
     const { playlistId } = useParams();
     const playlists = useSelector(state => state.playlists.playlists);
+    const { list, currentSong, listId } = useSelector(state => state.queue);
+    const { playing } = useSelector(state => state.player);
     const dispatch = useDispatch();
 
 
@@ -40,7 +43,7 @@ const PlaylistPage = () => {
             list.push(song.song);
         }
        
-        dispatch(queueAction.updateList(list));
+        dispatch(queueAction.updateList({ list, playlistId: playlist.id }));
 
     }
 
@@ -50,12 +53,20 @@ const PlaylistPage = () => {
             {playlists && playlists[+playlistId] &&
                 <div className="listpage-container">
                     <div className="listpage-title">
-                        <span>{playlists[+playlistId].name}</span>
-                        <div >
-                            <i className="fa-solid fa-play" onClick={onPlaylistClick(playlists[+playlistId])}/>
+                        <div style={{marginRight:"15px"}}>
+                            {
+                                (listId !== +playlistId || !playing) &&
+                                <i className="fa-solid fa-play listpage-title-playbtn" onClick={onPlaylistClick(playlists[+playlistId])}/>
+                            }
+                            {
+                                list !== null && playing && listId === +playlistId &&
+                                <WaveBox/>
+                            }
                         </div>
+                        <span>{playlists[+playlistId].name}</span>
                     </div>
-                    {playlists[+playlistId].playlist_songs.length > 0 &&
+                    {
+                        playlists[+playlistId].playlist_songs.length > 0 &&
                         <div className="listpage-content listpage-head">
                             <span>#</span>
                             <span>Title</span>
@@ -98,7 +109,6 @@ const PlaylistPage = () => {
                         <div className="listpage-nosong">
                             Empty here. Let's find something for your playlist!
                         </div>
-            
                     }
             
                 </div >

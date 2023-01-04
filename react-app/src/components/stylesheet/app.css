@@ -116,10 +116,6 @@
     font-weight: 700;
 }
 
-/* update dropdown */
-/* .playlist-content-name-button {
-    position: relative;
-} */
 .updatebox-btn {
     background-color: transparent;
     border: none;
@@ -493,7 +489,7 @@
     font-size: 12px;
 }
 
-.player-volume > .fa-solid:hover {
+.player-volume .fa-solid:hover{
     color: rgba(0, 0, 0, 0.88);
 }
 .player-volume-progress-thumb {
@@ -841,7 +837,6 @@
 }
 
 select:focus {
-    
     outline: none;
     scroll-behavior: smooth;
 }
@@ -858,15 +853,12 @@ select:focus {
     width: 100%;
     margin: 2rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
+    gap: 2rem;
 }
 .song-box { 
     display: flex;
     flex-direction: column;
-    /* width: 13rem; */
-    /* width: 180px; */
-    /* height: 15rem; */
     text-decoration: none;
     justify-content: center;
     align-items: center;
@@ -878,7 +870,6 @@ select:focus {
     display: flex;
     flex-direction: column;
     position: relative;
-  
 }
 
 .song-box-img > img {
@@ -953,68 +944,6 @@ select:focus {
     color: rgba(0, 0, 0, 0.5);
 }
 
-/* audio */
-.audio-container {
-    height: 100%;
-    width: 100%;
-}
-
-.audio-info {
-    height: 20%;
-    max-height: 500px;
-    min-height: 300px; 
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-}
-
-.audio-info-main {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
-}
-.audio-info-main > span {
-    line-height: normal;
-    margin-top: 8px;
-    overflow: hidden;
-    text-align: left;
-    width: 100%;
-    word-break: break-word;
-}
-.audio-name {
-    font-size: 2.5rem;
-}
-
-.audio-container > audio {
-    align-items: center;
-}
-
-.audio-player-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    /* width: 100%; */
-    margin: 5rem;
-    align-content: center;
-}
-
-.audio-display, .audio-display-addbtn {
-    height: 40px;
-    width: 50%;
-    display: flex;
-
-}
-
-.audio-display {
-    justify-content: flex-end;
-}
- .audio-display-addbtn {
-    margin:0.5rem 0rem 1rem 1rem;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;   
- }
-
 /* Add List Song */ 
 .addlist-container {
     width: 10rem;
@@ -1023,7 +952,7 @@ select:focus {
     cursor: pointer;
     position: absolute;
     border-radius: 5px;
-    left: 10rem;
+    left: 3rem;
     /* bottom: -10rem; */
     z-index: 1000;
     /* height: 100%; */
@@ -1031,13 +960,15 @@ select:focus {
 
 .addlist-info {
     height: 30px;
-    overflow: hidden;
     width: 100%;
     text-align: left;
     padding-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .addlist-info > span {
-   margin: 2rem;
+   margin: 2rem;   
 }
 
 .addlist-info:hover {
@@ -1088,10 +1019,6 @@ select:focus {
     margin: 7rem 1rem 1rem 1rem;
 }
 .listpage-container{
-    /* justify-content: center;
-    flex-direction: column;
-    margin: 7rem 3rem 1rem 3rem;
-    width: 90%; */
     display: grid;
     grid-template-rows: 1fr 0.5fr 3fr;
     width: 90%;
@@ -1100,7 +1027,6 @@ select:focus {
 .listpage-content {
     display: grid;
     grid-template-columns: 0.3fr 1.2fr 1fr 1fr 1fr 0.5fr;
-    /* margin: 1rem; */
     height: 30px;
     align-items: center;
     width: 100%;
@@ -1109,6 +1035,10 @@ select:focus {
 .listpage-head {
     border-bottom: 1px solid #cccccc;
     width: 100%;
+}
+
+.listpage-title-playbtn{
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .listpage-content-name{
@@ -1233,6 +1163,7 @@ select:focus {
     --boxSize: 8px;
     --gutter: 4px;
     width: calc((var(--boxSize) + var(--gutter)) * 5);
+    margin-top: 8px;
 }
 
 .box{
@@ -1276,4 +1207,24 @@ animation-name: quiet;
 .fa-solid:hover {
     color: var(--melodify-red-close);
     cursor: pointer;
+}
+
+.footer-main {
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    background-color:rgba(60,60,67,.05);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footer-label, .footer-link {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.footer-link > a:visited {
+    text-decoration: #000;
 }

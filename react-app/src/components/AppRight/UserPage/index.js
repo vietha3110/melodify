@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userSongsAction from "../../../store/userSong";
 import userProfile from "./userProfile.png";
@@ -10,13 +10,12 @@ const UserPage = () => {
 
     useEffect(() => {
         dispatch(userSongsAction.fetchUserSongs());
-    }, [])
+    }, [dispatch])
 
     const deleteSong = (i, song) => (e) => {
         e.stopPropagation();
         dispatch(userSongsAction.deleteSong(song.id));
     }
-
 
     return (
         <div className="userprofile-container">
@@ -24,7 +23,7 @@ const UserPage = () => {
                 {user && 
                     <div className="userprofile-info-main">
                         <div className="userprofile-info-img">
-                            <img src={userProfile} />
+                            <img src={userProfile} alt='icon'/>
                         </div>
                         <div className="userprofile-info-content">
                             <div className="userprofile-info-content-profile" >
@@ -41,17 +40,19 @@ const UserPage = () => {
             <div className="userprofile-song">
                 <span style={{fontSize:"1.5rem", margin:"10px"}}>Songs</span>
                 <div className="userprofile-song-main">
-                    <div className="userprofile-song-label userprofile-content">
-                        <span style={{fontWeight:"700", fontSize:"1.2rem"}}>
-                            Title
-                        </span>
-                        <span  style={{fontWeight:"700", fontSize:"1.2rem"}}>
-                            Artist
-                        </span>
-                        <span>
+                    { songs &&
+                        <div className="userprofile-song-label userprofile-content">
+                            <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
+                                Title
+                            </span>
+                            <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
+                                Artist
+                            </span>
+                            <span>
                              
-                        </span>
-                    </div>
+                            </span>
+                        </div>
+                    }
                     {
                         songs && Object.values(songs).map((song, i) => (
                             <div key={i} className="userprofile-song-content userprofile-content">
@@ -68,9 +69,6 @@ const UserPage = () => {
                         ))
                     }
                 </div>
-            </div>
-            <div>
-                <span style={{ fontSize: "1.5rem", margin:"10px" }}>Like - COMING SOON</span>
             </div>
         </div>
     )

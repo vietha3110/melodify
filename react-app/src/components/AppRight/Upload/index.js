@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as songActions from "../../../store/song";
 import { useHistory } from "react-router-dom";
@@ -104,14 +103,12 @@ const UploadSong = () => {
         const data = await dispatch(songActions.createSong(song));
         setSubmitStatus('SUBMITTED');
         if (!data) {
-            console.log('*****************************', 'im running')
             history.push('/');
         } else {
             errors.type = "An error occurred. Please try again"
             setError(errors);
             return;
         }
-       
     }
 
     const isSubmitEnabled = fileStatus === 'LOADED' && name !== '' && artist_name !== '' && submitStatus === 'NOT_SUBMITTING' && name.trim() !== "" && artist_name !== "";
@@ -122,7 +119,6 @@ const UploadSong = () => {
                 <div className="uploadsong-title">
                     <h1>Drop your music here</h1>
                 </div>
-                
                 <div className="uploadsong-content">
                     <div className="uploadsong-name uploadinfo">
                         <label> Title:</label>
@@ -165,11 +161,11 @@ const UploadSong = () => {
                             minLength="1"
                             maxLength="100"
                         />
-                         {
-                              error && 
-                              <div className="upload-error">
-                                      <span>{error.artist}</span>
-                              </div>
+                        {
+                            error && 
+                            <div className="upload-error">
+                                    <span>{error.artist}</span>
+                            </div>
                         }
                     </div>
                     <div className="uploadsong-upload uploadinfo">
@@ -185,7 +181,6 @@ const UploadSong = () => {
                             </div>
                         }
                     </div>
-                    
                         {
                             fileStatus === "LOADING" &&
                             <div>Loading file</div>
@@ -195,7 +190,6 @@ const UploadSong = () => {
                     </div>
                 </div>
             </form>
-           
             <div>
                 <p>By uploading, you confirm that your file comply with our Terms of Use and you don't infringe anyone else's rights.</p>
             </div>

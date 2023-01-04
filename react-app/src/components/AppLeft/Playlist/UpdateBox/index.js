@@ -18,9 +18,6 @@ const UpdateBox = ({ playlist, i, openModal, closeModal }) => {
         setOpen(false);
     };
 
-
-
-
     return (
         <div className="playlist-content-name-button">
             <button className='updatebox-btn' onClick={handleClickBtn(i)}>
@@ -36,7 +33,6 @@ const UpdateBox = ({ playlist, i, openModal, closeModal }) => {
                     </div>
                 </div>
             }
-
         </div>
     )
 }

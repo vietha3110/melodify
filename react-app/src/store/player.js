@@ -70,8 +70,8 @@ const controller = new AudioController(document.getElementById('audio-control'))
 
 export const loadSong = (song) => async (dispatch) => {
     controller.loadSource(`/api/songs/file/${song.id}`);
-    controller.onEnded (() => {
-        // dispatch(ended());
+    controller.onEnded (async() => {
+        await dispatch(ended());
         dispatch(queueAction.nextSong());
     });
 

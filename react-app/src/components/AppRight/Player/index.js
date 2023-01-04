@@ -1,6 +1,6 @@
 import ReactSlider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 
@@ -74,7 +74,7 @@ const Player = () => {
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>
-                    <img src='https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/e6/14/14/e6141444-6597-4c3a-7ad1-86304528acf4/22UMGIM45569.rgb.jpg/88x88bb.jpg'/>
+                    <img src='https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/e6/14/14/e6141444-6597-4c3a-7ad1-86304528acf4/22UMGIM45569.rgb.jpg/88x88bb.jpg' alt='icon'/>
                 </div>
                 {
                     !song && 

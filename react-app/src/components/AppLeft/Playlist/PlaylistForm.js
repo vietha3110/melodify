@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as playlistAction from '../../../store/playlist';
 
 const PlaylistForm = ({onClose}) => {
-    const [validationErrors, setValidationErrors] = useState([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState(''); 
     const dispatch = useDispatch();
@@ -11,7 +10,7 @@ const PlaylistForm = ({onClose}) => {
    
     const handleSubmit = (e) => {
         e.preventDefault();
-        setValidationErrors([]);
+        setErrors({});
         const errors = {}
         if (name.length <= 0 || name.length > 100) {
             errors.name = 'Name must be less than 100 characters.';
@@ -45,7 +44,6 @@ const PlaylistForm = ({onClose}) => {
                     <div className='playlistform-header-label'>
                         <span>Make New Playlist</span>
                     </div>
-                    
                     <div className='playlistform-header-btn'>
                         <button className='playlistform-header-btn-close' onClick={handleCancel}>
                             <i className="fa-solid fa-xmark"></i>
@@ -55,14 +53,14 @@ const PlaylistForm = ({onClose}) => {
                 {
                     errors && 
                     <div className='playlistform-errors'>
-                            <div>{errors.name}</div>
-                            <div>{errors.description}</div>
+                        <div>{errors.name}</div>
+                        <div>{errors.description}</div>
                     </div>
                 }
             </div>
             <div className='playlistform-content'>
                 <div className='playlistform-logo'>
-                    <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg'/>
+                    <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg' alt='icon'/>
                 </div>
                 <form onSubmit={handleSubmit} className='playlistform-content-form'>
                     <div className='playlistform-content-form-name form-focus'>
@@ -73,7 +71,6 @@ const PlaylistForm = ({onClose}) => {
                             onChange={e => setName(e.target.value)}
                             required
                         />
-                       
                     </div>
                     <div className='playlistform-content-form-desc form-focus'>
                         <textarea
@@ -82,7 +79,6 @@ const PlaylistForm = ({onClose}) => {
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
-                     
                     </div>
                     <div className='playlistform-content-form-btn'>
                         <button type='submit'>Save</button>
@@ -91,7 +87,6 @@ const PlaylistForm = ({onClose}) => {
             </div>
         </div>
     )
-
 }
 
 export default PlaylistForm;

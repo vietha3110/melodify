@@ -2,10 +2,8 @@ import * as playlistAction from '../../../store/playlist';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../Modal';
-// import musicNote from '../Playlist/musicNote.png';
 import playlistIcon from '../Playlist/playlist-icon.png';
 import UpdateBox from './UpdateBox';
-// import listIcon from '../Playlist/list-icon.png';
 import { Link } from 'react-router-dom';
 
 const Playlist = () => {
@@ -37,27 +35,31 @@ const Playlist = () => {
     return (
         <>
             <div className='playlist-header'>
-                <img src={playlistIcon} className='playlist-icon'/>
+                <img src={playlistIcon} className='playlist-icon' alt='icon'/>
                 <span>Your Playlists</span>
             </div>
             <div className='playlist-content'>
-                {user !== null && playlists && Object.values(playlists).map(
+                {
+                    user !== null && playlists && Object.values(playlists).map(
                     (playlist, i) => (
                         <div key={i} className='playlist-content-name'>
                             <div className='playlist-content-name-span' onClick={handleClick(i)}>
                                 <Link to={`/playlists/${playlist.id}`} className="playlist-link">{playlist.name}</Link>
                             </div>
                             <>
-                                {modalInfo.show && (
+                                {
+                                    modalInfo.show && (
                                     <Modal>
                                         {modalInfo.content}
                                     </Modal>
-                                )}
+                                    )
+                                }
                                 <UpdateBox i={i} playlist={playlist} openModal={(content) => setModalInfo({ show: true, content })} closeModal={() => setModalInfo({ show: false })} />
                             </>
                         </div>
                     )
-                )}
+                    )
+                }
             </div>
         </>
     )

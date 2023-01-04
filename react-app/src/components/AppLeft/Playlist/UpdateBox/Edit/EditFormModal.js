@@ -13,10 +13,10 @@ const EditFormModal = ({ playlist, closeDropdown, openModal, closeModal }) => {
         document.addEventListener('click', e => {
             closeDropdown();
         });
-    },[]);
+    },[closeDropdown]);
 
     return (
-        <button onClick={onClick} className='btn-edit'>
+        <button onClick={onClick} className='btn-edit' style={{width:"100%", textAlign:"left"}}>
             <span className="updateform-spanedit">Edit</span>
         </button>
     );
