@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   songs: songReducer,
   userSongs: userSongReducer,
   player: playerReducer,
-  queue: queueReducer
+  queue: queueReducer,
 });
 
 

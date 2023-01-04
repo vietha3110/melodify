@@ -1,37 +1,67 @@
-const ADD_SONG = "queue/addList";
-const LOAD_QUEUE = "queue/loadQueue";
+import * as playerAction from "./player";
 
-export function addSong(list) {
+const UPDATE_LIST = "queue/updateList"; 
+const NEXT_SONG = "queue/nextSong"; 
+const PREVIOUS_SONG = "queue/previousSong";
+const PLAY_SONG_FROM_LIST = "queue/playSong"
+
+export function updateList(playlist) {
     return {
-        type: ADD_SONG,
-        list
+        type: UPDATE_LIST, 
+        playlist
     }
 }
 
-export function loadQueue() {
+export function nextSong() {
     return {
-        type: LOAD_QUEUE
+        type: NEXT_SONG
     }
 }
 
-const initialState = { list: null };
+export function previousSong() {
+    return {
+        type: PREVIOUS_SONG
+    }
+}
 
+export const playSong = (song) => async(dispatch) => {
+    dispatch(playerAction.loadSong(song.id));
+    dispatch({
+        type: PLAY_SONG_FROM_LIST, 
+        song
+    })
+}
+
+const initialState = {
+    list: null,
+    currentPlayingSong: null,
+    repeated: false
+}
 
 const queueReducer = (state = initialState, action) => {
-    let newState;
     switch (action.type) {
-        case ADD_SONG:
-            console.log('**********************************',action.list);
+        case UPDATE_LIST: 
             return {
-                list: action.list
+                list: action.playlist,
+                currentPlayingSong: action.playlist[0],
+                repeated: false
             }
-        case LOAD_QUEUE:
-            return state;
-        default:
-            return state;
+        case NEXT_SONG: 
+            return {
+                ...state, 
+                // currentPlayingSong: action.playlist
+            }
+        case PREVIOUS_SONG: 
+            return {
+                ...state, 
+
+            }
+        case PLAY_SONG_FROM_LIST: 
+            return {
+                ...state, 
+                currentPlayingSong: action.song
+            }
     }
 }
-
-
 
 export default queueReducer;

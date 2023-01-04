@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 
