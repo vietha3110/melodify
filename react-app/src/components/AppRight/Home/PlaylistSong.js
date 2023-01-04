@@ -33,6 +33,7 @@ const PlaylistSong = ({song, i, onClose }) => {
     useEffect(() => {
         dispatch(playlistAction.fetchUserList());
     }, [dispatch])
+    
     return (
         <>
             <div className='addlist-container'>
@@ -60,7 +61,7 @@ const PlaylistSong = ({song, i, onClose }) => {
                         </>
                     )
                 )}
-                </div>
+            </div>
         </>
     )
 }

@@ -116,10 +116,6 @@
     font-weight: 700;
 }
 
-/* update dropdown */
-/* .playlist-content-name-button {
-    position: relative;
-} */
 .updatebox-btn {
     background-color: transparent;
     border: none;
@@ -841,7 +837,6 @@
 }
 
 select:focus {
-    
     outline: none;
     scroll-behavior: smooth;
 }
@@ -864,9 +859,6 @@ select:focus {
 .song-box { 
     display: flex;
     flex-direction: column;
-    /* width: 13rem; */
-    /* width: 180px; */
-    /* height: 15rem; */
     text-decoration: none;
     justify-content: center;
     align-items: center;
@@ -878,7 +870,6 @@ select:focus {
     display: flex;
     flex-direction: column;
     position: relative;
-  
 }
 
 .song-box-img > img {
@@ -952,68 +943,6 @@ select:focus {
 .song-box-info-artist {
     color: rgba(0, 0, 0, 0.5);
 }
-
-/* audio */
-.audio-container {
-    height: 100%;
-    width: 100%;
-}
-
-.audio-info {
-    height: 20%;
-    max-height: 500px;
-    min-height: 300px; 
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-}
-
-.audio-info-main {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
-}
-.audio-info-main > span {
-    line-height: normal;
-    margin-top: 8px;
-    overflow: hidden;
-    text-align: left;
-    width: 100%;
-    word-break: break-word;
-}
-.audio-name {
-    font-size: 2.5rem;
-}
-
-.audio-container > audio {
-    align-items: center;
-}
-
-.audio-player-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    /* width: 100%; */
-    margin: 5rem;
-    align-content: center;
-}
-
-.audio-display, .audio-display-addbtn {
-    height: 40px;
-    width: 50%;
-    display: flex;
-
-}
-
-.audio-display {
-    justify-content: flex-end;
-}
- .audio-display-addbtn {
-    margin:0.5rem 0rem 1rem 1rem;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;   
- }
 
 /* Add List Song */ 
 .addlist-container {
@@ -1090,10 +1019,6 @@ select:focus {
     margin: 7rem 1rem 1rem 1rem;
 }
 .listpage-container{
-    /* justify-content: center;
-    flex-direction: column;
-    margin: 7rem 3rem 1rem 3rem;
-    width: 90%; */
     display: grid;
     grid-template-rows: 1fr 0.5fr 3fr;
     width: 90%;
@@ -1102,7 +1027,6 @@ select:focus {
 .listpage-content {
     display: grid;
     grid-template-columns: 0.3fr 1.2fr 1fr 1fr 1fr 0.5fr;
-    /* margin: 1rem; */
     height: 30px;
     align-items: center;
     width: 100%;

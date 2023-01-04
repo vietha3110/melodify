@@ -84,9 +84,9 @@ const LoginForm = ({onClose}) => {
       <div onClick={closeLogin} className="login-main-close">
           <i className="fa-solid fa-xmark"></i>
       </div>
-      {showSignIn && (
-        <>
-          
+      {
+        showSignIn && (
+        <>  
         <div>
           <form onSubmit={onLogin} className='login-container'>
             <div className='login-header'>
@@ -118,11 +118,12 @@ const LoginForm = ({onClose}) => {
                   required
                 />
                 </div>
-                {errors.length > 0 && (
-                  <div className='login-error'>
-                    <span>Invalid data! Please try again!</span>
-                  </div>
-                )}
+                  {
+                    errors.length > 0 && (
+                      <div className='login-error'>
+                        <span>Invalid data! Please try again!</span>
+                      </div>
+                  )}
               <div className='login-button login-info'>
                 <button type='submit'>Login</button>
             </div>
@@ -137,8 +138,10 @@ const LoginForm = ({onClose}) => {
                 </form>
           </div>
           </>
-      )}
-      {!showSignIn && (
+        )
+      }
+      {
+        !showSignIn && (
         <form onSubmit={onSignUp} className='signup-container'>
          <div className='signup-header-logo'>
             <img src='https://live.staticflickr.com/65535/52578444619_ca0f977822.jpg' />
@@ -147,9 +150,11 @@ const LoginForm = ({onClose}) => {
             <span>Create melodify account</span>
           </div>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind} className='signup-error-label'>{error}</div>
-          ))}
+              {
+                errors.map((error, ind) => (
+                <div key={ind} className='signup-error-label'>{error}</div>
+                ))
+              }
         </div>
         <div className='signup-content'>
           <div className='signup-firstname signup-info'>
@@ -182,7 +187,6 @@ const LoginForm = ({onClose}) => {
               required
               />
           </div>
-           
           <div className='signup-password signup-info'>
             <input
               type='password'
@@ -192,9 +196,7 @@ const LoginForm = ({onClose}) => {
               placeholder='Password'
               required  
               />
-            </div>
-            
-          
+          </div>
           <div className='signup-button signup-info'>
             <button type='submit'>Sign Up</button>
           </div>
@@ -204,9 +206,7 @@ const LoginForm = ({onClose}) => {
           </div>
       </form>
       )}
-    </>
-      
-        
+    </>   
   );
 };
 

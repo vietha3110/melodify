@@ -41,23 +41,27 @@ const Playlist = () => {
                 <span>Your Playlists</span>
             </div>
             <div className='playlist-content'>
-                {user !== null && playlists && Object.values(playlists).map(
+                {
+                    user !== null && playlists && Object.values(playlists).map(
                     (playlist, i) => (
                         <div key={i} className='playlist-content-name'>
                             <div className='playlist-content-name-span' onClick={handleClick(i)}>
                                 <Link to={`/playlists/${playlist.id}`} className="playlist-link">{playlist.name}</Link>
                             </div>
                             <>
-                                {modalInfo.show && (
+                                {
+                                    modalInfo.show && (
                                     <Modal>
                                         {modalInfo.content}
                                     </Modal>
-                                )}
+                                    )
+                                }
                                 <UpdateBox i={i} playlist={playlist} openModal={(content) => setModalInfo({ show: true, content })} closeModal={() => setModalInfo({ show: false })} />
                             </>
                         </div>
                     )
-                )}
+                    )
+                }
             </div>
         </>
     )
