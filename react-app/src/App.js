@@ -44,40 +44,49 @@ function App() {
           </>
         </Route>
         <ProtectedRoute path='/upload'>
-          <div className='main-app'>
-            <div className='app-left-container'>
-             <LeftBox/>
+          <>
+            <div className='main-app'>
+              <div className='app-left-container'>
+              <LeftBox/>
+              </div>
+              <div className='app-right-container'>
+                  <>
+                    <NavBar />
+                    <UploadSong/>
+                  </>
+              </div>
             </div>
-          <div className='app-right-container'>
-              <>
-                <NavBar />
-                <UploadSong/>
-              </>
-            </div>
-          </div>
+            <Footer/>
+            </>
         </ProtectedRoute>
         <ProtectedRoute path='/playlists/:playlistId'>
-          <div className='main-app'>
-            <div className='app-left-container'>
-             <LeftBox/>
+          <>
+            <div className='main-app'>
+              <div className='app-left-container'>
+               <LeftBox/>
+              </div>
+              <div className='app-right-container'>
+                <>
+                  <NavBar />
+                  <PlaylistPage/>
+                </>
+              </div>
             </div>
-            <div className='app-right-container'>
-              <>
-                <NavBar />
-                <PlaylistPage/>
-              </>
-            </div>
-          </div>
+            <Footer/>
+          </>
         </ProtectedRoute>
         <ProtectedRoute path='/profile'>
-          <div className='main-app'>
-            <div className='app-left-container'>
-             <LeftBox/>
+          <>
+            <div className='main-app'>
+              <div className='app-left-container'>
+              <LeftBox/>
+              </div>
+              <div className='app-right-container'>
+                <UserPage/>
+              </div>
             </div>
-            <div className='app-right-container'>
-              <UserPage/>
-            </div>
-          </div>
+            <Footer/>
+          </>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

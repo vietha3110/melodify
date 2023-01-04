@@ -41,17 +41,19 @@ const UserPage = () => {
             <div className="userprofile-song">
                 <span style={{fontSize:"1.5rem", margin:"10px"}}>Songs</span>
                 <div className="userprofile-song-main">
-                    <div className="userprofile-song-label userprofile-content">
-                        <span style={{fontWeight:"700", fontSize:"1.2rem"}}>
-                            Title
-                        </span>
-                        <span  style={{fontWeight:"700", fontSize:"1.2rem"}}>
-                            Artist
-                        </span>
-                        <span>
+                    { songs &&
+                        <div className="userprofile-song-label userprofile-content">
+                            <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
+                                Title
+                            </span>
+                            <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
+                                Artist
+                            </span>
+                            <span>
                              
-                        </span>
-                    </div>
+                            </span>
+                        </div>
+                    }
                     {
                         songs && Object.values(songs).map((song, i) => (
                             <div key={i} className="userprofile-song-content userprofile-content">
@@ -68,9 +70,6 @@ const UserPage = () => {
                         ))
                     }
                 </div>
-            </div>
-            <div>
-                <span style={{ fontSize: "1.5rem", margin:"10px" }}>Like - COMING SOON</span>
             </div>
         </div>
     )
