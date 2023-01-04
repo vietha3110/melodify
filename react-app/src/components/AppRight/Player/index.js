@@ -2,10 +2,12 @@ import ReactSlider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import * as playerAction from '../../../store/player';
+import Queue from './queue';
 
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
+    const {list} = useSelector(state => state.queue);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,6 +27,7 @@ const Player = () => {
         if (!song) {
             return;
         }
+
         dispatch(playerAction.play());
     };
 
@@ -114,6 +117,7 @@ const Player = () => {
                         renderThumb={(props, state) => <div {...props}></div>}
                     />
             </div>
+            <Queue />
         </div>
     )
 }

@@ -1,41 +1,37 @@
-const ADD_SONG = "queue/addSong";
+const ADD_SONG = "queue/addList";
+const LOAD_QUEUE = "queue/loadQueue";
 
-
-export function addSong(song) {
+export function addSong(list) {
     return {
         type: ADD_SONG,
-        song
+        list
     }
 }
 
+export function loadQueue() {
+    return {
+        type: LOAD_QUEUE
+    }
+}
 
-const queueReducer = (state = {}, action) => {
+const initialState = { list: null };
+
+
+const queueReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case ADD_SONG:
-            newState = deepCopy(state);
-            newState.songs[action.song.id] = action.song;
-            return newState;
+            console.log('**********************************',action.list);
+            return {
+                list: action.list
+            }
+        case LOAD_QUEUE:
+            return state;
         default:
             return state;
     }
 }
 
 
-function deepCopy(value) {
-    if (typeof value === 'object') {
-        if (Array.isArray(value)) {
-            return value.map(element => deepCopy(element));
-        } else {
-            const result = {};
-            Object.entries(value).forEach(entry => {
-                result[entry[0]] = deepCopy(entry[1]);
-            });
-            return result;
-        }
-    } else {
-        return value;
-    }
-}
 
 export default queueReducer;

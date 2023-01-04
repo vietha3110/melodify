@@ -30,6 +30,19 @@ const LoginForm = ({onClose}) => {
     }
   };
 
+  const demoLogin = async (e) => {
+    const email = "demo@aa.io";
+    const password = "password";
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data === null) {
+      onClose();
+    }
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   const onSignUp = async (e) => {
     e.preventDefault(); 
     setErrors([]);
@@ -37,12 +50,6 @@ const LoginForm = ({onClose}) => {
       setErrors(['Please provide a valid Email.']);
       return;
     }
-    // if(!emailSignUp.trim()
-    //            .match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)) 
-    // {
-    //   setErrors(['Please provide a valid Email.']);
-    //   return;
-    // }
 
     if (passwordSignUp.length < 6) {
       setErrors(["Password must be greater than 6 characters."]);
@@ -123,7 +130,10 @@ const LoginForm = ({onClose}) => {
           
             <div onClick={changeContent} className="login-change-signup">
               <span>Create an account!</span>
-            </div>
+              </div>
+              <div onClick={demoLogin} className="login-change-signup" style={{margin: "5px"}}>
+                  <span>Login as Demo User</span>
+              </div>
                 </form>
           </div>
           </>

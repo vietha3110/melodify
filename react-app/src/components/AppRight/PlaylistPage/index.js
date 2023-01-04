@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import * as playerAction from '../../../store/player';
+import * as queueAction from '../../../store/queue';
 
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
@@ -33,6 +34,12 @@ const PlaylistPage = () => {
         const songInfo = { id: song.songId, artistName: song.song.artistName, name: song.song.name};
         dispatch(playerAction.loadSong(songInfo));
     };
+    
+    const onPlaylistClick = (playlist) => (e) => {
+       
+        console.log('**********************************', playlist.playlist_songs); 
+        dispatch(queueAction.addSong( playlist.playlist_songs))
+    }
 
     return (
         <div className="listpage-main" style={{
@@ -41,6 +48,9 @@ const PlaylistPage = () => {
                 <div className="listpage-container">
                     <div className="listpage-title">
                         <span>{playlists[+playlistId].name}</span>
+                        <div >
+                            <i className="fa-solid fa-play" onClick={onPlaylistClick(playlists[+playlistId])}/>
+                        </div>
                     </div>
                     {playlists[+playlistId].playlist_songs.length > 0 &&
                         <div className="listpage-content listpage-head">

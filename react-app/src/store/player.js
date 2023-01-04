@@ -6,6 +6,8 @@ const SYNC_PROGRESS = "player/syncProgress";
 const SEEK = "player/seek";
 const ADJUST_VOLUME = "player/adjustVolume";
 const MUTE = "player/mute";
+// const LOAD_QUEUE = "player/loadQueue";
+// const SONG_ENDED = "player/song_ended";
 
 
 class AudioController {
@@ -136,6 +138,10 @@ export function mute(muted) {
         type: MUTE,
         muted
     }
+}
+
+export function loadQueue(queue) {
+    
 }
 
 const initialState = {
