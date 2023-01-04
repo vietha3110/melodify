@@ -1113,6 +1113,10 @@ select:focus {
     width: 100%;
 }
 
+.listpage-title-playbtn{
+    color: rgba(0, 0, 0, 0.5);
+}
+
 .listpage-content-name{
     overflow: hidden;
     text-overflow: ellipsis;

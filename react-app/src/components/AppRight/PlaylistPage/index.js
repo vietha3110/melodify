@@ -54,8 +54,9 @@ const PlaylistPage = () => {
                 <div className="listpage-container">
                     <div className="listpage-title">
                         <div style={{marginRight:"15px"}}>
-                            {   listId !== +playlistId &&
-                                <i className="fa-solid fa-play" onClick={onPlaylistClick(playlists[+playlistId])} />
+                            {
+                                (listId !== +playlistId || !playing) &&
+                                <i className="fa-solid fa-play listpage-title-playbtn" onClick={onPlaylistClick(playlists[+playlistId])}/>
                             }
                             {
                                 list !== null && playing && listId === +playlistId &&
@@ -64,7 +65,8 @@ const PlaylistPage = () => {
                         </div>
                         <span>{playlists[+playlistId].name}</span>
                     </div>
-                    {playlists[+playlistId].playlist_songs.length > 0 &&
+                    {
+                        playlists[+playlistId].playlist_songs.length > 0 &&
                         <div className="listpage-content listpage-head">
                             <span>#</span>
                             <span>Title</span>
@@ -107,7 +109,6 @@ const PlaylistPage = () => {
                         <div className="listpage-nosong">
                             Empty here. Let's find something for your playlist!
                         </div>
-            
                     }
             
                 </div >

@@ -19,7 +19,7 @@ export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
    
     if (state.currentPlayingSong === state.list.length - 1) {
-        dispatch(playerAction.ended());
+        // dispatch(playerAction.ended());
         return;
     } else {
         const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
