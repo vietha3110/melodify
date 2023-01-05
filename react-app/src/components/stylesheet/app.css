@@ -952,7 +952,8 @@ select:focus {
     cursor: pointer;
     position: absolute;
     border-radius: 5px;
-    left: 3rem;
+    /* left: 3rem; */
+    right: 0;
     /* bottom: -10rem; */
     z-index: 1000;
     /* height: 100%; */
