@@ -19,7 +19,7 @@ const LeftBox = () => {
                 <img src={logo} className='main-logo' alt='logo'/>
                 <span style={{fontSize: '1.4rem'}}>Melodify</span>
             </Link>
-            <div className='app-left-search'>
+            <div className='app-left-search' style={{cursor:"default"}}>
                 <span className="material-symbols-outlined" style={{padding: 8, cursor:"default"}}>
                     search
                 </span>
