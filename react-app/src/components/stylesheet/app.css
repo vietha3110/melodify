@@ -833,7 +833,6 @@
 .upload-error > span{
     font-size: 1rem;
     color: var(--melodify-red-close);
-    font-weight: 700;
 }
 
 select:focus {
