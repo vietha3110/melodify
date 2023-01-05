@@ -38,9 +38,10 @@ function App() {
                   <NavBar />
                   <Home/>
                 </>
+                <Footer/>
               </div>
+             
             </div>
-            <Footer/>
           </>
         </Route>
         <ProtectedRoute path='/upload'>
@@ -53,10 +54,10 @@ function App() {
                   <>
                     <NavBar />
                     <UploadSong/>
-                  </>
+                </>
+                <Footer/>
               </div>
             </div>
-            <Footer/>
             </>
         </ProtectedRoute>
         <ProtectedRoute path='/playlists/:playlistId'>
@@ -70,9 +71,9 @@ function App() {
                   <NavBar />
                   <PlaylistPage/>
                 </>
+                <Footer/>
               </div>
             </div>
-            <Footer/>
           </>
         </ProtectedRoute>
         <ProtectedRoute path='/profile'>
@@ -82,10 +83,12 @@ function App() {
               <LeftBox/>
               </div>
               <div className='app-right-container'>
-                <UserPage/>
+                <>
+                <UserPage />
+                <Footer />
+                </>
               </div>
             </div>
-            <Footer/>
           </>
         </ProtectedRoute>
       </Switch>
