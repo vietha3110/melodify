@@ -36,7 +36,7 @@ const Playlist = () => {
         <>
             <div className='playlist-header'>
                 <img src={playlistIcon} className='playlist-icon' alt='icon'/>
-                <span>Your Playlists</span>
+                <span style={{cursor:"default"}}>Your Playlists</span>
             </div>
             <div className='playlist-content'>
                 {

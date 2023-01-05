@@ -11,8 +11,9 @@ const LoginForm = ({onClose}) => {
   const [emailSignUp, setEmailSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('')
-  const [signUpErr, setSignUpErr] = useState({})
+  const [lastName, setLastName] = useState('');
+  const [signUpErr, setSignUpErr] = useState({});
+  const [confirmedPassword, setConfirmedPassword] = useState('')
   const dispatch = useDispatch();
   
   const regex = RegExp(
@@ -67,6 +68,10 @@ const LoginForm = ({onClose}) => {
 
     if (passwordSignUp.length < 6 || passwordSignUp.length > 255) {
       errors.password = "Password must be greater than 6 characters and less than 255 characters.";
+    }
+
+    if (passwordSignUp !== confirmedPassword) {
+      errors.confirmedPassword = "Password must match!"
     }
     
     if (Object.keys(errors).length > 0) {
@@ -167,7 +172,10 @@ const LoginForm = ({onClose}) => {
           <div className='signup-header-title'>
             <span>Create melodify account</span>
             </div>  
-           
+            {errors &&
+              <div style={{color:'#d60017'}}>
+                {errors}
+            </div>}
         <div className='signup-content'>
           <div className='signup-firstname signup-info'>
             <input
@@ -237,10 +245,29 @@ const LoginForm = ({onClose}) => {
                   </div>
                 )      
               }    
-          <div className='signup-button signup-info'>
-            <button type='submit'>Sign Up</button>
-          </div>
-        </div>
+               <div className='signup-password signup-info'>
+                 <input
+              type='password'
+              name='password'
+              onChange={e => setConfirmedPassword(e.target.value)}
+              value={confirmedPassword}
+              placeholder='Confirmed Password (*)'
+              required  
+              />
+              </div>
+              {
+                signUpErr && (
+                  <div className='signup-password-err'>
+                    {signUpErr.confirmedPassword}
+                  </div>
+                )      
+              }    
+              <div className='signup-button signup-info'>
+              <button type='submit'>Sign Up</button>
+              </div>           
+            </div>
+            
+            
           <div onClick={changeSignIn} className='signup-change'>
             <span>Already have an account? Login instead</span>
           </div>

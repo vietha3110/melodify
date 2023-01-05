@@ -30,9 +30,9 @@ const Player = () => {
         dispatch(playerAction.play());
     };
 
-    const onSliderChange = (time) => {
-        dispatch(playerAction.seek(time));
-    };
+    // const onSliderChange = (time) => {
+    //     dispatch(playerAction.seek(time));
+    // };
 
     const onChangeVolume = (volume) => {
         dispatch(playerAction.adjustVolume(volume));
@@ -92,7 +92,6 @@ const Player = () => {
                     </div>
                     <div>
                         {song && <ReactSlider
-                            onChange={onSliderChange}
                             className="player-lcd-progress-slider"
                             thumbClassName="player-lcd-progress-thumb"
                             trackClassName="player-lcd-progress-track"

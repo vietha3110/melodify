@@ -76,16 +76,19 @@ const UploadSong = () => {
 
         if (Object.keys(errors).length > 0) {
             setError(errors);
+            setFileStatus('LOADING');
             return;
         }
 
-        setFileStatus('LOADING');
         const binaryString = await readAsUtf8String(file);
         const dataUrl = await readAsDataURL(file);
         const duration = await getDuration(dataUrl);
         setLength(duration);
         setFile(binaryString);
-        setFileStatus('LOADED');
+        if (Object.keys(errors).length === 0) {
+            setFileStatus('LOADED');
+        }
+        
     }
 
     const handleSelect = (e) => {
@@ -183,7 +186,7 @@ const UploadSong = () => {
                     </div>
                         {
                             fileStatus === "LOADING" &&
-                            <div>Loading file</div>
+                            <div></div>
                         }
                     <div className="uploadsong-btnupload">
                         <button type="submit" disabled={!isSubmitEnabled}>{submitStatus === 'SUBMITTING' ? 'Uploading' : 'Upload'}</button>
