@@ -48,6 +48,15 @@ const LoginForm = ({onClose}) => {
     e.preventDefault(); 
     setSignUpErr({});
     const errors = {}
+
+    if (firstName.length > 50) {
+      errors.firstName = 'First name must be less than 50 characters.'
+    }
+
+    if (lastName.length > 50) {
+      errors.lastName = 'Last name must be less than 50 characters.'
+    }
+    
     if (!emailSignUp.trim().match(regex)) {
       errors.email = 'Please provide a valid Email.';
     }
@@ -157,43 +166,58 @@ const LoginForm = ({onClose}) => {
           </div>
           <div className='signup-header-title'>
             <span>Create melodify account</span>
-          </div>        
+            </div>  
+           
         <div className='signup-content'>
           <div className='signup-firstname signup-info'>
             <input
               type='text'
               name='firstname'
               onChange={(e) => setFirstName(e.target.value)}
-              placeholder='First Name'
+              placeholder='First Name (*)'
               value={firstName}
               required  
             ></input>
-          </div>
+              </div>
+              {
+                signUpErr && (
+                  <div className='signup-password-err'>
+                    {signUpErr.firstName}
+                  </div>
+                )      
+              }    
           <div className='signup-lastname signup-info'>
             <input
               type='text'
               name='lastname'
               onChange={e => setLastName(e.target.value)}
-              placeholder='Last Name'
+              placeholder='Last Name (*)'
               value={lastName}
               required  
             ></input>
-          </div>
+              </div>
+              {
+                signUpErr && (
+                  <div className='signup-password-err'>
+                    {signUpErr.lastName}
+                  </div>
+                )      
+              }    
           <div className='signup-email signup-info'>
             <input
               type='email'
               name='email'
               onChange={e => setEmailSignUp(e.target.value)}
-              placeholder='Email'
+              placeholder='Email (*)'
               value={emailSignUp}
               required
               />
           </div>
           {
-                signUpErr && (
-                  <div className='signup-email-err'>
-                    {signUpErr.email}
-                  </div>
+            signUpErr && (
+              <div className='signup-email-err'>
+                {signUpErr.email}
+              </div>
             )      
           }    
           <div className='signup-password signup-info'>
@@ -202,7 +226,7 @@ const LoginForm = ({onClose}) => {
               name='password'
               onChange={e => setPasswordSignUp(e.target.value)}
               value={passwordSignUp}
-              placeholder='Password'
+              placeholder='Password (*)'
               required  
               />
               </div>
@@ -211,8 +235,8 @@ const LoginForm = ({onClose}) => {
                   <div className='signup-password-err'>
                     {signUpErr.password}
                   </div>
-            )      
-          }    
+                )      
+              }    
           <div className='signup-button signup-info'>
             <button type='submit'>Sign Up</button>
           </div>

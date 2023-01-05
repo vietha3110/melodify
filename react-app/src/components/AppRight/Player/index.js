@@ -57,7 +57,7 @@ const Player = () => {
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-                <i className="fa-solid fa-shuffle" style={{cursor:"default"}}></i>
+                <i className="fa-solid fa-shuffle" style={{cursor:"default", color: "rgba(0, 0, 0, 0.5)"}}></i>
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
@@ -70,7 +70,7 @@ const Player = () => {
                     }
                 </div>
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
-                <i className="fa-solid fa-repeat"style={{cursor:"default"}}></i>
+                <i className="fa-solid fa-repeat"style={{cursor:"default", color: "rgba(0, 0, 0, 0.5)"}}></i>
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>
@@ -78,7 +78,7 @@ const Player = () => {
                 </div>
                 {
                     !song && 
-                    <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" ></i></div>
+                    <div className='player-lcd-nosong'><i className="fa-solid fa-headphones" style={{cursor:"default"}}></i></div>
                 }
                 <div className='player-lcd-meta'>
                     <div className='player-lcd-meta-title'>
