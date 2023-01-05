@@ -55,7 +55,7 @@ const PlaylistPage = () => {
                     <div className="listpage-title">
                         <div style={{marginRight:"15px"}}>
                             {
-                                (listId !== +playlistId || !playing) &&
+                                ((listId !== +playlistId || !playing) && playlists[+playlistId].playlist_songs.length > 0) &&
                                 <i className="fa-solid fa-play listpage-title-playbtn" onClick={onPlaylistClick(playlists[+playlistId])}/>
                             }
                             {

@@ -12,6 +12,7 @@ const LoginForm = ({onClose}) => {
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('')
+  const [signUpErr, setSignUpErr] = useState({})
   const dispatch = useDispatch();
   
   const regex = RegExp(
@@ -45,17 +46,25 @@ const LoginForm = ({onClose}) => {
 
   const onSignUp = async (e) => {
     e.preventDefault(); 
-    setErrors([]);
+    setSignUpErr({});
+    const errors = {}
     if (!emailSignUp.trim().match(regex)) {
-      setErrors(['Please provide a valid Email.']);
-      return;
+      errors.email = 'Please provide a valid Email.';
     }
 
-    if (passwordSignUp.length < 6) {
-      setErrors(["Password must be greater than 6 characters."]);
-      return;
+    if (emailSignUp.length > 255) {
+      errors.email = 'Email must be less than 255 characters.';
+    }
+
+    if (passwordSignUp.length < 6 || passwordSignUp.length > 255) {
+      errors.password = "Password must be greater than 6 characters and less than 255 characters.";
     }
     
+    if (Object.keys(errors).length > 0) {
+      setSignUpErr(errors);
+      return;
+  }
+
     const data = await dispatch(signUp(firstName,lastName,emailSignUp, passwordSignUp));
     if (data) {
       setErrors(data);
@@ -148,14 +157,7 @@ const LoginForm = ({onClose}) => {
           </div>
           <div className='signup-header-title'>
             <span>Create melodify account</span>
-          </div>
-        <div>
-              {
-                errors.map((error, ind) => (
-                <div key={ind} className='signup-error-label'>{error}</div>
-                ))
-              }
-        </div>
+          </div>        
         <div className='signup-content'>
           <div className='signup-firstname signup-info'>
             <input
@@ -187,6 +189,13 @@ const LoginForm = ({onClose}) => {
               required
               />
           </div>
+          {
+                signUpErr && (
+                  <div className='signup-email-err'>
+                    {signUpErr.email}
+                  </div>
+            )      
+          }    
           <div className='signup-password signup-info'>
             <input
               type='password'
@@ -196,7 +205,14 @@ const LoginForm = ({onClose}) => {
               placeholder='Password'
               required  
               />
-          </div>
+              </div>
+              {
+                signUpErr && (
+                  <div className='signup-password-err'>
+                    {signUpErr.password}
+                  </div>
+            )      
+          }    
           <div className='signup-button signup-info'>
             <button type='submit'>Sign Up</button>
           </div>
