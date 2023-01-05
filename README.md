@@ -32,8 +32,26 @@ Melodify is a music streaming website inspired by Apple Music. This website was 
 
 1. All users can play song on the website. 
 
-2. Logged-in user can create and modify(update, delete) playlist. 
+![HomePage](https://live.staticflickr.com/65535/52608402168_2e2517c500_b.jpg)
 
-3. Logged-in user can upload and remove song. 
+2. Log in & Sign up modal. 
 
-4. Play a playlist/ a song on player and adjust volume
+![Login](https://live.staticflickr.com/65535/52607922121_c74b05e409_b.jpg)
+
+![Signup](https://live.staticflickr.com/65535/52607420647_11cfa0e9a6_b.jpg)
+
+3. Logged-in user can create and modify(update, delete) playlist. 
+
+![PlaylistForm](https://live.staticflickr.com/65535/52608341910_3aedbda5ee_b.jpg)
+
+4. Logged-in user can upload and remove song. 
+
+![Upload](https://live.staticflickr.com/65535/52608422203_39ced0f793_h.jpg)
+
+![Delete](https://live.staticflickr.com/65535/52608422158_32760350dc_h.jpg)
+
+5. Play a playlist/ a song on player and adjust volume
+
+- When logged-in user plays their playlist:
+
+![Playlist](https://live.staticflickr.com/65535/52607405427_41bc7841aa_b.jpg)
