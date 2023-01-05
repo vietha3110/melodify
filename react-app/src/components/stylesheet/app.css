@@ -370,11 +370,7 @@
     color: rgba(0, 0, 0, 0.88);
 }
 
-.player-controls > .fa-shuffle {
-}
 
-.player-controls > .fa-backward {
-}
 
 .player-controls-play-pause {
     display: flex;
@@ -389,12 +385,6 @@
 
 .player-controls-play-pause > .fa-play {
     font-size: 24px;
-}
-
-.player-controls > .fa-forward {
-}
-
-.player-controls > .fa-repeat {
 }
 
 .player-lcd {
@@ -592,7 +582,6 @@
 
 .navbar-signin {
     cursor: pointer;
-    border: 1px solid #cccccc;
     background-color: #d60017;
     color: #fff;
     padding: 0.5rem;

@@ -57,8 +57,8 @@ const Player = () => {
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-                <i class="fa-solid fa-shuffle"></i>
-                <i class="fa-solid fa-backward" onClick={onBackwardClick} ></i>
+                <i className="fa-solid fa-shuffle" style={{cursor:"default"}}></i>
+                <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
                         playing &&
@@ -70,7 +70,7 @@ const Player = () => {
                     }
                 </div>
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
-                <i class="fa-solid fa-repeat"></i>
+                <i className="fa-solid fa-repeat"style={{cursor:"default"}}></i>
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>
@@ -107,11 +107,11 @@ const Player = () => {
                 <div className='player-volume-on-off'>
                     {
                         (volume === 0 || muted) &&
-                        <i class="fa-solid fa-volume-off" onClick={toggleUnMute}></i>
+                        <i className="fa-solid fa-volume-off" onClick={toggleUnMute}></i>
                     }
                     {
                         (volume !== 0 && !muted)  &&
-                        <i class="fa-solid fa-volume-high" onClick={toggleMute}></i>
+                        <i className="fa-solid fa-volume-high" onClick={toggleMute}></i>
                     }
                 </div>
                 <ReactSlider
