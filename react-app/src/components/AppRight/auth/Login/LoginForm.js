@@ -172,7 +172,10 @@ const LoginForm = ({onClose}) => {
           <div className='signup-header-title'>
             <span>Create melodify account</span>
             </div>  
-           
+            {errors &&
+              <div style={{color:'#d60017'}}>
+                {errors}
+            </div>}
         <div className='signup-content'>
           <div className='signup-firstname signup-info'>
             <input
