@@ -81,7 +81,7 @@ export const createSong = (song) => async dispatch => {
             if (data) {
                 throw data.error;
             } else {
-                throw ['An error occured. Please try again'];
+                return {'error': 'An error occured. Please try again'};
             }
         }
     } catch (err) {

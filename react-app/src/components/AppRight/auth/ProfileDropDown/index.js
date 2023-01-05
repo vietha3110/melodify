@@ -27,7 +27,7 @@ const ProfileDropdown = () => {
                 showMenu && 
                 <div className="profile-dropdown">
                     <div  className="profile-dropdown-info profile-hover">
-                        <span className="profile-dropdown-content">Hello, {user.firstName}</span>        
+                        <span className="profile-dropdown-content" style={{cursor:"default"}}>Hello, {user.firstName}</span>        
                     </div> 
                     <Link to='/upload' className="profile-dropdown-info profile-hover">
                           <span className="profile-dropdown-content">Upload  </span>

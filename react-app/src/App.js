@@ -11,6 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PlaylistPage from './components/AppRight/PlaylistPage';
 import UserPage from './components/AppRight/UserPage';
 import Footer from './components/Footer';
+import NotFound from './components/Notfound';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -91,6 +92,23 @@ function App() {
             </div>
           </>
         </ProtectedRoute>
+        <Route>
+          <>
+            <div className='main-app'>
+            <div className='app-left-container'>
+               <LeftBox/>
+            </div>
+            <div className='app-right-container'>
+                <>
+                  <NavBar />
+                  <NotFound/>
+                </>
+                <Footer/>
+              </div>
+             
+            </div>
+          </>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
