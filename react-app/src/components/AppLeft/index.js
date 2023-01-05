@@ -20,7 +20,7 @@ const LeftBox = () => {
                 <span style={{fontSize: '1.4rem'}}>Melodify</span>
             </Link>
             <div className='app-left-search'>
-                <span className="material-symbols-outlined" style={{padding: 8}}>
+                <span className="material-symbols-outlined" style={{padding: 8, cursor:"default"}}>
                     search
                 </span>
                 <span style={{ padding: 6}}>
@@ -29,11 +29,11 @@ const LeftBox = () => {
             </div>
             <div className='app-letf-listen'>
                 <img src={playMusic} className='playmusic-logo' alt='logo'/>
-                <span> Listen Now</span>
+                <span style={{cursor:"default"}}> Listen Now</span>
             </div>
             <div className='app-left-radio'>
                 <img src={radioIcon} className='radio-logo' alt='logo'/>
-                <span>Radio</span>
+                <span style={{cursor:"default"}}>Radio</span>
             </div>
             {user !== null &&  <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
                 <img src={createIcon} className='main-logo' alt='logo'/>

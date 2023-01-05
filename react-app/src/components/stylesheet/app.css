@@ -813,6 +813,21 @@
     border: 1px solid var(--melodify-banerDarkGray)
 }
 
+.uploadsong-btnupload > button {
+    background-color: var(--melodify-red-close);
+    color: #fff;
+    border: none;
+    height: 20px;
+    cursor: pointer;
+}
+
+.uploadsong-btnupload > button:disabled {
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: default;
+    height: 20px;
+    border: none;
+}
+
 .uploadsong-btnupload {
     margin-right: 1rem;
     display: flex;

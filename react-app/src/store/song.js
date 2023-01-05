@@ -34,12 +34,12 @@ export function removeSong(songId) {
     }
 }
 
-export function loadOneSong(song) {
-    return {
-        type: LOAD_ONESONG, 
-        song
-    }
-}
+// export function loadOneSong(song) {
+//     return {
+//         type: LOAD_ONESONG, 
+//         song
+//     }
+// }
 
 
 export const fetchAllSongs = () => async dispatch => {
@@ -89,14 +89,14 @@ export const createSong = (song) => async dispatch => {
     }
 }
 
-export const fetchOneSong = (song_id) => async dispatch => {
-    const response = await fetch(`/api/songs/${song_id}`);
-    if (response.ok) {
-        const data = await response.json(); 
-        dispatch(loadOneSong(data));
-        return data;
-    }
-}
+// export const fetchOneSong = (song_id) => async dispatch => {
+//     const response = await fetch(`/api/songs/${song_id}`);
+//     if (response.ok) {
+//         const data = await response.json(); 
+//         dispatch(loadOneSong(data));
+//         return data;
+//     }
+// }
 
 const songReducer = (state = {}, action) => {
     let newState;
@@ -114,10 +114,10 @@ const songReducer = (state = {}, action) => {
             newState.songs[action.song.id] = action.song;
             return newState;
         
-        case LOAD_ONESONG:
-            newState = deepCopy(state);
-            newState.singleSong = action.song;
-            return newState;
+        // case LOAD_ONESONG:
+        //     newState = deepCopy(state);
+        //     newState.singleSong = action.song;
+        //     return newState;
         default:
             return state;
     }
