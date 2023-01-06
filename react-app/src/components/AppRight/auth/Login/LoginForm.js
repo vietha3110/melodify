@@ -152,10 +152,10 @@ const LoginForm = ({onClose}) => {
             </div>
             </div>
           
-            <div onClick={changeContent} className="login-change-signup">
+            <div onClick={changeContent} className="login-change-signup"style={{marginTop: "10px"}}>
               <span>Create an account!</span>
               </div>
-              <div onClick={demoLogin} className="login-change-signup" style={{margin: "5px"}}>
+              <div onClick={demoLogin} className="login-change-signup" style={{margin: "10px"}}>
                   <span>Login as Demo User</span>
               </div>
                 </form>
