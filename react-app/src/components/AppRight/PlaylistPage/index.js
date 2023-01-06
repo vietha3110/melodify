@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 import WaveBox from "../../Box";
+import NotFound from "../../Notfound";
 
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
@@ -42,12 +43,15 @@ const PlaylistPage = () => {
         for (let song of playlist.playlist_songs) {
             list.push(song.song);
         }
-       
         dispatch(queueAction.updateList({ list, playlistId: playlist.id }));
-
     }
 
     return (
+        <>
+            {
+                playlists && !playlists[+playlistId] && 
+                <NotFound/>
+            }
         <div className="listpage-main" style={{
             width:"100%"}}>
             {playlists && playlists[+playlistId] &&
@@ -113,7 +117,8 @@ const PlaylistPage = () => {
             
                 </div >
             }
-        </div>
+            </div>
+            </>
     )
 }
 

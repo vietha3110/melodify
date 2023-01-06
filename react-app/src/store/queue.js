@@ -3,7 +3,8 @@ import * as playerAction from "./player";
 const UPDATE_LIST = "queue/updateList"; 
 const NEXT_SONG = "queue/nextSong"; 
 const PREVIOUS_SONG = "queue/previousSong";
-const PLAY_SONG_FROM_LIST = "queue/playSong"
+const PLAY_SONG_FROM_LIST = "queue/playSong";
+const DELETE_SONG = "queue/deleteSong";
 
 
 // accessing state in action creators - use GetState in thunks (Redux Thunk middleware )
@@ -12,7 +13,9 @@ export const updateList = (playlist) => async (dispatch) => {
         type: UPDATE_LIST,
         playlist,
     });
+
     dispatch(playerAction.loadSong(playlist.list[0]));
+    
 }
 
 export const nextSong = () => async (dispatch, getState) => {
@@ -42,7 +45,7 @@ export const previousSong = () => async (dispatch, getState) => {
     dispatch({
         type: PREVIOUS_SONG,
         previousSongId
-    })
+    });
     dispatch(playerAction.loadSong(state.list[previousSongId]));
 }
 
@@ -53,6 +56,28 @@ export const playSong = (songId) => async (dispatch, getState) => {
         type: PLAY_SONG_FROM_LIST, 
         songId
     })
+}
+
+export const deleteSong = (songId) => async (dispatch, getState) => {
+    const { list, currentPlayingSong } = getState().queue; 
+    if (currentPlayingSong === list.length - 1 && list[currentPlayingSong].id === songId) {
+        dispatch(playerAction.reset());
+        list.splice(currentPlayingSong, 1);
+        dispatch({
+            type: DELETE_SONG,
+            playlist: null
+        });
+        return;
+    }
+    for (let song of list) {
+        if (song.id === songId) {
+            let newList = list.filter(song => song.id !== songId);
+            dispatch({
+                type: DELETE_SONG, 
+                playlist: newList
+            });
+        } 
+    }
 }
 
 const initialState = {
@@ -85,6 +110,11 @@ const queueReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 currentPlayingSong: action.songId
+            }
+        case DELETE_SONG: 
+            return {
+                ...state,
+                list: action.playlist
             }
         default:
             return state;

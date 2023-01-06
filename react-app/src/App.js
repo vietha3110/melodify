@@ -85,6 +85,7 @@ function App() {
               </div>
               <div className='app-right-container'>
                 <>
+                <NavBar />
                 <UserPage />
                 <Footer />
                 </>

@@ -8,6 +8,7 @@ const SYNC_PROGRESS = "player/syncProgress";
 const SEEK = "player/seek";
 const ADJUST_VOLUME = "player/adjustVolume";
 const MUTE = "player/mute";
+const RESET = "player/reset";
 
 
 class AudioController {
@@ -69,6 +70,11 @@ class AudioController {
 const controller = new AudioController(document.getElementById('audio-control'));
 
 export const loadSong = (song) => async (dispatch) => {
+    if (!song) {
+        await dispatch(ended());
+        console.log('newlist', 'im running player')
+        return;
+    }
     controller.loadSource(`/api/songs/file/${song.id}`);
     controller.onEnded (async() => {
         await dispatch(ended());
@@ -141,9 +147,20 @@ export function mute(muted) {
     }
 }
 
-export function loadQueue(queue) {
-    
-}
+export function reset() {
+    // controller.pause();
+    controller.loadSource('');
+    return {
+        type: RESET, 
+     }
+ }
+
+// export const reset = () => async (dispatch) => {
+//     await dispatch(ended());
+//     dispatch({
+//         type: RESET
+//     })
+// }
 
 const initialState = {
     song: null,
@@ -201,6 +218,13 @@ const playerReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 muted: action.muted
+            }
+        case RESET: 
+            console.log('infor',action.infor);
+            return {
+                ...state, 
+                song: null,
+                playing: false,
             }
         default:
             return state;
