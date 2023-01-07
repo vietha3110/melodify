@@ -33,9 +33,13 @@ const PlaylistPage = () => {
         const songInfo = { id, playlist_id }
         dispatch(playlistAction.removeSongFromPlaylist(songInfo));
     };
-    const onSongClick = (song) => () => {
+    const onSongClick = (i, song) => () => {
         const songInfo = { id: song.songId, artistName: song.song.artistName, name: song.song.name};
-        dispatch(playerAction.loadSong(songInfo));
+        if (listId === +playlistId) {
+            dispatch(queueAction.playSong(i));
+        } else { 
+            dispatch(queueAction.updateList({ list: [songInfo] }));
+        }
     };
     
     const onPlaylistClick = (playlist) => (e) => {
@@ -87,7 +91,7 @@ const PlaylistPage = () => {
                                     <span>
                                         {i + 1}
                                     </span>
-                                    <span onClick={onSongClick(song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
+                                    <span onClick={onSongClick(i, song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
                                         {song.song.name}
                                     </span>
                                     <span className='listpage-content-name'>
