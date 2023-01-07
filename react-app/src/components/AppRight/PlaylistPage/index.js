@@ -32,6 +32,7 @@ const PlaylistPage = () => {
         const playlist_id = +playlistId;
         const songInfo = { id, playlist_id }
         dispatch(playlistAction.removeSongFromPlaylist(songInfo));
+        dispatch(queueAction.deleteSong(song.songId));
     };
     const onSongClick = (i, song) => () => {
         const songInfo = { id: song.songId, artistName: song.song.artistName, name: song.song.name};
