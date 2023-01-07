@@ -22,7 +22,9 @@ export const updateList = (playlist) => async (dispatch) => {
 
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
-   
+    if (state.list === null) {
+        return;
+    }
     if (state.currentPlayingSong === state.list.length - 1) {
         // dispatch(playerAction.ended());
         return;
