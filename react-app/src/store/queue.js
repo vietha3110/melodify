@@ -71,6 +71,15 @@ export const deleteSong = (songId) => async (dispatch, getState) => {
         });
         return;
     }
+    if (currentPlayingSong === 0 && list[currentPlayingSong].id === songId) {
+        let nextSongId = 1;
+        dispatch(playerAction.loadSong(list[nextSongId]));
+        list.splice(currentPlayingSong, 1);
+        dispatch({
+            type: DELETE_SONG, 
+            playlist: list
+        })
+    }
     for (let song of list) {
         if (song.id === songId) {
             let newList = list.filter(song => song.id !== songId);

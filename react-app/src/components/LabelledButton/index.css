@@ -1,0 +1,22 @@
+.labelled-button {
+    cursor: pointer;
+}
+
+.labelled-button * {
+    cursor: pointer;
+}
+
+.labelled-button:hover > .labelled-button-label {
+    display: block;
+}
+
+.labelled-button-label {
+    position: fixed;
+    background: #ffdade;
+    padding: 10px;
+    border-radius: 5px;
+    left: 100%;
+    top: 0px;
+    display: none;
+    z-index: 1000;
+}

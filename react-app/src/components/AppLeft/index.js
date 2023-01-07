@@ -8,6 +8,7 @@ import createIcon from './Playlist/createicon.png';
 import radioIcon from './Playlist/radioicon.png';
 import playMusic from './Playlist/playmusic.png'; 
 import { Link } from 'react-router-dom';
+import LabelledButton from '../LabelledButton';
 const LeftBox = () => {
     const [showModal, setShowModal] = useState(false); 
     const user = useSelector(state => state.session.user); 
@@ -27,14 +28,21 @@ const LeftBox = () => {
                     Search
                 </span>
             </div>
-            <div className='app-letf-listen'>
-                <img src={playMusic} className='playmusic-logo' alt='logo'/>
-                <span style={{cursor:"default"}}> Listen Now</span>
-            </div>
-            <div className='app-left-radio'>
-                <img src={radioIcon} className='radio-logo' alt='logo'/>
-                <span style={{cursor:"default"}}>Radio</span>
-            </div>
+            <LabelledButton
+                child={
+                    <div className='app-letf-listen'>
+                        <img src={playMusic} className='playmusic-logo' alt='logo' />
+                        <span> Listen Now</span>
+                    </div>
+                }
+            />
+            <LabelledButton
+                child={
+                    <div className='app-left-radio'>
+                        <img src={radioIcon} className='radio-logo' alt='logo' />
+                        <span>Radio</span>
+                    </div>}
+            />
             {user !== null &&  <div onClick={() => setShowModal(true)} className='app-left-make-playlistcomp'>
                 <img src={createIcon} className='main-logo' alt='logo'/>
                 <span>New Playlist</span>

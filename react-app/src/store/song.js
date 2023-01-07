@@ -98,7 +98,7 @@ export const createSong = (song) => async dispatch => {
 //     }
 // }
 
-const songReducer = (state = {}, action) => {
+const songReducer = (state = {songs: {}}, action) => {
     let newState;
     switch (action.type) {
         case LOAD_ALLSONGS: 
