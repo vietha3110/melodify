@@ -1126,6 +1126,12 @@ select:focus {
     height: 50px;
 }
 
+.userprofile-song-name:hover {
+    color: var(--melodify-red-close);
+    font-weight: 500;
+    cursor: pointer;
+}
+
 @keyframes quiet {
     25%{
         transform: scaleY(.6);

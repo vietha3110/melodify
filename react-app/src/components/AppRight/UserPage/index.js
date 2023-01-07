@@ -62,7 +62,7 @@ const UserPage = () => {
                     {
                         songs && Object.values(songs).map((song, i) => (
                             <div key={i} className="userprofile-song-content userprofile-content">
-                                <span onClick={onSongClick(song)}>
+                                <span onClick={onSongClick(song)} className="userprofile-song-name">
                                     {song.name}
                                 </span>
                                 <span>
