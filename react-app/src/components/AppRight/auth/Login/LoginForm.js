@@ -51,11 +51,19 @@ const LoginForm = ({onClose}) => {
     const errors = {}
 
     if (firstName.length > 50) {
-      errors.firstName = 'First name must be less than 50 characters.'
+      errors.firstName = 'First name must be less than 50 characters.';
+    }
+
+    if (firstName.trim() === "") {
+      errors.firstName = 'First name can not be blank.';
+    }
+
+    if (lastName.trim() === "") {
+      errors.lastName = 'Last name can not be blank.';
     }
 
     if (lastName.length > 50) {
-      errors.lastName = 'Last name must be less than 50 characters.'
+      errors.lastName = 'Last name must be less than 50 characters.';
     }
     
     if (!emailSignUp.trim().match(regex)) {
@@ -71,7 +79,7 @@ const LoginForm = ({onClose}) => {
     }
 
     if (passwordSignUp !== confirmedPassword) {
-      errors.confirmedPassword = "Password must match!"
+      errors.confirmedPassword = "Password must match!";
     }
     
     if (Object.keys(errors).length > 0) {

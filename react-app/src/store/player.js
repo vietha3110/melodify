@@ -72,7 +72,6 @@ const controller = new AudioController(document.getElementById('audio-control'))
 export const loadSong = (song) => async (dispatch) => {
     if (!song) {
         await dispatch(ended());
-        console.log('newlist', 'im running player')
         return;
     }
     controller.loadSource(`/api/songs/file/${song.id}`);
@@ -220,7 +219,6 @@ const playerReducer = (state = initialState, action) => {
                 muted: action.muted
             }
         case RESET: 
-            console.log('infor',action.infor);
             return {
                 ...state, 
                 song: null,
