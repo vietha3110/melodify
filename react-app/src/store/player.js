@@ -71,7 +71,8 @@ const controller = new AudioController(document.getElementById('audio-control'))
 
 export const loadSong = (song) => async (dispatch) => {
     if (!song) {
-        await dispatch(ended());
+        controller.loadSource(``);
+        dispatch(reset());
         return;
     }
     controller.loadSource(`/api/songs/file/${song.id}`);

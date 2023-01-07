@@ -1,20 +1,27 @@
 import * as playlistAction from '../../../../../store/playlist';
 import { useDispatch } from 'react-redux';
-import { useState} from 'react';
+import { useState } from 'react';
+import * as queueAction from '../../../../../store/queue';
+import { useSelector } from 'react-redux';
 
 
 const DeletePlaylistForm = ({ playlist, onClose }) => {
     const dispatch = useDispatch();
     const [validationError, setValidationError] = useState(''); 
+    const queue = useSelector(state => state.queue);
     
     const handleDeletebtn = async (e) => {
         e.stopPropagation();
         setValidationError('');
+       
         const response = await dispatch(playlistAction.deletePlaylist(playlist.id))
             .catch(async (err) => {
                 return setValidationError(err[0]);
             });
         if (response) {
+            if (playlist.id === queue.listId) {
+                dispatch(queueAction.updateList({list: []}))
+            }
             onClose();
         }
     };

@@ -13,9 +13,11 @@ export const updateList = (playlist) => async (dispatch) => {
         type: UPDATE_LIST,
         playlist,
     });
-
-    dispatch(playerAction.loadSong(playlist.list[0]));
-    
+    if (playlist.list.length === 0) {
+        dispatch(playerAction.reset());
+    } else {
+        dispatch(playerAction.loadSong(playlist.list[0]));
+    }
 }
 
 export const nextSong = () => async (dispatch, getState) => {
