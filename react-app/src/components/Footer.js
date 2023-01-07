@@ -1,4 +1,3 @@
-
 const Footer = () => {
     return (
         <div className="footer-main"> 
@@ -8,10 +7,10 @@ const Footer = () => {
                 </span>
             </div>
             <div className="footer-link">
-                <a href="https://www.linkedin.com/in/havietng/" style={{margin: "2px 2px 0px 2px", textDecoration:"none", color:"rgba(0, 0, 0, 0.5)"}}>
+                <a href="https://www.linkedin.com/in/havietng/" style={{margin: "2px 2px 0px 2px", textDecoration:"none", color:"rgba(0, 0, 0, 0.5)"}} target="_blank">
                     Linkedin
                 </a>
-                <a href="https://github.com/vietha3110" style={{margin: "2px 2px 0px 2px", textDecoration:"none", color:"rgba(0, 0, 0, 0.5)"}}>
+                <a href="https://github.com/vietha3110" style={{margin: "2px 2px 0px 2px", textDecoration:"none", color:"rgba(0, 0, 0, 0.5)"}} target="_blank">
                     Github
                 </a>
             </div>

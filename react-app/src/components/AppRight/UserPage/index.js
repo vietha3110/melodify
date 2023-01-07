@@ -1,6 +1,7 @@
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userSongsAction from "../../../store/userSong";
+import * as queueAction from "../../../store/queue";
 import userProfile from "./userProfile.png";
 
 const UserPage = () => {
@@ -14,8 +15,13 @@ const UserPage = () => {
 
     const deleteSong = (i, song) => (e) => {
         e.stopPropagation();
+        dispatch(queueAction.deleteSong(song.id));
         dispatch(userSongsAction.deleteSong(song.id));
     }
+
+    const onSongClick = (song) => () => {
+        dispatch(queueAction.updateList({ list: [song]}));
+    };
 
     return (
         <div className="userprofile-container">
@@ -49,14 +55,14 @@ const UserPage = () => {
                                 Artist
                             </span>
                             <span>
-                             
+
                             </span>
                         </div>
                     }
                     {
                         songs && Object.values(songs).map((song, i) => (
                             <div key={i} className="userprofile-song-content userprofile-content">
-                                <span>
+                                <span onClick={onSongClick(song)} className="userprofile-song-name">
                                     {song.name}
                                 </span>
                                 <span>

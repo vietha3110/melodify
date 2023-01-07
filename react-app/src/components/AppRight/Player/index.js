@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect} from 'react';
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
+import LabelledButton from '../../LabelledButton';
 
 
 const Player = () => {
@@ -57,7 +58,9 @@ const Player = () => {
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-                <i className="fa-solid fa-shuffle" style={{cursor:"default", color: "rgba(0, 0, 0, 0.5)"}}></i>
+                <LabelledButton
+                    child={<i className="fa-solid fa-shuffle" style={{color: "rgba(0, 0, 0, 0.5)" }}></i>}
+                />
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
@@ -70,7 +73,9 @@ const Player = () => {
                     }
                 </div>
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
-                <i className="fa-solid fa-repeat"style={{cursor:"default", color: "rgba(0, 0, 0, 0.5)"}}></i>
+                <LabelledButton
+                    child={<i className="fa-solid fa-repeat" style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }}></i>}
+                />
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>

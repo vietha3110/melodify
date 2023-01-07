@@ -3,7 +3,8 @@ import * as playerAction from "./player";
 const UPDATE_LIST = "queue/updateList"; 
 const NEXT_SONG = "queue/nextSong"; 
 const PREVIOUS_SONG = "queue/previousSong";
-const PLAY_SONG_FROM_LIST = "queue/playSong"
+const PLAY_SONG_FROM_LIST = "queue/playSong";
+const DELETE_SONG = "queue/deleteSong";
 
 
 // accessing state in action creators - use GetState in thunks (Redux Thunk middleware )
@@ -12,12 +13,18 @@ export const updateList = (playlist) => async (dispatch) => {
         type: UPDATE_LIST,
         playlist,
     });
-    dispatch(playerAction.loadSong(playlist.list[0]));
+    if (playlist.list.length === 0) {
+        dispatch(playerAction.reset());
+    } else {
+        dispatch(playerAction.loadSong(playlist.list[0]));
+    }
 }
 
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
-   
+    if (state.list === null) {
+        return;
+    }
     if (state.currentPlayingSong === state.list.length - 1) {
         // dispatch(playerAction.ended());
         return;
@@ -42,17 +49,48 @@ export const previousSong = () => async (dispatch, getState) => {
     dispatch({
         type: PREVIOUS_SONG,
         previousSongId
-    })
+    });
     dispatch(playerAction.loadSong(state.list[previousSongId]));
 }
 
-export const playSong = (songId) => async (dispatch, getState) => {
-    const song = getState().queue.list[songId];
+export const playSong = (index) => async (dispatch, getState) => {
+    const song = getState().queue.list[index];
     dispatch(playerAction.loadSong(song));
     dispatch({
         type: PLAY_SONG_FROM_LIST, 
-        songId
+        index
     })
+}
+
+export const deleteSong = (songId) => async (dispatch, getState) => {
+    const { list, currentPlayingSong } = getState().queue; 
+    if (currentPlayingSong === list.length - 1 && list[currentPlayingSong].id === songId) {
+        dispatch(playerAction.reset());
+        list.splice(currentPlayingSong, 1);
+        dispatch({
+            type: DELETE_SONG,
+            playlist: null
+        });
+        return;
+    }
+    if (currentPlayingSong === 0 && list[currentPlayingSong].id === songId) {
+        let nextSongId = 1;
+        dispatch(playerAction.loadSong(list[nextSongId]));
+        list.splice(currentPlayingSong, 1);
+        dispatch({
+            type: DELETE_SONG, 
+            playlist: list
+        })
+    }
+    for (let song of list) {
+        if (song.id === songId) {
+            let newList = list.filter(song => song.id !== songId);
+            dispatch({
+                type: DELETE_SONG, 
+                playlist: newList
+            });
+        } 
+    }
 }
 
 const initialState = {
@@ -84,7 +122,12 @@ const queueReducer = (state = initialState, action) => {
         case PLAY_SONG_FROM_LIST: 
             return {
                 ...state, 
-                currentPlayingSong: action.songId
+                currentPlayingSong: action.index
+            }
+        case DELETE_SONG: 
+            return {
+                ...state,
+                list: action.playlist
             }
         default:
             return state;

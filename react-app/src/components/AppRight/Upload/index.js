@@ -124,10 +124,10 @@ const UploadSong = () => {
                 </div>
                 <div className="uploadsong-content">
                     <div className="uploadsong-name uploadinfo">
-                        <label> Title:</label>
+                        <label> Title <span style={{color:"red", fontSize:"1rem"}}>*</span></label>
                         <input
                             type="text"
-                            placeholder="Title must be less than 100 characters(required *)"
+                            placeholder="Title length must be between 1 and 100 characters."
                             value={name}
                             onChange={e => setName(e.target.value)}
                             required
@@ -142,7 +142,7 @@ const UploadSong = () => {
                         }
                     </div>
                     <div className="uploadsong-genre uploadinfo">
-                        <label>Genre: </label>
+                        <label>Genre <span style={{color:"red", fontSize:"1rem"}}>*</span> </label>
                         <select onChange={handleSelect} style={{padding: "5px", margin: "5px 5px 0px 0px"}}>
                             <option value="pop">Pop</option>
                             <option value="rnb">R&B</option>
@@ -154,10 +154,10 @@ const UploadSong = () => {
 
                     </div>
                     <div className="uploadsong-artist uploadinfo">
-                        <label>Artist: </label>
+                        <label>Artist <span style={{color:"red", fontSize:"1rem"}}>*</span> </label>
                         <input
                             type="text"
-                            placeholder="Artist name must be less than 100 characters (required *)"
+                            placeholder="Artist name length must be between 1 and 100 characters."
                             value={artist_name}
                             onChange={e => setArtistName(e.target.value)}
                             required
@@ -189,8 +189,13 @@ const UploadSong = () => {
                             <div></div>
                         }
                     <div className="uploadsong-btnupload">
+                        {
+                            error && (error.type || error.size) &&
+                            <i className="fa-solid fa-circle-exclamation"></i>
+                        }
                         <button type="submit" disabled={!isSubmitEnabled}>{submitStatus === 'SUBMITTING' ? 'Uploading' : 'Upload'}</button>
                     </div>
+                    <span style={{paddingLeft:"15px", fontSize:"0.8rem"}}>* : required</span>
                 </div>
             </form>
             <div>

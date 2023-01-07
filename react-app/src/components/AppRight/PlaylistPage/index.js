@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 import WaveBox from "../../Box";
+import NotFound from "../../Notfound";
 
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
@@ -31,10 +32,15 @@ const PlaylistPage = () => {
         const playlist_id = +playlistId;
         const songInfo = { id, playlist_id }
         dispatch(playlistAction.removeSongFromPlaylist(songInfo));
+        dispatch(queueAction.deleteSong(song.songId));
     };
-    const onSongClick = (song) => () => {
+    const onSongClick = (i, song) => () => {
         const songInfo = { id: song.songId, artistName: song.song.artistName, name: song.song.name};
-        dispatch(playerAction.loadSong(songInfo));
+        if (listId === +playlistId) {
+            dispatch(queueAction.playSong(i));
+        } else { 
+            dispatch(queueAction.updateList({ list: [songInfo] }));
+        }
     };
     
     const onPlaylistClick = (playlist) => (e) => {
@@ -42,12 +48,15 @@ const PlaylistPage = () => {
         for (let song of playlist.playlist_songs) {
             list.push(song.song);
         }
-       
         dispatch(queueAction.updateList({ list, playlistId: playlist.id }));
-
     }
 
     return (
+        <>
+            {
+                playlists && !playlists[+playlistId] && 
+                <NotFound/>
+            }
         <div className="listpage-main" style={{
             width:"100%"}}>
             {playlists && playlists[+playlistId] &&
@@ -83,7 +92,7 @@ const PlaylistPage = () => {
                                     <span>
                                         {i + 1}
                                     </span>
-                                    <span onClick={onSongClick(song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
+                                    <span onClick={onSongClick(i, song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
                                         {song.song.name}
                                     </span>
                                     <span className='listpage-content-name'>
@@ -113,7 +122,8 @@ const PlaylistPage = () => {
             
                 </div >
             }
-        </div>
+            </div>
+            </>
     )
 }
 
