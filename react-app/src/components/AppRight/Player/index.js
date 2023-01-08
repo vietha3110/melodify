@@ -4,7 +4,7 @@ import { useEffect} from 'react';
 import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 import LabelledButton from '../../LabelledButton';
-
+import imgBox from '../Home/imgBox.png';
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
@@ -30,10 +30,6 @@ const Player = () => {
 
         dispatch(playerAction.play());
     };
-
-    // const onSliderChange = (time) => {
-    //     dispatch(playerAction.seek(time));
-    // };
 
     const onChangeVolume = (volume) => {
         dispatch(playerAction.adjustVolume(volume));
@@ -79,7 +75,7 @@ const Player = () => {
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>
-                    <img src='https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/e6/14/14/e6141444-6597-4c3a-7ad1-86304528acf4/22UMGIM45569.rgb.jpg/88x88bb.jpg' alt='icon'/>
+                    <img src={imgBox} alt='icon' style={{boxShadow: "0 1px 1px rgb(0 0 0 / 1%), 0 2px 2px rgb(0 0 0 / 1%), 0 4px 4px rgb(0 0 0 / 2%), 0 8px 8px rgb(0 0 0 / 3%), 0 14px 14px rgb(0 0 0 / 3%)"}}/>
                 </div>
                 {
                     !song && 
