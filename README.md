@@ -37,7 +37,7 @@ One of the unique features of the app is the ability to convert music files into
 
 ![Login](https://live.staticflickr.com/65535/52607922121_c74b05e409_b.jpg)
 
-![Signup](https://live.staticflickr.com/65535/52607420647_11cfa0e9a6_b.jpg)
+![Signup](https://live.staticflickr.com/65535/52614227178_77966f9320_b.jpg)
 
 3. Logged-in user can create and modify(update, delete) playlist. 
 
@@ -54,3 +54,9 @@ One of the unique features of the app is the ability to convert music files into
 - When logged-in user plays their playlist:
 
 ![Playlist](https://live.staticflickr.com/65535/52607405427_41bc7841aa_b.jpg)
+
+## Coming features: 
+- Player: Repeated & shuffle playlist
+- Like songs.
+- Search.
+- Recommend. 
