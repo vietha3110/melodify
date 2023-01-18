@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, make_response, send_file
+from flask import jsonify
 from flask_login import login_required, current_user
 from ..models import db, Song, File
 from ..forms import UploadSongForm
@@ -121,3 +122,9 @@ def get_songinfo(song_id):
                     'statusCode': 404
                 }
             }, 404
+
+@song_routes.route('/search/<string:keyword>')
+def search_music(keyword): 
+    result = [{'song': item.name, 'artist': item.artist_name, 'id': item.id} for item in Song.query.filter(Song.name.ilike(f'%{keyword}%') | Song.artist_name.ilike(
+    f'%{keyword}%')).order_by(Song.name.startswith(keyword), Song.artist_name.startswith(keyword)).limit(10)]
+    return jsonify(result)
