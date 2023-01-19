@@ -32,6 +32,12 @@ const Home = () => {
     };
 
     return (
+        <>
+            <div className='home-label' style={{margin: "2rem", borderBottom: "1px solid #cccccc"}}>
+                <h1>
+                    BROWSE
+                </h1>
+            </div>
         <div className="home-container">
             <div className='home-song'>
                 {songs && Object.values(songs).map(
@@ -67,7 +73,8 @@ const Home = () => {
                     )
                 )}
             </div>
-        </div>
+            </div>
+        </>
     )
 }
 
