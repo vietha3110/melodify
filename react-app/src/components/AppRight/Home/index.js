@@ -32,49 +32,49 @@ const Home = () => {
     };
 
     return (
-        <>
-            <div className='home-label' style={{margin: "2rem", borderBottom: "1px solid #cccccc"}}>
-                <h1>
-                    BROWSE
-                </h1>
+        <div>
+            <div className='home-label' style={{margin: "2rem 2rem 0rem 2rem"}}>
+                <span style={{fontSize: "1.5rem", fontWeight: "500"}}>
+                    New music
+                </span>
             </div>
-        <div className="home-container">
-            <div className='home-song'>
-                {songs && Object.values(songs).map(
-                    (song, i) => (
-                        <div key={i} className="song-box" >
-                            <div className='song-box-img'>
-                                <img src={imgBox} alt='icon'/>
-                                    <div className='song-box-playbutton' onClick={onSongClick(song)}>
-                                        <i className="fa-solid fa-play" style={{marginLeft: "0.1rem"}}></i>
-                                    </div>
-                                {user !== null && playlists && Object.keys(playlists).length > 0 &&
-                                    <div>
-                                        <div className='song-box-addbutton' onClick={addSongClick(i)}>
-                                            <i className="fa-solid fa-ellipsis"></i>
+            <div className="home-container">
+                <div className='home-song'>
+                    {songs && Object.values(songs).map(
+                        (song, i) => (
+                            <div key={i} className="song-box" >
+                                <div className='song-box-img'>
+                                    <img src={imgBox} alt='icon'/>
+                                        <div className='song-box-playbutton' onClick={onSongClick(song)}>
+                                            <i className="fa-solid fa-play" style={{marginLeft: "0.1rem"}}></i>
                                         </div>
-                                        {openings[i] &&
-                                            <PlaylistSong i={i} song={song} onClose={ ()=> setOpenings(true)} />
-                                        }
+                                    {user !== null && playlists && Object.keys(playlists).length > 0 &&
+                                        <div>
+                                            <div className='song-box-addbutton' onClick={addSongClick(i)}>
+                                                <i className="fa-solid fa-ellipsis"></i>
+                                            </div>
+                                            {openings[i] &&
+                                                <PlaylistSong i={i} song={song} onClose={ ()=> setOpenings(true)} />
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                                <div className='song-box-info'>
+                                    <div className='song-box-info-title'>
+                                        <span>{song.name}</span>
                                     </div>
-                                }
-                            </div>
-                            <div className='song-box-info'>
-                                <div className='song-box-info-title'>
-                                    <span>{song.name}</span>
-                                </div>
-                                <div className='song-box-info-artist'>
-                                    <span>
-                                        {song.artistName}
-                                    </span>
+                                    <div className='song-box-info-artist'>
+                                        <span>
+                                            {song.artistName}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                )}
+                        )
+                    )}
+                </div>
             </div>
-            </div>
-        </>
+        </div>
     )
 }
 

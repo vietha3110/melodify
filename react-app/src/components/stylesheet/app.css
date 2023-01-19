@@ -857,7 +857,7 @@ select:focus {
 
 .home-song {
     width: 100%;
-    margin: 2rem;
+    margin: 0rem 0rem 0rem 2rem;
     display: grid;
     grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
     gap: 2rem;
