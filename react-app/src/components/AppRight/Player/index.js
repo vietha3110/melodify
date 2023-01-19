@@ -51,6 +51,10 @@ const Player = () => {
         dispatch(queueAction.previousSong());
     }
 
+    const repeatClick = () => {
+        dispatch(queueAction.repeatList());
+    }
+
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
@@ -69,9 +73,9 @@ const Player = () => {
                     }
                 </div>
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
-                <LabelledButton
-                    child={<i className="fa-solid fa-repeat" style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }}></i>}
-                />
+                
+                    <i className="fa-solid fa-repeat"  onClick={repeatClick}></i>
+               {/* style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }} */}
             </div>
             <div className='player-lcd'>
                 <div className='player-lcd-artwork'>

@@ -5,6 +5,7 @@ const NEXT_SONG = "queue/nextSong";
 const PREVIOUS_SONG = "queue/previousSong";
 const PLAY_SONG_FROM_LIST = "queue/playSong";
 const DELETE_SONG = "queue/deleteSong";
+const REPEAT_LIST = "queue/repeatList";
 
 
 // accessing state in action creators - use GetState in thunks (Redux Thunk middleware )
@@ -22,11 +23,14 @@ export const updateList = (playlist) => async (dispatch) => {
 
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
+    // console.log('jojoo', state)
     if (state.list === null) {
         return;
     }
-    if (state.currentPlayingSong === state.list.length - 1) {
-        // dispatch(playerAction.ended());
+    if (state.currentPlayingSong === state.list.length - 1 && state.repeated === true) {
+        dispatch(updateList(state));
+        return;
+    } else if (state.currentPlayingSong === state.list.length - 1 && state.repeated === false) {
         return;
     } else {
         const nextSongId = (state.currentPlayingSong + 1) % state.list.length;
@@ -93,6 +97,13 @@ export const deleteSong = (songId) => async (dispatch, getState) => {
     }
 }
 
+export const repeatList = () =>  {
+    return({
+        type: REPEAT_LIST, 
+        repeatList: true
+    })
+}
+
 const initialState = {
     list: null,
     currentPlayingSong: 0,
@@ -107,7 +118,7 @@ const queueReducer = (state = initialState, action) => {
                 list: action.playlist.list,
                 currentPlayingSong: 0,
                 repeated: false,
-                listId: action.playlist.playlistId
+                listId: action.playlist.listId
             }
         case NEXT_SONG: 
             return {
@@ -129,6 +140,12 @@ const queueReducer = (state = initialState, action) => {
                 ...state,
                 list: action.playlist
             }
+        case REPEAT_LIST: 
+            return {
+                ...state, 
+                repeated: action.repeatList
+            }
+
         default:
             return state;
     }
