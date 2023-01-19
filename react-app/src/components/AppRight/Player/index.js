@@ -8,6 +8,7 @@ import imgBox from '../Home/imgBox.png';
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
+    const { repeated } = useSelector(state => state.queue);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -73,8 +74,15 @@ const Player = () => {
                     }
                 </div>
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
-                
-                    <i className="fa-solid fa-repeat"  onClick={repeatClick}></i>
+                {
+                    repeated && 
+                    <i className="fa-solid fa-repeat" style={{color: "rgba(0, 0, 0, 0.88)"}} onClick={repeatClick}></i>
+                    
+                }
+                {
+                    !repeated &&
+                    <i className="fa-solid fa-repeat" onClick={repeatClick}></i>
+                }
                {/* style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }} */}
             </div>
             <div className='player-lcd'>
