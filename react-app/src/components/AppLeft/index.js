@@ -9,6 +9,7 @@ import radioIcon from './Playlist/radioicon.png';
 import playMusic from './Playlist/playmusic.png'; 
 import { Link } from 'react-router-dom';
 import LabelledButton from '../LabelledButton';
+import Search from './Search';
 const LeftBox = () => {
     const [showModal, setShowModal] = useState(false); 
     const user = useSelector(state => state.session.user); 
@@ -20,14 +21,15 @@ const LeftBox = () => {
                 <img src={logo} className='main-logo' alt='logo'/>
                 <span style={{fontSize: '1.4rem'}}>Melodify</span>
             </Link>
-            <div className='app-left-search' style={{cursor:"default"}}>
+            {/* <div className='app-left-search' style={{cursor:"default"}}>
                 <span className="material-symbols-outlined" style={{padding: 8, cursor:"default"}}>
                     search
                 </span>
                 <span style={{ padding: 6}}>
                     Search
                 </span>
-            </div>
+            </div> */}
+            <Search/>
             <LabelledButton
                 child={
                     <div className='app-letf-listen'>

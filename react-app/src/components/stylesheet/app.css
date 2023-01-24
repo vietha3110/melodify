@@ -49,8 +49,37 @@
     height: 30px;
     color: #cccccc;
     font-size: 0.85rem;
-
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: #fff;
 }
+.search-input {
+    width: 100%;
+    height: 90%;
+}
+
+.search-result {
+    position: absolute;
+    top: 36px;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    z-index: 9999;
+    background-color: hsla(0,0%,96%,.72);
+    backdrop-filter: blur(60px) saturate(210%);
+    color: rgba(0,0,0,.88);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.2),0 8px 40px rgba(0,0,0,.25);
+    border: 0.5px solid rgba(0,0,0,.2);
+    border-radius: 9px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 302px;
+}
+
+
+
+
 .main-logo {
     width: 1.5rem;
     height: 1.5rem;
