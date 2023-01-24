@@ -2,7 +2,7 @@
     display: flex;
     align-items: stretch;
     margin: 0px;
-    min-height: 1400px;
+    min-height: 1000px;
 }
 
 .app-left-container {
@@ -367,6 +367,9 @@
     flex-grow: 1;
     /* width: 774px; */
     position: relative;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+
 }
 
 .navbar-container {
@@ -1265,4 +1268,52 @@ animation-name: quiet;
     display: flex;
     justify-content: center;
     padding: 5px;
+}
+
+.hireme{
+    background-color: #d60017;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    /* position:absolute;
+    left:0;
+    bottom:0;
+    right:0; */
+    display: flex;
+    flex-direction: row;
+}
+.hireme-text {
+    margin:20px 20px 20px 45px;
+    flex-grow: 1;
+}
+
+.hireme-text-headline {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.23;
+}
+
+.hireme-text-subhead {
+    margin-top: 8px;
+    color: hsla(0,0%,100%,.8);
+    font-size: 14px; 
+}
+.hireme-btn {
+    display: flex;
+    align-items: center;
+    flex-grow: 0.2;
+    justify-content: center;
+}
+.hireme-btn > button {
+    letter-spacing: 0;
+    border-radius: 4px;
+    height: 32px;
+    min-width: 125px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: unset;
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px rgb(0 0 0 / 6%);
+    border: #fff;
 }
