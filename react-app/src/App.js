@@ -12,7 +12,7 @@ import PlaylistPage from './components/AppRight/PlaylistPage';
 import UserPage from './components/AppRight/UserPage';
 import Footer from './components/Footer';
 import NotFound from './components/Notfound';
-import HireMe from './components/Hirebanner';
+import HireMe from './components/Hirebanner/Hirebanner';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

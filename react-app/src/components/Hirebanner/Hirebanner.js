@@ -1,4 +1,12 @@
+import Resume from "./Resume";
+import { Modal } from "../Modal";
+import { useState } from "react";
+
 const HireMe = () => {
+    const [showModal, setShowModal] = useState(false);
+    const openResume = () => {
+        setShowModal(true);
+    }
     return (
         <div className="hireme">
             <div className="hireme-text">
@@ -10,9 +18,16 @@ const HireMe = () => {
                 </div>
             </div>
             <div className="hireme-btn">
-                <button>
+                <button onClick={openResume}>
                     Hire Ha! 
                 </button>
+                {
+                    showModal && (
+                        <Modal>
+                            <Resume onClose={() => setShowModal(false)}/>
+                        </Modal>
+                    )
+                }
             </div>
         </div>
     )
