@@ -25,10 +25,10 @@ const Resume = ({ onClose }) => {
                 </div>
                 <div className="resume-button">
                     <button className="resume-btn ha-resume">
-                        Resume
+                        <a href="https://drive.google.com/file/d/1jXf9cUKAinLdZH-RrtRQyBftGR0gruvo/view" target="_blank" style={{color: "black"}}>Resume</a>
                     </button>
                     <button  className="resume-btn ha-porfolio">
-                        Portfolio
+                        <a href="https://vietha3110.github.io/#projects" target="_blank" style={{color: "#fff"}}>Portfolio</a>
                     </button>
                 </div>
             </div>

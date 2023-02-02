@@ -1316,6 +1316,7 @@ animation-name: quiet;
     color: #000;
     box-shadow: 0 0 20px rgb(0 0 0 / 6%);
     border: #fff;
+    cursor: pointer;
 }
 
 .resume-container {
@@ -1364,35 +1365,23 @@ animation-name: quiet;
     background-color: #da0f47;
     color: #fff;
 }
-
+.ha-resume > a, .ha-porfolio > a {
+    text-decoration: none;
+}
 .resume-headline-icon {
-    /* animation: waving-hand 0.5s infinite;
-    transform-origin: 70% 70%; */
-    animation-name: waving-hand;  /* Refers to the name of your @keyframes element below */
-    animation-duration: 2.5s;        /* Change to speed up or slow down */
-    animation-iteration-count: infinite;  /* Never stop waving :) */
-    transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+    animation-name: waving-hand;  
+    animation-duration: 1s;        
+    animation-iteration-count: infinite;  
+    transform-origin: 70% 70%;      
     display: inline-block;
 }
 
-/* @keyframes waving-hand {
-    0%,100% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-
-    50% {
-        -webkit-transform: rotate(30deg);
-        transform: rotate(30deg)
-    }
-} */
 @keyframes waving-hand {
     0% { transform: rotate( 0.0deg) }
-   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   10% { transform: rotate(14.0deg) } 
    20% { transform: rotate(-8.0deg) }
    30% { transform: rotate(14.0deg) }
    40% { transform: rotate(-4.0deg) }
    50% { transform: rotate(10.0deg) }
-   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
   100% { transform: rotate( 0.0deg) }
 }
