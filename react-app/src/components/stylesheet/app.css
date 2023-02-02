@@ -2,7 +2,7 @@
     display: flex;
     align-items: stretch;
     margin: 0px;
-    min-height: 1400px;
+    min-height: 1000px;
 }
 
 .app-left-container {
@@ -367,6 +367,9 @@
     flex-grow: 1;
     /* width: 774px; */
     position: relative;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+
 }
 
 .navbar-container {
@@ -1265,4 +1268,120 @@ animation-name: quiet;
     display: flex;
     justify-content: center;
     padding: 5px;
+}
+
+.hireme{
+    background-color: #d60017;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    /* position:absolute;
+    left:0;
+    bottom:0;
+    right:0; */
+    display: flex;
+    flex-direction: row;
+}
+.hireme-text {
+    margin:20px 20px 20px 45px;
+    flex-grow: 1;
+}
+
+.hireme-text-headline {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.23;
+}
+
+.hireme-text-subhead {
+    margin-top: 8px;
+    color: hsla(0,0%,100%,.8);
+    font-size: 14px; 
+}
+.hireme-btn {
+    display: flex;
+    align-items: center;
+    flex-grow: 0.2;
+    justify-content: center;
+}
+.hireme-btn > button {
+    letter-spacing: 0;
+    border-radius: 4px;
+    height: 32px;
+    min-width: 125px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: unset;
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px rgb(0 0 0 / 6%);
+    border: #fff;
+    cursor: pointer;
+}
+
+.resume-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+    margin: 20px;
+}
+
+.resume-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resume-main-content {
+    width: 80%;
+    color: #86868b;
+    font-size: 12px;
+}
+
+.resume-button {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.resume-btn {
+    background-color: transparent;
+    border: none;
+    margin: 10px;
+    height: 30px;
+    width: 80px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ha-resume {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.ha-porfolio {
+    background-color: #da0f47;
+    color: #fff;
+}
+.ha-resume > a, .ha-porfolio > a {
+    text-decoration: none;
+}
+.resume-headline-icon {
+    animation-name: waving-hand;  
+    animation-duration: 1s;        
+    animation-iteration-count: infinite;  
+    transform-origin: 70% 70%;      
+    display: inline-block;
+}
+
+@keyframes waving-hand {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) } 
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+  100% { transform: rotate( 0.0deg) }
 }

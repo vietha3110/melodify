@@ -12,6 +12,7 @@ import PlaylistPage from './components/AppRight/PlaylistPage';
 import UserPage from './components/AppRight/UserPage';
 import Footer from './components/Footer';
 import NotFound from './components/Notfound';
+import HireMe from './components/Hirebanner/Hirebanner';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -31,18 +32,18 @@ function App() {
         <Route exact path='/'>
           <>
             <div className='main-app'>
-            <div className='app-left-container'>
-               <LeftBox/>
-            </div>
-            <div className='app-right-container'>
-                <>
-                  <NavBar />
-                  <Home/>
-                </>
-                <Footer/>
+              <div className='app-left-container'>
+                <LeftBox/>
               </div>
-             
+              <div className='app-right-container'>
+                  <>
+                    <NavBar />
+                    <Home/>
+                  </>
+                  <Footer/>
+              </div>
             </div>
+            <HireMe/>
           </>
         </Route>
         <ProtectedRoute path='/upload'>
