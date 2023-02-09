@@ -366,15 +366,10 @@
     flex-grow: 1;
     /* width: 774px; */
     position: relative;
-    overflow-y: scroll;
     padding-bottom: 86px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    
-    /* overflow-x: hidden;
-    overflow-y: auto; */
-
 }
 
 .navbar-container {
@@ -887,14 +882,21 @@ select:focus {
 /* ------------------ */
 .home-main {
     display: flex;
-    height: 100%;
+    height: 100vh;
+    overflow-y: scroll;
    
 }
 .home-container {
-    margin-top: 2.5rem;
+    margin: 2rem;
     display: flex;
     justify-content: center;
-    /* width: 100%; */
+}
+
+.home-label {
+    margin-top: 2rem;
+    height: 100vh;
+    padding-bottom: 86px;
+    position: relative;
 }
 
 .home-song {
@@ -903,8 +905,6 @@ select:focus {
     display: grid;
     grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
     gap: 2rem;
-    /* height: 100%; */
-    /* overflow-y: scroll; */
 }
 .song-box { 
     display: flex;
@@ -1129,6 +1129,7 @@ select:focus {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5rem;
+    height: 100vh;
 }
 .userprofile-info{
   display: flex;
@@ -1272,8 +1273,8 @@ animation-name: quiet;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /* bottom: 0;
-    position:absolute; */
+    bottom: 0;
+    position:absolute;
 }
 
 .footer-label, .footer-link {

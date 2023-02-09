@@ -40,11 +40,9 @@ function App() {
                     <NavBar />
                     <Home/>
                   </>
-                  <Footer/>
               </div>
               <HireMe/>
             </div>
-          
           </>
         </Route>
         <ProtectedRoute path='/upload'>
@@ -58,8 +56,8 @@ function App() {
                     <NavBar />
                     <UploadSong/>
                 </>
-                <Footer/>
               </div>
+              <HireMe/>
             </div>
             </>
         </ProtectedRoute>
@@ -74,8 +72,8 @@ function App() {
                   <NavBar />
                   <PlaylistPage/>
                 </>
-                <Footer/>
               </div>
+              <HireMe/>
             </div>
           </>
         </ProtectedRoute>
@@ -89,9 +87,9 @@ function App() {
                 <>
                 <NavBar />
                 <UserPage />
-                <Footer />
                 </>
               </div>
+              <HireMe/>
             </div>
           </>
         </ProtectedRoute>
@@ -108,7 +106,6 @@ function App() {
                 </>
                 <Footer/>
               </div>
-             
             </div>
           </>
         </Route>

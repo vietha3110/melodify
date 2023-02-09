@@ -5,6 +5,7 @@ import * as playlistAction from '../../../store/playlist';
 import imgBox from './imgBox.png';
 import PlaylistSong from './PlaylistSong';
 import * as queueAction from '../../../store/queue';
+import Footer from '../../Footer';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -33,8 +34,8 @@ const Home = () => {
 
     return (
         <div className='home-main'>
-            <div className='home-label' style={{margin: "2rem 2rem 0rem 2rem"}}>
-                <span style={{fontSize: "1.5rem", fontWeight: "500"}}>
+            <div className='home-label'>
+                <span style={{fontSize: "1.5rem", fontWeight: "500", margin: "2rem 2rem 2rem 2rem"}}>
                     New music
                 </span>
            
@@ -74,7 +75,9 @@ const Home = () => {
                         )}
                     </div>
                 </div>
-                </div>
+                <Footer/>
+            </div>
+           
         </div>
     )
 }

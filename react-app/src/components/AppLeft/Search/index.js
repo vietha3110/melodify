@@ -11,12 +11,17 @@ const Search = () => {
         const result = fetch(`/api/songs/search/${searchInput}`)
             .then(res => res.json())
             .then(res => {
-                console.log('resultsong', res)
                 setSearchResult(res);
             })
             .catch(e => console.log(e));
-    }, [input])
+    }, [input]); 
+
+    const clearSearch = () => {
+
+    }; 
     
+
+
     return (
         <div className='app-left-search' style={{ cursor: "default" }}>
             <span className="material-symbols-outlined" style={{ padding: 8, cursor: "default" }}>
