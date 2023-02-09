@@ -3,15 +3,16 @@ const Footer = () => {
         <div className="footer-main"> 
             <div className="footer-label">
                 <span>
-                    © 2022 melodify - Developed by Ha Nguyen
+                    © 2023 melodify - Developed by Ha Nguyen
                 </span>
             </div>
             <div className="footer-link">
-                <a href="https://www.linkedin.com/in/havietng/" style={{margin: "2px 2px 0px 2px", textDecoration:"none", color:"rgba(0, 0, 0, 0.5)"}} target="_blank">
-                    Linkedin
+                <a href="https://www.linkedin.com/in/havietng/" target="_blank">
+                    
+                <i className="fa-brands fa-linkedin-in"></i>
                 </a>
-                <a href="https://github.com/vietha3110" style={{margin: "2px 2px 0px 2px", textDecoration:"none", color:"rgba(0, 0, 0, 0.5)"}} target="_blank">
-                    Github
+                <a href="https://github.com/vietha3110" target="_blank">
+                <i className="fa-brands fa-github"></i>
                 </a>
             </div>
         </div>

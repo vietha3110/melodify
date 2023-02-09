@@ -42,8 +42,9 @@ function App() {
                   </>
                   <Footer/>
               </div>
+              <HireMe/>
             </div>
-            <HireMe/>
+          
           </>
         </Route>
         <ProtectedRoute path='/upload'>
