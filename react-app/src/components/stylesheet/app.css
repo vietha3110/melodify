@@ -53,6 +53,10 @@
     position: relative;
     background-color: #fff;
 }
+
+.app-left-search:focus {
+    border: 4px solid red;
+}
 .search-input {
     width: 100%;
     height: 90%;
@@ -76,8 +80,51 @@
     width: 302px;
 }
 
+.search-result-song {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding: 5px 30px 5px 30px;
+    border-top: 1px solid #cccccc;
+}
 
+.search-result-song:hover {
+    color: #fff;
+    background-color: var(--melodify-red-key);
+}
 
+.search-result-info {
+    padding: 0px 30px 0px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-play-button {
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#play-btn {
+    padding-left: 2px;
+}
+
+.search-result-artist {
+    /* color: rgba(0, 0, 0, 0.5); */
+    font-size: 0.7rem;
+}
+
+.no-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-result-no {
+    padding: 10px 15px 10px 15px;
+}
 
 .main-logo {
     width: 1.5rem;
@@ -366,15 +413,10 @@
     flex-grow: 1;
     /* width: 774px; */
     position: relative;
-    overflow-y: scroll;
     padding-bottom: 86px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    
-    /* overflow-x: hidden;
-    overflow-y: auto; */
-
 }
 
 .navbar-container {
@@ -887,14 +929,21 @@ select:focus {
 /* ------------------ */
 .home-main {
     display: flex;
-    height: 100%;
+    height: 100vh;
+    overflow-y: scroll;
    
 }
 .home-container {
-    margin-top: 2.5rem;
+    margin: 2rem;
     display: flex;
     justify-content: center;
-    /* width: 100%; */
+}
+
+.home-label {
+    margin-top: 2rem;
+    height: 100vh;
+    padding-bottom: 86px;
+    position: relative;
 }
 
 .home-song {
@@ -903,8 +952,6 @@ select:focus {
     display: grid;
     grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
     gap: 2rem;
-    /* height: 100%; */
-    /* overflow-y: scroll; */
 }
 .song-box { 
     display: flex;
@@ -1129,6 +1176,7 @@ select:focus {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5rem;
+    height: 100vh;
 }
 .userprofile-info{
   display: flex;
@@ -1272,8 +1320,8 @@ animation-name: quiet;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /* bottom: 0;
-    position:absolute; */
+    bottom: 0;
+    position:absolute;
 }
 
 .footer-label, .footer-link {
