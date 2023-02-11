@@ -53,10 +53,24 @@
     position: relative;
     background-color: #fff;
 }
-
-.app-left-search:focus {
-    border: 4px solid red;
+.app-left-search-focus {
+    border: 4px solid #d60017;
+    border-radius: 2px;
+    height: 30px;
+    color: #cccccc;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
+    margin: 1rem;
+    font-size: 1rem;
+    background-color: #fff;
 }
+
+/* .app-left-search:focus {
+    border: 4px solid red;
+} */
 .search-input {
     width: 100%;
     height: 90%;

@@ -6,6 +6,7 @@ const Search = () => {
     const [input, setInput] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(false);
+    const [focus, setFocus] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -26,14 +27,6 @@ const Search = () => {
             .catch(e => console.log(e));
     }, [input]); 
 
-    useEffect(() => {
-        document.addEventListener('click', e => {
-            clearSearch();
-        });
-    }, []);
-
-
-
     const onSongClick = (song) => () => {
         const songInfo = { name: song.song, id: song.id, artistName: song.artist };
         dispatch(queueAction.updateList({ list: [songInfo]}));
@@ -42,23 +35,20 @@ const Search = () => {
 
     const clearSearch = () => {
         setShowResult(false);
-        document.getElementById("left-search").style.border = "1px solid #cccccc";
+        setFocus(false);
     }; 
 
     const onChange = (e) => {
         setInput(e.target.value);
-        // document.getElementById("left-search").style.border = "4px solid #d60017";
-
     };
 
     const onFocus = () => {
-        document.getElementById("left-search").style.border = "4px solid #d60017";
+        setFocus(true);
     };
-    
 
 
     return (
-        <div className='app-left-search' style={{ cursor: "default" }} id='left-search'>
+        <div className={focus ? `app-left-search-focus`:`app-left-search`} id='left-search'>
             <span className="material-symbols-outlined" style={{ padding: 8, cursor: "default" }}>
                 search
             </span>
@@ -67,7 +57,7 @@ const Search = () => {
                 placeholder="Search"
                 value={input}
                 onChange={onChange}
-                // onBlur={clearSearch}
+                onBlur={clearSearch}
                 onFocus={onFocus}
             />
             {
