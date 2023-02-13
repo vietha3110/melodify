@@ -8,7 +8,7 @@ import imgBox from '../Home/imgBox.png';
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
-    const { repeated } = useSelector(state => state.queue);
+    const { repeated, shuffled } = useSelector(state => state.queue);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -52,20 +52,25 @@ const Player = () => {
         dispatch(queueAction.previousSong());
     };
 
-    const repeatClick = () => {
-        dispatch(queueAction.repeatList());
+    const repeatClick = (repeat) => () => {
+        console.log('repeat work', repeat)
+        dispatch(queueAction.repeatList(repeat));
     };
 
-    const shuffleClick = () => {
-        dispatch(queueAction.shuffleList());
+    const shuffleClick = (shuffle) => () => {
+        dispatch(queueAction.shuffleList(shuffle));
     };
 
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-     
-                    <i className="fa-solid fa-shuffle" style={{color: "rgba(0, 0, 0, 0.5)"}} onClick={shuffleClick}></i>
-                
+                { !shuffled &&
+                    <i className="fa-solid fa-shuffle" onClick={shuffleClick(true)}></i>
+                }
+                {
+                    shuffled && 
+                    <i className="fa-solid fa-shuffle fa-shuffled" onClick={shuffleClick(false)}></i>
+                }
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
@@ -80,12 +85,12 @@ const Player = () => {
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
                 {
                     repeated && 
-                    <i className="fa-solid fa-repeat" style={{color: "rgba(0, 0, 0, 0.88)"}} onClick={repeatClick}></i>
+                    <i className="fa-solid fa-repeat fa-repeated" onClick={repeatClick(false)}></i>
                     
                 }
                 {
                     !repeated &&
-                    <i className="fa-solid fa-repeat" onClick={repeatClick}></i>
+                    <i className="fa-solid fa-repeat" onClick={repeatClick(true)}></i>
                 }
                {/* style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }} */}
             </div>

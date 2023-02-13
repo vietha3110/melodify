@@ -111,18 +111,18 @@ export const deleteSong = (songId) => async (dispatch, getState) => {
     }
 }
 
-export const repeatList = () => {
+export const repeatList = (repeat) => {
     return({
         type: REPEAT_LIST, 
-        repeatList: true
+        repeated: repeat
     })
 }
 
 
-export const shuffleList = () => {
+export const shuffleList = (shuffle) => {
     return({
         type: SHUFFLE_LIST,
-        isShuffled: true
+        isShuffled: shuffle
     })
 }
 const initialState = {
@@ -140,7 +140,7 @@ const queueReducer = (state = initialState, action) => {
                 list: action.playlist.list,
                 currentPlayingSong: 0,
                 repeated: false,
-                listId: action.playlist.listId
+                listId: action.playlist.listId,
             }
         case NEXT_SONG: 
             return {
@@ -165,7 +165,7 @@ const queueReducer = (state = initialState, action) => {
         case REPEAT_LIST: 
             return {
                 ...state, 
-                repeated: action.repeatList
+                repeated: action.repeated
             }
         case SHUFFLE_LIST: 
             return {

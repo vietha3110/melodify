@@ -463,7 +463,9 @@
     color: rgba(0, 0, 0, 0.88);
 }
 
-
+.fa-repeated, .fa-shuffled {
+    color: var(--melodify-red-close)
+}
 
 .player-controls-play-pause {
     display: flex;
