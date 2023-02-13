@@ -34,34 +34,38 @@ const Player = () => {
 
     const onChangeVolume = (volume) => {
         dispatch(playerAction.adjustVolume(volume));
-    }
+    };
 
     const toggleMute = () => {
         dispatch(playerAction.mute(true));
-    }
+    };
 
     const toggleUnMute = () => {
         dispatch(playerAction.mute(false));
-    }
+    };
 
     const onForwardClick = () => {
         dispatch(queueAction.nextSong());
-    }
+    };
 
     const onBackwardClick = () => {
         dispatch(queueAction.previousSong());
-    }
+    };
 
     const repeatClick = () => {
         dispatch(queueAction.repeatList());
-    }
+    };
+
+    const shuffleClick = () => {
+        dispatch(queueAction.shuffleList());
+    };
 
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-                <LabelledButton
-                    child={<i className="fa-solid fa-shuffle" style={{color: "rgba(0, 0, 0, 0.5)" }}></i>}
-                />
+     
+                    <i className="fa-solid fa-shuffle" style={{color: "rgba(0, 0, 0, 0.5)"}} onClick={shuffleClick}></i>
+                
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {

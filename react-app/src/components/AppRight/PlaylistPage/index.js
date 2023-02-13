@@ -48,7 +48,7 @@ const PlaylistPage = () => {
         for (let song of playlist.playlist_songs) {
             list.push(song.song);
         }
-        dispatch(queueAction.updateList({ list, listId: playlist.id }));
+        dispatch(queueAction.updateList({ list, listId: playlist.id}));
     }
 
     return (

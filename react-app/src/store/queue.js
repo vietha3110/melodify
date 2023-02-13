@@ -6,14 +6,22 @@ const PREVIOUS_SONG = "queue/previousSong";
 const PLAY_SONG_FROM_LIST = "queue/playSong";
 const DELETE_SONG = "queue/deleteSong";
 const REPEAT_LIST = "queue/repeatList";
+const SHUFFLE_LIST = "queue/shuffleList";
 
-
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
 // accessing state in action creators - use GetState in thunks (Redux Thunk middleware )
-export const updateList = (playlist) => async (dispatch) => {
+export const updateList = (playlist) => async (dispatch, getState) => {
     dispatch({
         type: UPDATE_LIST,
         playlist,
     });
+    const isShuffled = getState().queue.shuffled; 
     if (playlist.list.length === 0) {
         dispatch(playerAction.reset());
     } else {
@@ -23,8 +31,14 @@ export const updateList = (playlist) => async (dispatch) => {
 
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
-    // console.log('jojoo', state)
+
     if (state.list === null) {
+        return;
+    }
+    if (state.shuffled) {
+        const updatedList = shuffle(state.list);
+        state.list = updatedList;
+        dispatch(updateList(state));
         return;
     }
     if (state.currentPlayingSong === state.list.length - 1 && state.repeated === true) {
@@ -97,18 +111,26 @@ export const deleteSong = (songId) => async (dispatch, getState) => {
     }
 }
 
-export const repeatList = () =>  {
+export const repeatList = () => {
     return({
         type: REPEAT_LIST, 
         repeatList: true
     })
 }
 
+
+export const shuffleList = () => {
+    return({
+        type: SHUFFLE_LIST,
+        isShuffled: true
+    })
+}
 const initialState = {
     list: null,
     currentPlayingSong: 0,
     repeated: false,
-    listId: null
+    listId: null,
+    shuffled: false
 }
 
 const queueReducer = (state = initialState, action) => {
@@ -144,6 +166,11 @@ const queueReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 repeated: action.repeatList
+            }
+        case SHUFFLE_LIST: 
+            return {
+                ...state,
+                shuffled: action.isShuffled
             }
 
         default:
