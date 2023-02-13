@@ -17,7 +17,7 @@ function changeSecondToTime(length) {
 const PlaylistPage = () => {
     const { playlistId } = useParams();
     const playlists = useSelector(state => state.playlists.playlists);
-    const { list, currentSong, listId } = useSelector(state => state.queue);
+    const { list, currentSong, listId, shuffled } = useSelector(state => state.queue);
     const { playing } = useSelector(state => state.player);
     const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ const PlaylistPage = () => {
         for (let song of playlist.playlist_songs) {
             list.push(song.song);
         }
-        dispatch(queueAction.updateList({ list, listId: playlist.id}));
+        dispatch(queueAction.updateList({ list, listId: playlist.id, shuffled}));
     }
 
     return (

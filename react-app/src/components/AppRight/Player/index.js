@@ -8,7 +8,7 @@ import imgBox from '../Home/imgBox.png';
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
-    const { repeated, shuffled } = useSelector(state => state.queue);
+    const { repeated, shuffled, list } = useSelector(state => state.queue);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -58,7 +58,8 @@ const Player = () => {
     };
 
     const shuffleClick = (shuffle) => () => {
-        dispatch(queueAction.shuffleList(shuffle));
+        localStorage.setItem('shuffled', shuffle); 
+        dispatch(queueAction.shuffleList())
     };
 
     return (
