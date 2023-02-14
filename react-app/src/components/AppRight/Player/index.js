@@ -8,7 +8,7 @@ import imgBox from '../Home/imgBox.png';
 
 const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
-    const { repeated } = useSelector(state => state.queue);
+    const { repeated, shuffled, list } = useSelector(state => state.queue);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,34 +34,44 @@ const Player = () => {
 
     const onChangeVolume = (volume) => {
         dispatch(playerAction.adjustVolume(volume));
-    }
+    };
 
     const toggleMute = () => {
         dispatch(playerAction.mute(true));
-    }
+    };
 
     const toggleUnMute = () => {
         dispatch(playerAction.mute(false));
-    }
+    };
 
     const onForwardClick = () => {
         dispatch(queueAction.nextSong());
-    }
+    };
 
     const onBackwardClick = () => {
         dispatch(queueAction.previousSong());
-    }
+    };
 
-    const repeatClick = () => {
-        dispatch(queueAction.repeatList());
-    }
+    const repeatClick = (repeat) => () => {
+        console.log('repeat work', repeat)
+        dispatch(queueAction.repeatList(repeat));
+    };
+
+    const shuffleClick = (shuffle) => () => {
+        localStorage.setItem('shuffled', shuffle); 
+        dispatch(queueAction.shuffleList())
+    };
 
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-                <LabelledButton
-                    child={<i className="fa-solid fa-shuffle" style={{color: "rgba(0, 0, 0, 0.5)" }}></i>}
-                />
+                { !shuffled &&
+                    <i className="fa-solid fa-shuffle" onClick={shuffleClick(true)}></i>
+                }
+                {
+                    shuffled && 
+                    <i className="fa-solid fa-shuffle fa-shuffled" onClick={shuffleClick(false)}></i>
+                }
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
                     {
@@ -76,12 +86,12 @@ const Player = () => {
                 <i className="fa-solid fa-forward" onClick={onForwardClick}></i>
                 {
                     repeated && 
-                    <i className="fa-solid fa-repeat" style={{color: "rgba(0, 0, 0, 0.88)"}} onClick={repeatClick}></i>
+                    <i className="fa-solid fa-repeat fa-repeated" onClick={repeatClick(false)}></i>
                     
                 }
                 {
                     !repeated &&
-                    <i className="fa-solid fa-repeat" onClick={repeatClick}></i>
+                    <i className="fa-solid fa-repeat" onClick={repeatClick(true)}></i>
                 }
                {/* style={{ cursor: "default", color: "rgba(0, 0, 0, 0.5)" }} */}
             </div>

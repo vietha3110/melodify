@@ -6,27 +6,44 @@ const PREVIOUS_SONG = "queue/previousSong";
 const PLAY_SONG_FROM_LIST = "queue/playSong";
 const DELETE_SONG = "queue/deleteSong";
 const REPEAT_LIST = "queue/repeatList";
+const SHUFFLE_LIST = "queue/shuffleList";
 
-
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
 // accessing state in action creators - use GetState in thunks (Redux Thunk middleware )
-export const updateList = (playlist) => async (dispatch) => {
-    dispatch({
-        type: UPDATE_LIST,
-        playlist,
-    });
+export const updateList = (playlist) => async (dispatch, getState) => {
+    const isShuffled = getState().queue.shuffled; 
     if (playlist.list.length === 0) {
         dispatch(playerAction.reset());
-    } else {
+    } else if (isShuffled) {
+        playlist.list = shuffle(playlist.list);
+        dispatch(playerAction.loadSong(playlist.list[0]));
+        dispatch({
+            type: UPDATE_LIST,
+            playlist,
+        });
+    }
+    else {
+        dispatch({
+            type: UPDATE_LIST,
+            playlist,
+        });
         dispatch(playerAction.loadSong(playlist.list[0]));
     }
 }
 
 export const nextSong = () => async (dispatch, getState) => {
     const state = getState().queue;
-    // console.log('jojoo', state)
+
     if (state.list === null) {
         return;
     }
+
     if (state.currentPlayingSong === state.list.length - 1 && state.repeated === true) {
         dispatch(updateList(state));
         return;
@@ -97,18 +114,59 @@ export const deleteSong = (songId) => async (dispatch, getState) => {
     }
 }
 
-export const repeatList = () =>  {
+export const repeatList = (repeat) => {
     return({
         type: REPEAT_LIST, 
-        repeatList: true
+        repeated: repeat
     })
+}
+
+
+export const shuffleList = () => async (dispatch, getState) => {
+    const state = getState().queue;
+    const playing = getState().player.playing;
+    const isShuffled = localStorage.getItem('shuffled');
+
+    if (isShuffled && playing) {
+        console.log('here', 124)
+        state.shuffled = isShuffled;
+        state.list = shuffle(state.list)
+        dispatch(updateList(state));
+        return;
+    } else {
+        dispatch(updateShuffled(isShuffled))
+    }
+}
+
+export const updateShuffled = (shuffled) => {
+    return (
+        {
+            type: SHUFFLE_LIST,
+            isShuffled:shuffled
+        })
+}
+
+function getInitialState() {
+    if (!localStorage.getItem('shuffled')) {
+        localStorage.setItem('shuffled', false);
+    }
+    let shuffled = localStorage.getItem('shuffled');
+    return {
+        list: null,
+        currentPlayingSong: 0,
+        repeated: false,
+        listId: null,
+        shuffled: false
+    }
+    
 }
 
 const initialState = {
     list: null,
     currentPlayingSong: 0,
     repeated: false,
-    listId: null
+    listId: null,
+    shuffled: false
 }
 
 const queueReducer = (state = initialState, action) => {
@@ -118,7 +176,8 @@ const queueReducer = (state = initialState, action) => {
                 list: action.playlist.list,
                 currentPlayingSong: 0,
                 repeated: false,
-                listId: action.playlist.listId
+                listId: action.playlist.listId,
+                shuffled: action.playlist.shuffled
             }
         case NEXT_SONG: 
             return {
@@ -143,7 +202,13 @@ const queueReducer = (state = initialState, action) => {
         case REPEAT_LIST: 
             return {
                 ...state, 
-                repeated: action.repeatList
+                repeated: action.repeated
+            }
+        case SHUFFLE_LIST: 
+            console.log('here', 197, action.isShuffled)
+            return {
+                ...state,
+                shuffled: action.isShuffled
             }
 
         default:

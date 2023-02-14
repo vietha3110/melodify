@@ -463,7 +463,9 @@
     color: rgba(0, 0, 0, 0.88);
 }
 
-
+.fa-repeated, .fa-shuffled {
+    color: var(--melodify-red-close)
+}
 
 .player-controls-play-pause {
     display: flex;
@@ -1279,6 +1281,16 @@ select:focus {
     height: 30px;
     --boxSize: 8px;
     --gutter: 4px;
+    width: calc((var(--boxSize) + var(--gutter)) * 5);
+    margin-top: 8px;
+}
+
+.miniBox {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    --boxSize: 5px;
+    --gutter: 3px;
     width: calc((var(--boxSize) + var(--gutter)) * 5);
     margin-top: 8px;
 }

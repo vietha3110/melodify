@@ -13,6 +13,7 @@ const Home = () => {
     const songs = useSelector(state => state.songs.songs);
     const playlists = useSelector(state => state.playlists.playlists);
     const [openings, setOpenings] = useState({});
+    const {shuffled} = useSelector(state => state.queue);
 
     useEffect(() => {
         dispatch(songAction.fetchAllSongs());
@@ -21,7 +22,7 @@ const Home = () => {
     }, [dispatch]);
 
     const onSongClick = (song) => () => {
-        dispatch(queueAction.updateList({ list: [song]}));
+        dispatch(queueAction.updateList({ list: [song], shuffled}));
     };
 
     const addSongClick = (i) => () => {
