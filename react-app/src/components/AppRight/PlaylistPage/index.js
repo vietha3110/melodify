@@ -5,7 +5,7 @@ import * as playerAction from '../../../store/player';
 import * as queueAction from '../../../store/queue';
 import WaveBox from "../../Box";
 import NotFound from "../../Notfound";
-
+import MiniBox from "../../MiniBox";
 import * as playlistAction from "../../../store/playlist";
 function changeSecondToTime(length) {
     const minute = Math.floor(length % 3600 / 60).toString().padStart(2, '0');
@@ -19,6 +19,7 @@ const PlaylistPage = () => {
     const playlists = useSelector(state => state.playlists.playlists);
     const { list, currentSong, listId, shuffled } = useSelector(state => state.queue);
     const { playing } = useSelector(state => state.player);
+    const playedSong = useSelector(state=>state.player.song)
     const dispatch = useDispatch();
 
 
@@ -89,9 +90,18 @@ const PlaylistPage = () => {
                         {
                             playlists[+playlistId].playlist_songs.length > 0 && playlists[+playlistId].playlist_songs.map((song, i) =>
                                 <div className="listpage-content listpage-song" key={i} style={{marginTop:"1rem"}}>
-                                    <span>
-                                        {i + 1}
-                                    </span>
+                                    {
+                                        (!playing || (playing && playedSong.fileId !== song.song.fileId)) && 
+                                        <span>
+                                            <i class="fa-brands fa-itunes-note"></i>
+                                        </span>
+                                    } 
+                                    {
+                                        playing && playedSong.fileId === song.song.fileId && 
+                                        <span>
+                                               <MiniBox/>
+                                        </span>
+                                    }
                                     <span onClick={onSongClick(i, song)} className='listpage-content-name listname-hover' style={{cursor:"pointer", padding:"1px"}}>
                                         {song.song.name}
                                     </span>

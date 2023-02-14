@@ -1285,6 +1285,16 @@ select:focus {
     margin-top: 8px;
 }
 
+.miniBox {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    --boxSize: 5px;
+    --gutter: 3px;
+    width: calc((var(--boxSize) + var(--gutter)) * 5);
+    margin-top: 8px;
+}
+
 .box{
     transform: scaleY(.4);
     height: 100%;
