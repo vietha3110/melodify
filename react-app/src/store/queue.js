@@ -8,7 +8,7 @@ const DELETE_SONG = "queue/deleteSong";
 const REPEAT_LIST = "queue/repeatList";
 const SHUFFLE_LIST = "queue/shuffleList";
 
-function shuffle(arr) {
+function shuffleArr(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -21,7 +21,7 @@ export const updateList = (playlist) => async (dispatch, getState) => {
     if (playlist.list.length === 0) {
         dispatch(playerAction.reset());
     } else if (isShuffled) {
-        playlist.list = shuffle(playlist.list);
+        playlist.list = shuffleArr(playlist.list);
         dispatch(playerAction.loadSong(playlist.list[0]));
         dispatch({
             type: UPDATE_LIST,
@@ -122,15 +122,14 @@ export const repeatList = (repeat) => {
 }
 
 
-export const shuffleList = () => async (dispatch, getState) => {
+export const shuffleList = (shuffle) => async (dispatch, getState) => {
     const state = getState().queue;
     const playing = getState().player.playing;
-    const isShuffled = localStorage.getItem('shuffled');
+    const isShuffled = shuffle;
 
     if (isShuffled && playing) {
-        console.log('here', 124)
         state.shuffled = isShuffled;
-        state.list = shuffle(state.list)
+        state.list = shuffleArr(state.list)
         dispatch(updateList(state));
         return;
     } else {
@@ -146,20 +145,6 @@ export const updateShuffled = (shuffled) => {
         })
 }
 
-function getInitialState() {
-    if (!localStorage.getItem('shuffled')) {
-        localStorage.setItem('shuffled', false);
-    }
-    let shuffled = localStorage.getItem('shuffled');
-    return {
-        list: null,
-        currentPlayingSong: 0,
-        repeated: false,
-        listId: null,
-        shuffled: false
-    }
-    
-}
 
 const initialState = {
     list: null,
@@ -205,7 +190,6 @@ const queueReducer = (state = initialState, action) => {
                 repeated: action.repeated
             }
         case SHUFFLE_LIST: 
-            console.log('here', 197, action.isShuffled)
             return {
                 ...state,
                 shuffled: action.isShuffled

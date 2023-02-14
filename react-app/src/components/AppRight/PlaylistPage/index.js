@@ -78,7 +78,7 @@ const PlaylistPage = () => {
                     {
                         playlists[+playlistId].playlist_songs.length > 0 &&
                         <div className="listpage-content listpage-head">
-                            <span>#</span>
+                            <span></span>
                             <span>Title</span>
                             <span>Artist</span>
                             <span>Genre</span>
