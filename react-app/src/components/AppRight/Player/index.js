@@ -10,7 +10,7 @@ const Player = () => {
     const { song, playing, duration, currentTime, volume, muted } = useSelector(state => state.player);
     const { repeated, shuffled, list } = useSelector(state => state.queue);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         setInterval(() => {
             dispatch(playerAction.syncProgress());
@@ -53,24 +53,21 @@ const Player = () => {
     };
 
     const repeatClick = (repeat) => () => {
-        console.log('repeat work', repeat)
         dispatch(queueAction.repeatList(repeat));
     };
 
-    const shuffleClick = (shuffle) => () => {
-        localStorage.setItem('shuffled', shuffle); 
-        dispatch(queueAction.shuffleList())
+    const shuffleClick = (shuffle) => () => {       
+        dispatch(queueAction.shuffleList(shuffle))
     };
-
     return (
         <div className='navbar-player'>
             <div className='player-controls'>
-                { !shuffled &&
-                    <i className="fa-solid fa-shuffle" onClick={shuffleClick(true)}></i>
-                }
                 {
                     shuffled && 
                     <i className="fa-solid fa-shuffle fa-shuffled" onClick={shuffleClick(false)}></i>
+                }
+                {   !shuffled &&
+                    <i className="fa-solid fa-shuffle" onClick={shuffleClick(true)}></i>
                 }
                 <i className="fa-solid fa-backward" onClick={onBackwardClick} ></i>
                 <div className='player-controls-play-pause'>
