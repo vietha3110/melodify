@@ -29,12 +29,12 @@ const Search = () => {
 
     const onSongClick = (song) => () => {
         const songInfo = { name: song.song, id: song.id, artistName: song.artist };
-        dispatch(queueAction.updateList({ list: [songInfo]}));
-        clearSearch();
+        dispatch(queueAction.updateList({ list: [songInfo] }));
+        setShowResult(false);
     };
 
     const clearSearch = () => {
-        setShowResult(false);
+        // setShowResult(false);
         setFocus(false);
     }; 
 
@@ -57,8 +57,8 @@ const Search = () => {
                 placeholder="Search"
                 value={input}
                 onChange={onChange}
-                onBlur={clearSearch}
                 onFocus={onFocus}
+                onBlur={clearSearch}
             />
             {
                 searchResult.length > 0 && showResult &&
@@ -66,9 +66,9 @@ const Search = () => {
                     {
                         searchResult.map(ele => (
                             <div>
-                                <div className="search-result-song">
+                                <div className="search-result-song"  onClick={onSongClick(ele)} >
                                     <div className="search-play-button">
-                                        <i className="fa-solid fa-play" id="play-btn" onClick={onSongClick(ele)}></i>
+                                        <i className="fa-solid fa-play" id="play-btn" ></i>
                                     </div>
                                     <div className="search-result-info">
                                         <span className="search-result-songname">{ele.song}</span>

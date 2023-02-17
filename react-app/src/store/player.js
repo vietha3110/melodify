@@ -148,19 +148,13 @@ export function mute(muted) {
 }
 
 export function reset() {
-    // controller.pause();
     controller.loadSource('');
     return {
         type: RESET, 
-     }
+    }
  }
 
-// export const reset = () => async (dispatch) => {
-//     await dispatch(ended());
-//     dispatch({
-//         type: RESET
-//     })
-// }
+
 
 const initialState = {
     song: null,
